@@ -1,0 +1,84 @@
+{
+  "editor.formatOnSave": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "files.associations": {
+    "*.yml": "yaml",
+    "*.yaml": "yaml"
+  },
+  "yaml.schemas": {
+    "https://json.schemastore.org/github-workflow.json": ".github/workflows/*.yml"
+  },
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "editor.tabSize": 2,
+  "editor.insertSpaces": true,
+  "files.eol": "\n",
+  "files.trimTrailingWhitespace": true,
+  "files.insertFinalNewline": true,
+  "[markdown]": {
+    "files.trimTrailingWhitespace": false
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/.next": true,
+    "**/out": true,
+    "**/.vercel": true
+  },
+  "files.exclude": {
+    "**/.git": true,
+    "**/.DS_Store": true
+  },
+
+  // تعطيل الامتدادات غير الضرورية
+  "python.analysis.disabled": true,
+  "jupyter.enabled": false,
+  "dart.enabled": false,
+  "sonarqube.enabled": false,
+
+  // إخفاء إعلانات Tabnine والامتدادات الأخرى
+  "tabnine.disable_auto_update_message": true,
+  "tabnine.disable_file_regex": [],
+  "workbench.startupEditor": "none",
+  "extensions.autoUpdate": false,
+  "extensions.autoCheckUpdates": false,
+
+  // التدقيق الإملائي - تجاهل الكلمات العربية والتقنية
+  "cSpell.enabled": true,
+  "cSpell.language": "en,ar",
+  "cSpell.words": [
+    "nexus",
+    "vercel",
+    "dependabot",
+    "codeql",
+    "pylance",
+    "tabnine",
+    "gitignore",
+    "prettierrc",
+    "tsconfig",
+    "eslintrc",
+    "autofix",
+    "autobuild"
+  ],
+  "cSpell.enabledFileTypes": {
+    "markdown": true,
+    "typescript": true,
+    "javascript": true,
+    "yaml": true
+  },
+
+  // تحسين الأداء
+  "extensions.ignoreRecommendations": false,
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/.next/**": true,
+    "**/dist/**": true
+  }
+}
+

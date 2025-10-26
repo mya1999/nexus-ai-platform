@@ -1,0 +1,36 @@
+- name: bug
+  color: d73a4a
+  description: 🐛 مشكلة تحتاج إلى إصلاح
+- name: enhancement
+  color: a2eeef
+  description: ✨ ميزة جديدة أو تحسين
+- name: dependencies
+  color: 0366d6
+  description: 📦 تحديثات التبعيات
+- name: documentation
+  color: 0075ca
+  description: 📚 تحسينات التوثيق
+- name: performance
+  color: "00ff00"
+  description: ⚡ تحسينات الأداء
+- name: security
+  color: ee0701
+  description: 🔒 مشكلة أمنية
+- name: good first issue
+  color: 7057ff
+  description: 👋 مناسبة للمساهمين الجدد
+- name: help wanted
+  color: 008672
+  description: 🙋 نحتاج مساعدة
+- name: wontfix
+  color: ffffff
+  description: ❌ لن يتم العمل عليه
+- name: duplicate
+  color: cfd3d7
+  description: ⚠️ مكررة
+- name: stale
+  color: fef2c0
+  description: ⏰ قديمة وبحاجة لتحديث
+- name: pinned
+  color: fbca04
+  description: 📌 مثبتة - لن تُغلق تلقائيًا

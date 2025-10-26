@@ -1,0 +1,22 @@
+{
+  "recommendations": [
+    // الأساسيات (إلزامي)
+    "esbenp.prettier-vscode",
+    "dbaeumer.vscode-eslint",
+    "github.vscode-pull-request-github",
+
+    // مفيدة جدًا (موصى به بشدة)
+    "redhat.vscode-yaml",
+    "bradlc.vscode-tailwindcss",
+    "usernamehw.errorlens"
+  ],
+  "unwantedRecommendations": [
+    // تعطيل الاقتراحات غير الضرورية
+    "ms-python.python",
+    "ms-toolsai.jupyter",
+    "dart-code.dart-code",
+    "sonarsource.sonarlint-vscode",
+    "ms-vscode.azure-account"
+  ]
+}
+

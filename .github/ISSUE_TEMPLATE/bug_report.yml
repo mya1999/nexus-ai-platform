@@ -1,0 +1,24 @@
+name: 🐛 بلاغ مشكلة
+description: أبلغ عن عطل أو مشكلة
+labels: [bug]
+body:
+  - type: textarea
+    id: description
+    attributes:
+      label: وصف المشكلة
+      description: ما الذي حدث؟ وما الذي كنت تتوقعه؟
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: خطوات إعادة المشكلة
+      placeholder: |
+        1. اذهب إلى...
+        2. اضغط على...
+        3. لاحظ الخطأ...
+  - type: textarea
+    id: logs
+    attributes:
+      label: رسائل الخطأ/السجلات
+      render: shell

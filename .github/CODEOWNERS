@@ -1,0 +1,21 @@
+# ====================================
+# Code Owners - Nexus AI Platform
+# ====================================
+# يتم إشعار المالكين تلقائيًا عند إنشاء PR
+
+# ملاحظة: استبدل @your-username باسم حسابك الفعلي على GitHub
+
+# المالك الافتراضي لكل الملفات
+* @your-username
+
+# Frontend Components
+/src/components/ @your-username
+/src/app/ @your-username
+
+# Workflows & CI/CD
+/.github/ @your-username
+
+# Configuration Files
+*.config.js @your-username
+*.config.ts @your-username
+package.json @your-username

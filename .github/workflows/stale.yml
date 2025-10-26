@@ -1,0 +1,31 @@
+name: Close Stale Issues & PRs
+
+on:
+  schedule:
+    - cron: "0 0 * * *" # يوميًا في منتصف الليل
+
+permissions:
+  issues: write
+  pull-requests: write
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/stale@v9
+        with:
+          repo-token: ${{ secrets.GITHUB_TOKEN }}
+          # Issues
+          stale-issue-message: "⏰ هذه المشكلة لم يتم التفاعل معها منذ فترة. سيتم إغلاقها تلقائيًا خلال 7 أيام إذا لم يكن هناك نشاط."
+          close-issue-message: "🔒 تم إغلاق هذه المشكلة تلقائيًا بسبب عدم النشاط."
+          days-before-stale: 60
+          days-before-close: 7
+          stale-issue-label: "stale"
+          exempt-issue-labels: "pinned,security,enhancement"
+          # Pull Requests
+          stale-pr-message: "⏰ هذا الـ PR لم يتم التفاعل معه منذ فترة. سيتم إغلاقه تلقائيًا خلال 7 أيام إذا لم يكن هناك نشاط."
+          close-pr-message: "🔒 تم إغلاق هذا الـ PR تلقائيًا بسبب عدم النشاط."
+          days-before-pr-stale: 30
+          days-before-pr-close: 7
+          stale-pr-label: "stale"
+          exempt-pr-labels: "pinned,security"
