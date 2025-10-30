@@ -26,27 +26,27 @@ const Input = forwardRef<HTMLInputElement, InputProps>(
     return (
       <div className={`${fullWidth ? 'w-full' : ''}`}>
         {label && (
-          <label className="block text-sm font-medium text-slate-300 mb-2">
+          <label className="block text-sm font-medium text-gray-300 mb-2">
             {label}
           </label>
         )}
         <div className="relative">
           {icon && (
-            <div className="absolute right-4 top-1/2 -translate-y-1/2 text-slate-400">
+            <div className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400">
               {icon}
             </div>
           )}
           <input
             ref={ref}
             className={`
-              w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl
-              text-white placeholder:text-slate-500
+              w-full px-4 py-3 bg-black/50 border border-white/20 rounded-xl
+              text-white placeholder:text-gray-500
               transition-all duration-300
-              focus:outline-none focus:border-blue-500 focus:bg-white/10
+              focus:outline-none focus:border-white focus:bg-black/70
               disabled:opacity-50 disabled:cursor-not-allowed
               ${icon ? 'pr-12' : ''}
               ${error ? 'border-red-500 focus:border-red-500' : ''}
-              ${isFocused ? 'shadow-lg shadow-blue-500/20' : ''}
+              ${isFocused ? 'shadow-luxury' : ''}
               ${className}
             `}
             onFocus={() => setIsFocused(true)}

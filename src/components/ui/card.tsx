@@ -23,14 +23,14 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     const baseStyles = 'rounded-2xl transition-all duration-300';
 
     const variants = {
-      default: 'bg-slate-900/50 border border-white/10',
-      gradient: 'bg-gradient-to-br from-slate-900/80 to-blue-900/30 border border-white/10',
-      glass: 'backdrop-blur-xl bg-white/5 border border-white/10',
-      bordered: 'bg-transparent border-2 border-slate-700 hover:border-blue-500',
+      default: 'bg-black/50 border border-white/10',
+      gradient: 'gradient-dark border border-white/10',
+      glass: 'glass-dark backdrop-blur-xl',
+      bordered: 'bg-transparent border-2 border-gray-700 hover:border-white',
     };
 
     const hoverStyles = hover
-      ? 'hover:scale-105 hover:shadow-2xl hover:shadow-blue-500/20 cursor-pointer hover:border-blue-500/50'
+      ? 'hover:scale-105 hover:shadow-luxury hover:border-white/30 cursor-pointer'
       : '';
 
     const paddings = {

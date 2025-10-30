@@ -74,9 +74,9 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="h-screen flex flex-col bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950">
+    <div className="h-screen flex flex-col gradient-dark">
       {/* Header */}
-      <header className="flex-shrink-0 border-b border-white/10 bg-slate-900/50 backdrop-blur-xl">
+      <header className="flex-shrink-0 border-b border-white/10 bg-black/50 backdrop-blur-xl">
         <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
           <div className="flex items-center gap-3">
             <button
@@ -87,11 +87,11 @@ export default function ChatPage() {
             </button>
 
             <Link href="/" className="flex items-center gap-2 hover:scale-105 transition-transform">
-              <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/50">
+              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center shadow-luxury-white">
                 <span className="text-xl">⚡</span>
               </div>
-              <span className="text-lg font-bold bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
-                Nexus AI
+              <span className="text-lg font-bold gradient-text-white">
+                NexusAI
               </span>
             </Link>
           </div>

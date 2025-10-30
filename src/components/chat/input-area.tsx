@@ -38,7 +38,7 @@ export default function InputArea({ onSend, isLoading, disabled }: InputAreaProp
   };
 
   return (
-    <div className="border-t border-white/10 bg-slate-900/80 backdrop-blur-xl p-4">
+    <div className="border-t border-white/10 bg-black/50 backdrop-blur-xl p-4">
       <div className="max-w-4xl mx-auto">
         <div className="flex gap-3 items-end">
           {/* Text Area */}
@@ -52,10 +52,10 @@ export default function InputArea({ onSend, isLoading, disabled }: InputAreaProp
               placeholder="اكتب رسالتك هنا... (Enter للإرسال، Shift+Enter لسطر جديد)"
               disabled={disabled || isLoading}
               className="
-                w-full px-5 py-3 bg-slate-800/50 border border-white/10 rounded-2xl
-                text-white placeholder:text-slate-500
+                w-full px-5 py-3 bg-black/50 border border-white/20 rounded-2xl
+                text-white placeholder:text-gray-500
                 resize-none overflow-hidden
-                focus:outline-none focus:border-blue-500 focus:bg-slate-800
+                focus:outline-none focus:border-white focus:bg-black/70
                 disabled:opacity-50 disabled:cursor-not-allowed
                 transition-all duration-300
                 min-h-[56px] max-h-[200px]
@@ -65,7 +65,7 @@ export default function InputArea({ onSend, isLoading, disabled }: InputAreaProp
 
             {/* Character Counter */}
             {message.length > 0 && (
-              <div className="absolute left-3 bottom-2 text-xs text-slate-500">
+              <div className="absolute left-3 bottom-2 text-xs text-gray-500">
                 {message.length} حرف
               </div>
             )}
@@ -85,7 +85,7 @@ export default function InputArea({ onSend, isLoading, disabled }: InputAreaProp
         </div>
 
         {/* Helper Text */}
-        <div className="mt-3 flex items-center justify-between text-xs text-slate-500">
+        <div className="mt-3 flex items-center justify-between text-xs text-gray-500">
           <span>💡 استخدم Shift+Enter لإضافة سطر جديد</span>
           <span>✨ Powered by AI</span>
         </div>

@@ -17,7 +17,7 @@ export default function ChatSidebar({ onClose }: ChatSidebarProps) {
   };
 
   return (
-    <div className="w-80 h-full bg-slate-900/50 border-l border-white/10 flex flex-col">
+    <div className="w-80 h-full bg-black/50 border-l border-white/10 flex flex-col">
       {/* Header */}
       <div className="p-4 border-b border-white/10">
         <div className="flex items-center justify-between mb-4">
@@ -26,7 +26,7 @@ export default function ChatSidebar({ onClose }: ChatSidebarProps) {
             <button
               onClick={onClose}
               className="w-8 h-8 flex items-center justify-center rounded-lg
-                       hover:bg-white/10 text-slate-400 hover:text-white"
+                       hover:bg-white/10 text-gray-400 hover:text-white"
             >
               ✕
             </button>
@@ -44,9 +44,9 @@ export default function ChatSidebar({ onClose }: ChatSidebarProps) {
       </div>
 
       {/* Chat List */}
-      <div className="flex-1 overflow-y-auto p-4 space-y-2">
+      <div className="flex-1 overflow-y-auto p-4 space-y-2 luxury-scrollbar">
         {chats.length === 0 ? (
-          <div className="text-center py-12 text-slate-500">
+          <div className="text-center py-12 text-gray-500">
             <span className="text-4xl block mb-3">💬</span>
             <p>لا توجد محادثات بعد</p>
           </div>
@@ -60,8 +60,8 @@ export default function ChatSidebar({ onClose }: ChatSidebarProps) {
                 group relative
                 ${
                   chat.id === currentChatId
-                    ? 'bg-gradient-to-r from-blue-600/20 to-purple-600/20 border border-blue-500'
-                    : 'bg-slate-800/30 border border-white/10 hover:bg-slate-800/50 hover:border-blue-500/50'
+                    ? 'bg-white/10 border border-white'
+                    : 'bg-black/30 border border-white/20 hover:bg-black/50 hover:border-white/40'
                 }
               `}
             >
@@ -70,10 +70,10 @@ export default function ChatSidebar({ onClose }: ChatSidebarProps) {
                   <h3 className="font-semibold text-white truncate mb-1">
                     {chat.title}
                   </h3>
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-gray-400">
                     {chat.messages.length} رسالة
                   </p>
-                  <p className="text-xs text-slate-500">
+                  <p className="text-xs text-gray-500">
                     {new Date(chat.updatedAt).toLocaleDateString('ar-SA')}
                   </p>
                 </div>
@@ -102,14 +102,14 @@ export default function ChatSidebar({ onClose }: ChatSidebarProps) {
         <div className="p-4 border-t border-white/10">
           <div className="grid grid-cols-2 gap-3 text-center">
             <Card variant="glass" padding="sm">
-              <div className="text-2xl font-bold text-blue-400">{chats.length}</div>
-              <div className="text-xs text-slate-400">محادثة</div>
+              <div className="text-2xl font-bold text-white">{chats.length}</div>
+              <div className="text-xs text-gray-400">محادثة</div>
             </Card>
             <Card variant="glass" padding="sm">
-              <div className="text-2xl font-bold text-purple-400">
+              <div className="text-2xl font-bold text-white">
                 {chats.reduce((sum, chat) => sum + chat.messages.length, 0)}
               </div>
-              <div className="text-xs text-slate-400">رسالة</div>
+              <div className="text-xs text-gray-400">رسالة</div>
             </Card>
           </div>
         </div>

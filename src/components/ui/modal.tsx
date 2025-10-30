@@ -53,7 +53,7 @@ export default function Modal({
       {/* Overlay */}
       <div
         className={`
-          absolute inset-0 bg-black/80 backdrop-blur-md
+          absolute inset-0 bg-black/90 backdrop-blur-md
           transition-opacity duration-300
           ${isOpen ? 'opacity-100' : 'opacity-0'}
         `}
@@ -63,8 +63,8 @@ export default function Modal({
       {/* Modal Content */}
       <div
         className={`
-          relative w-full ${sizes[size]} bg-slate-900 border border-white/10
-          rounded-2xl shadow-2xl shadow-blue-500/20
+          relative w-full ${sizes[size]} gradient-dark border border-white/10
+          rounded-2xl shadow-luxury
           transform transition-all duration-300
           ${isOpen ? 'scale-100 translate-y-0' : 'scale-95 translate-y-4'}
         `}
@@ -76,7 +76,7 @@ export default function Modal({
             <button
               onClick={onClose}
               className="w-8 h-8 flex items-center justify-center rounded-lg
-                       hover:bg-white/10 text-slate-400 hover:text-white
+                       hover:bg-white/10 text-gray-400 hover:text-white
                        transition-colors duration-200"
             >
               ✕

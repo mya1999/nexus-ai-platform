@@ -33,8 +33,8 @@ export default function MessageBubble({ message, isLast }: MessageBubbleProps) {
           w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0
           ${
             isUser
-              ? 'bg-gradient-to-br from-blue-600 to-purple-600 shadow-lg shadow-blue-500/50'
-              : 'bg-gradient-to-br from-slate-700 to-slate-800 border border-white/10'
+              ? 'bg-white text-black shadow-luxury-white'
+              : 'bg-gray-800 border border-white/20'
           }
         `}
       >
@@ -49,8 +49,8 @@ export default function MessageBubble({ message, isLast }: MessageBubbleProps) {
           max-w-[75%] rounded-2xl px-5 py-3
           ${
             isUser
-              ? 'bg-gradient-to-br from-blue-600 to-purple-600 text-white'
-              : 'bg-slate-800/50 border border-white/10 text-slate-100'
+              ? 'bg-white text-black shadow-luxury-white'
+              : 'bg-black/50 border border-white/20 text-gray-100'
           }
         `}
       >
@@ -62,7 +62,7 @@ export default function MessageBubble({ message, isLast }: MessageBubbleProps) {
         <div
           className={`
             text-xs mt-2 opacity-60
-            ${isUser ? 'text-white' : 'text-slate-400'}
+            ${isUser ? 'text-gray-700' : 'text-gray-400'}
           `}
         >
           {new Date(message.timestamp).toLocaleTimeString('ar-SA', {
@@ -75,9 +75,9 @@ export default function MessageBubble({ message, isLast }: MessageBubbleProps) {
       {/* Typing Indicator for AI */}
       {!isUser && isLast && (
         <div className="flex gap-1 items-center mt-2">
-          <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce [animation-delay:0ms]" />
-          <div className="w-2 h-2 bg-purple-400 rounded-full animate-bounce [animation-delay:150ms]" />
-          <div className="w-2 h-2 bg-pink-400 rounded-full animate-bounce [animation-delay:300ms]" />
+          <div className="w-2 h-2 bg-white rounded-full animate-bounce [animation-delay:0ms]" />
+          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce [animation-delay:150ms]" />
+          <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce [animation-delay:300ms]" />
         </div>
       )}
     </div>

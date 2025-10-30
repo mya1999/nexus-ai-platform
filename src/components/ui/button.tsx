@@ -28,11 +28,11 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     const baseStyles = 'inline-flex items-center justify-center gap-2 font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl';
 
     const variants = {
-      primary: 'bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 text-white shadow-lg shadow-blue-500/50 hover:shadow-xl hover:shadow-blue-500/60 hover:scale-105',
-      secondary: 'bg-white/10 hover:bg-white/20 text-white border border-white/20 hover:border-white/40 backdrop-blur-xl',
-      ghost: 'bg-transparent hover:bg-white/5 text-slate-300 hover:text-white',
-      danger: 'bg-gradient-to-r from-red-600 to-pink-600 hover:from-red-700 hover:to-pink-700 text-white shadow-lg shadow-red-500/50',
-      success: 'bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 text-white shadow-lg shadow-green-500/50',
+      primary: 'bg-white text-black hover:bg-gray-200 shadow-luxury-white hover:shadow-2xl hover:scale-105',
+      secondary: 'bg-black/50 hover:bg-black/70 text-white border border-white/20 hover:border-white/40 backdrop-blur-xl',
+      ghost: 'bg-transparent hover:bg-white/5 text-gray-300 hover:text-white',
+      danger: 'bg-gray-800 hover:bg-gray-900 text-white border border-red-500/50 hover:border-red-500',
+      success: 'bg-gray-800 hover:bg-gray-900 text-white border border-green-500/50 hover:border-green-500',
     };
 
     const sizes = {

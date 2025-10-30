@@ -19,12 +19,12 @@ export default function Badge({
   ...props
 }: BadgeProps) {
   const variants = {
-    primary: 'bg-blue-500/20 text-blue-300 border-blue-500/30',
-    success: 'bg-green-500/20 text-green-300 border-green-500/30',
-    warning: 'bg-yellow-500/20 text-yellow-300 border-yellow-500/30',
-    danger: 'bg-red-500/20 text-red-300 border-red-500/30',
-    info: 'bg-purple-500/20 text-purple-300 border-purple-500/30',
-    neutral: 'bg-slate-500/20 text-slate-300 border-slate-500/30',
+    primary: 'bg-white/10 text-white border-white/30',
+    success: 'bg-white/10 text-gray-200 border-green-500/50',
+    warning: 'bg-white/10 text-gray-200 border-yellow-500/50',
+    danger: 'bg-white/10 text-gray-200 border-red-500/50',
+    info: 'bg-white/10 text-gray-200 border-gray-500/50',
+    neutral: 'bg-black/50 text-gray-300 border-gray-500/30',
   };
 
   const sizes = {
