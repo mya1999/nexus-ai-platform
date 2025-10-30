@@ -1,41 +1,40 @@
 'use client';
 
-import { useState } from 'react';
-import { useChatStore } from '@/store/chat-store';
-import { AI_MODELS } from '@/lib/ai-models';
-import MessageList from '@/components/chat/message-list';
-import InputArea from '@/components/chat/input-area';
-import ModelSelector from '@/components/chat/model-selector';
 import ChatSidebar from '@/components/chat/chat-sidebar';
+import InputArea from '@/components/chat/input-area';
+import MessageList from '@/components/chat/message-list';
+import ModelSelector from '@/components/chat/model-selector';
 import Button from '@/components/ui/button';
+import { useChatStore } from '@/store/chat-store';
 import Link from 'next/link';
+import { useState } from 'react';
 
 export default function ChatPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedModelId, setSelectedModelId] = useState('gpt-4-turbo');
-  
+
   const { chats, currentChatId, createChat, setCurrentChat, addMessage } = useChatStore();
-  
+
   // Get current chat or create one if none exists
-  const currentChat = chats.find(c => c.id === currentChatId) || 
+  const currentChat = chats.find(c => c.id === currentChatId) ||
     (() => {
       const newId = createChat();
       setCurrentChat(newId);
       return chats.find(c => c.id === newId);
     })();
-  
+
   const handleSendMessage = async (content: string) => {
     if (!currentChat || isLoading) return;
-    
+
     // Add user message
     addMessage(currentChat.id, {
       role: 'user',
       content,
     });
-    
+
     setIsLoading(true);
-    
+
     try {
       const response = await fetch('/api/chat-stream', {
         method: 'POST',
@@ -51,13 +50,13 @@ export default function ChatPage() {
           modelId: selectedModelId,
         }),
       });
-      
+
       if (!response.ok) {
         throw new Error('فشل الاتصال بالخادم');
       }
-      
+
       const data = await response.json();
-      
+
       // Add AI response
       addMessage(currentChat.id, {
         role: 'assistant',
@@ -73,7 +72,7 @@ export default function ChatPage() {
       setIsLoading(false);
     }
   };
-  
+
   return (
     <div className="h-screen flex flex-col bg-gradient-to-br from-slate-950 via-blue-950 to-indigo-950">
       {/* Header */}
@@ -86,7 +85,7 @@ export default function ChatPage() {
             >
               <span className="text-2xl">☰</span>
             </button>
-            
+
             <Link href="/" className="flex items-center gap-2 hover:scale-105 transition-transform">
               <div className="w-8 h-8 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center shadow-lg shadow-blue-500/50">
                 <span className="text-xl">⚡</span>
@@ -96,20 +95,20 @@ export default function ChatPage() {
               </span>
             </Link>
           </div>
-          
+
           <div className="flex-1 max-w-md">
             <ModelSelector
               selectedModelId={selectedModelId}
               onSelectModel={setSelectedModelId}
             />
           </div>
-          
+
           <Link href="/">
             <Button variant="ghost" size="sm">الرئيسية</Button>
           </Link>
         </div>
       </header>
-      
+
       {/* Main Content */}
       <div className="flex-1 flex overflow-hidden">
         {/* Sidebar - Hidden on mobile unless opened */}
@@ -127,14 +126,14 @@ export default function ChatPage() {
             <ChatSidebar onClose={() => setIsSidebarOpen(false)} />
           </div>
         </div>
-        
+
         {/* Chat Area */}
         <div className="flex-1 flex flex-col overflow-hidden">
           <MessageList
             messages={currentChat?.messages || []}
             isLoading={isLoading}
           />
-          
+
           <InputArea
             onSend={handleSendMessage}
             isLoading={isLoading}
