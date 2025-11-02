@@ -1,45 +1,45 @@
 export default function Home() {
   return (
-    <main className="min-h-screen gradient-dark text-white">
-      <nav className="backdrop-blur-xl bg-black/30 border-b border-white/10">
+    <main className="min-h-screen velvet-dark text-white">
+      <nav className="glass-dark sticky top-0 z-50 border-b border-luxury">
         <div className="container mx-auto px-6 py-4 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center shadow-luxury-white">
+            <div className="w-12 h-12 bg-white rounded-xl flex items-center justify-center shadow-luxury-white animate-float-luxury">
               <span className="text-2xl">⚡</span>
             </div>
-            <span className="text-2xl font-bold gradient-text-white">
+            <span className="text-3xl font-black gradient-text-white">
               NexusAI
             </span>
           </div>
-          <a href="/chat" className="px-6 py-2 bg-white text-black rounded-full font-semibold hover:scale-105 transition-transform hover:shadow-luxury-white">
+          <a href="/chat" className="px-8 py-3 bg-white text-black rounded-xl font-bold hover:scale-105 transition-transform shadow-luxury-white hover:shadow-2xl">
             ابدأ الآن
           </a>
         </div>
       </nav>
 
-      <section className="container mx-auto px-6 py-20 text-center">
-        <div className="inline-block mb-6 px-4 py-2 bg-white/5 border border-white/20 rounded-full text-gray-300 text-sm">
+      <section className="container mx-auto px-6 py-28 text-center">
+        <div className="inline-block mb-8 px-6 py-2 glass-dark rounded-full text-gray-300 text-lg border-luxury animate-float-luxury">
           🚀 الجيل التالي من الذكاء الاصطناعي
         </div>
         
-        <h1 className="text-6xl md:text-8xl font-black mb-8">
-          <span className="gradient-text-white">
+        <h1 className="text-7xl md:text-9xl font-black mb-10 leading-tight">
+          <span className="gradient-text-white animate-shimmer-white">
             قوة الذكاء
           </span>
           <br />
-          <span>في متناول يدك</span>
+          <span className="opacity-90">في متناول يدك</span>
         </h1>
         
-        <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-3xl mx-auto">
+        <p className="text-2xl md:text-3xl text-gray-300 mb-16 max-w-4xl mx-auto leading-relaxed">
           منصة ذكاء اصطناعي شاملة تجمع أقوى النماذج العالمية في مكان واحد.
-          <span className="text-white font-semibold"> GPT-4، Claude، Gemini</span> وأكثر.
+          <span className="text-white font-bold"> GPT-4، Claude، Gemini</span> وأكثر.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center mb-16">
-          <a href="/chat" className="px-8 py-4 bg-white text-black rounded-2xl font-bold text-lg hover:scale-105 transition-transform shadow-luxury-white hover:shadow-2xl">
+        <div className="flex flex-col sm:flex-row gap-6 justify-center items-center mb-20">
+          <a href="/chat" className="w-64 px-8 py-5 bg-white text-black rounded-2xl font-black text-xl hover:scale-105 transition-transform shadow-luxury-white hover:shadow-2xl">
             ابدأ مجاناً
           </a>
-          <button className="px-8 py-4 bg-black/50 border border-white/20 rounded-2xl font-semibold text-lg hover:bg-black/70 transition-colors backdrop-blur-xl">
+          <button className="w-64 px-8 py-5 glass-dark border-luxury rounded-2xl font-bold text-xl hover:bg-white/5 transition-colors">
             شاهد العرض التوضيحي
           </button>
         </div>
