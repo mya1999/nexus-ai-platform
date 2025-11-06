@@ -2,131 +2,24 @@ name: CI
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main, "feature/*" ]
   pull_request:
     branches: [ main ]
-
-concurrency:
-  group: ci-${{ github.ref }}
-  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      NEXT_TELEMETRY_DISABLED: 1
-      CI: true
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Use Node.js 20
+      - uses: actions/checkout@v4
+      - name: Use Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.x'
-          check-latest: true
-
-      # Setup pnpm if present
-      - name: Setup pnpm
-        if: ${{ hashFiles('**/pnpm-lock.yaml') != '' }}
-        uses: pnpm/action-setup@v4
-        with:
-          version: 9
-
-      # Cache for pnpm
-      - name: Setup Node cache (pnpm)
-        if: ${{ hashFiles('**/pnpm-lock.yaml') != '' }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          cache: 'pnpm'
-          cache-dependency-path: '**/pnpm-lock.yaml'
-
-      # Cache for yarn
-      - name: Setup Node cache (yarn)
-        if: ${{ hashFiles('**/yarn.lock') != '' }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          cache: 'yarn'
-          cache-dependency-path: '**/yarn.lock'
-
-      # Cache for npm
-      - name: Setup Node cache (npm)
-        if: ${{ hashFiles('**/package-lock.json') != '' }}
-        uses: actions/setup-node@v4
-        with:
-          node-version: '20.x'
-          cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
-
-      - name: Install dependencies (pnpm)
-        if: ${{ hashFiles('**/pnpm-lock.yaml') != '' }}
-        run: pnpm install --frozen-lockfile
-
-      - name: Install dependencies (yarn)
-        if: ${{ hashFiles('**/yarn.lock') != '' }}
-        run: |
-          corepack enable
-          yarn install --immutable
-
-      - name: Install dependencies (npm)
-        if: ${{ hashFiles('**/pnpm-lock.yaml') == '' && hashFiles('**/yarn.lock') == '' }}
+          node-version: "18"
+      - name: Install
         run: npm ci
-
-      - name: Cache Next.js build artifacts
-        uses: actions/cache@v4
-        with:
-          path: |
-            .next/cache
-            node_modules/.cache
-          key: ${{ runner.os }}-next-${{ hashFiles('**/package-lock.json', '**/yarn.lock', '**/pnpm-lock.yaml') }}-${{ hashFiles('**/*.ts', '**/*.tsx', 'next.config.js', 'tailwind.config.ts') }}
-          restore-keys: |
-            ${{ runner.os }}-next-
-
       - name: Lint
-        run: |
-          if [ -f package.json ] && npm run | grep -q "lint"; then
-            npm run lint
-          else
-            echo "No lint script found, skipping."
-          fi
-
-      - name: Typecheck
-        run: |
-          if [ -f tsconfig.json ]; then
-            if npm run | grep -q "typecheck"; then
-              npm run typecheck
-            else
-              npx --yes typescript@latest --version >/dev/null 2>&1 || npm i -D typescript
-              npx tsc --noEmit
-            fi
-          else
-            echo "No tsconfig.json found, skipping typecheck."
-          fi
-
-      - name: Test
-        run: |
-          if [ -f package.json ] && npm run | grep -q "test"; then
-            npm test --if-present
-          else
-            echo "No test script found, skipping."
-          fi
-
+        run: npm run lint
+      - name: Type Check
+        run: npm run typecheck
       - name: Build
-        run: |
-          if [ -f package.json ] && npm run | grep -q "build"; then
-            npm run build
-          else
-            echo "No build script found, skipping."
-          fi
-
-      - name: Upload build artifact (.next)
-        if: success() && hashFiles('**/package.json') != ''
-        uses: actions/upload-artifact@v4
-        with:
-          name: next-build
-          path: |
-            .next
-          if-no-files-found: ignore
-          retention-days: 7
+        run: npm run build
