@@ -21,7 +21,7 @@ export default function ChatSidebar({ onClose }: ChatSidebarProps) {
       {/* Header */}
       <div className="p-4 border-b border-white/10">
         <div className="flex items-center justify-between mb-4">
-          <h2 className="text-xl font-bold text-white">المحادثات</h2>
+          <h2 className="text-xl font-bold text-white">Conversations</h2>
           {onClose && (
             <button
               onClick={onClose}
@@ -39,7 +39,7 @@ export default function ChatSidebar({ onClose }: ChatSidebarProps) {
           fullWidth
           icon={<span>➕</span>}
         >
-          محادثة جديدة
+          New Chat
         </Button>
       </div>
 
@@ -48,7 +48,7 @@ export default function ChatSidebar({ onClose }: ChatSidebarProps) {
         {chats.length === 0 ? (
           <div className="text-center py-12 text-gray-500">
             <span className="text-4xl block mb-3">💬</span>
-            <p>لا توجد محادثات بعد</p>
+            <p>No conversations yet</p>
           </div>
         ) : (
           chats.map((chat) => (
@@ -71,10 +71,10 @@ export default function ChatSidebar({ onClose }: ChatSidebarProps) {
                     {chat.title}
                   </h3>
                   <p className="text-xs text-gray-400">
-                    {chat.messages.length} رسالة
+                    {chat.messages.length} messages
                   </p>
                   <p className="text-xs text-gray-500">
-                    {new Date(chat.updatedAt).toLocaleDateString('ar-SA')}
+                    {new Date(chat.updatedAt).toLocaleDateString('en-US')}
                   </p>
                 </div>
 
@@ -82,7 +82,7 @@ export default function ChatSidebar({ onClose }: ChatSidebarProps) {
                 <button
                   onClick={(e) => {
                     e.stopPropagation();
-                    if (confirm('هل أنت متأكد من حذف هذه المحادثة؟')) {
+                    if (confirm('Are you sure you want to delete this conversation?')) {
                       deleteChat(chat.id);
                     }
                   }}
@@ -103,13 +103,13 @@ export default function ChatSidebar({ onClose }: ChatSidebarProps) {
           <div className="grid grid-cols-2 gap-3 text-center">
             <Card variant="glass" padding="sm">
               <div className="text-2xl font-bold text-white">{chats.length}</div>
-              <div className="text-xs text-gray-400">محادثة</div>
+              <div className="text-xs text-gray-400">Chats</div>
             </Card>
             <Card variant="glass" padding="sm">
               <div className="text-2xl font-bold text-white">
                 {chats.reduce((sum, chat) => sum + chat.messages.length, 0)}
               </div>
-              <div className="text-xs text-gray-400">رسالة</div>
+              <div className="text-xs text-gray-400">Messages</div>
             </Card>
           </div>
         </div>

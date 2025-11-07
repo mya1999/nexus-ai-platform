@@ -40,6 +40,21 @@
   "dart.enabled": false,
   "sonarqube.enabled": false,
 
+  // إعدادات الطرفية لضمان استخدام pwsh حتى لو كان PATH ناقصًا
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "path": "C:/Program Files/PowerShell/7/pwsh.exe",
+      "args": ["-NoLogo"],
+      "icon": "terminal-powershell"
+    },
+    "Windows PowerShell": {
+      "path": "C:/Windows/System32/WindowsPowerShell/v1.0/powershell.exe",
+      "args": ["-NoLogo"],
+      "icon": "terminal-powershell"
+    }
+  },
+
   // إخفاء إعلانات Tabnine والامتدادات الأخرى
   "tabnine.disable_auto_update_message": true,
   "tabnine.disable_file_regex": [],
@@ -79,6 +94,10 @@
     "**/node_modules/**": true,
     "**/.next/**": true,
     "**/dist/**": true
-  }
+  },
+  // تقليل استهلاك خادم TypeScript في المشاريع الصغيرة
+  "typescript.tsserver.maxTsServerMemory": 3072,
+  "typescript.tsserver.experimental.enableProjectDiagnostics": false,
+  "Codegeex.RepoIndex": true
 }
 

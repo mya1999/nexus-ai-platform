@@ -1,6 +1,7 @@
 'use client';
 
-import { KeyboardEvent, useRef, useState } from 'react';
+import type { KeyboardEvent } from 'react';
+import { useRef, useState } from 'react';
 import Button from '../ui/button';
 
 interface InputAreaProps {
@@ -49,7 +50,7 @@ export default function InputArea({ onSend, isLoading, disabled }: InputAreaProp
               onChange={(e) => setMessage(e.target.value)}
               onInput={handleInput}
               onKeyDown={handleKeyDown}
-              placeholder="اكتب رسالتك هنا... (Enter للإرسال، Shift+Enter لسطر جديد)"
+              placeholder="Type your message here... (Enter to send, Shift+Enter for new line)"
               disabled={disabled || isLoading}
               className="
                 w-full px-5 py-3 bg-black/50 border border-white/20 rounded-2xl
@@ -66,7 +67,7 @@ export default function InputArea({ onSend, isLoading, disabled }: InputAreaProp
             {/* Character Counter */}
             {message.length > 0 && (
               <div className="absolute left-3 bottom-2 text-xs text-gray-500">
-                {message.length} حرف
+                {message.length} characters
               </div>
             )}
           </div>
@@ -80,13 +81,13 @@ export default function InputArea({ onSend, isLoading, disabled }: InputAreaProp
             size="lg"
             className="px-6"
           >
-            {isLoading ? 'جاري الإرسال...' : 'إرسال'}
+            {isLoading ? 'Sending...' : 'Send'}
           </Button>
         </div>
 
         {/* Helper Text */}
         <div className="mt-3 flex items-center justify-between text-xs text-gray-500">
-          <span>💡 استخدم Shift+Enter لإضافة سطر جديد</span>
+          <span>💡 Press Shift+Enter to add a new line</span>
           <span>✨ Powered by AI</span>
         </div>
       </div>

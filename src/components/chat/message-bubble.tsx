@@ -1,6 +1,6 @@
 'use client';
 
-import { Message } from '@/store/chat-store';
+import type { Message } from '@/store/chat-store';
 import { useEffect, useState } from 'react';
 
 interface MessageBubbleProps {

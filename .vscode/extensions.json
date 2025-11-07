@@ -1,14 +1,25 @@
 {
   "recommendations": [
-    // الأساسيات (إلزامي)
+    // إضافات أساسية للتطوير
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "github.vscode-pull-request-github",
-
-    // مفيدة جدًا (موصى به بشدة)
-    "redhat.vscode-yaml",
     "bradlc.vscode-tailwindcss",
-    "usernamehw.errorlens"
+    "csstools.postcss",
+    "ms-playwright.playwright",
+    "eamodio.gitlens",
+
+    // تحسين إنتاجية التطوير
+    "formulahendry.auto-rename-tag",
+    "wayou.vscode-todo-highlight",
+    "christian-kohler.path-intellisense",
+    "yoavbls.pretty-ts-errors",
+    "VisualStudioExptTeam.vscodeintellicode",
+
+    // تحسين جودة الكود
+    "streetsidesoftware.code-spell-checker",
+    "davidanson.vscode-markdownlint",
+    "redhat.vscode-yaml"
   ],
   "unwantedRecommendations": [
     // تعطيل الاقتراحات غير الضرورية

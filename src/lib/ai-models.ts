@@ -4,7 +4,7 @@
 export interface AIModel {
   id: string;
   name: string;
-  provider: 'openai' | 'anthropic' | 'google';
+  provider: 'OpenAI' | 'Anthropic' | 'Google';
   model: string;
   description: string;
   maxTokens: number;
@@ -21,72 +21,72 @@ export const AI_MODELS: AIModel[] = [
   {
     id: 'gpt-4-turbo',
     name: 'GPT-4 Turbo',
-    provider: 'openai',
+    provider: 'OpenAI',
     model: 'gpt-4-turbo-preview',
-    description: 'أقوى نموذج من OpenAI - متعدد المهام',
+    description: 'Most powerful OpenAI model - Multi-task',
     maxTokens: 128000,
     pricing: { input: 10, output: 30 },
-    capabilities: ['نص', 'كود', 'تحليل', 'إبداع'],
+    capabilities: ['Text', 'Code', 'Analysis', 'Creative'],
     icon: '🤖',
     color: 'from-green-500 to-emerald-600',
   },
   {
     id: 'gpt-4',
     name: 'GPT-4',
-    provider: 'openai',
+    provider: 'OpenAI',
     model: 'gpt-4',
-    description: 'النموذج الأساسي - دقيق ومتوازن',
+    description: 'Base model - Accurate and balanced',
     maxTokens: 8192,
     pricing: { input: 30, output: 60 },
-    capabilities: ['نص', 'كود', 'منطق'],
+    capabilities: ['Text', 'Code', 'Logic'],
     icon: '🧠',
     color: 'from-blue-500 to-cyan-600',
   },
   {
     id: 'gpt-3.5-turbo',
     name: 'GPT-3.5 Turbo',
-    provider: 'openai',
+    provider: 'OpenAI',
     model: 'gpt-3.5-turbo',
-    description: 'سريع واقتصادي - للمهام اليومية',
+    description: 'Fast and economical - For everyday tasks',
     maxTokens: 16385,
     pricing: { input: 0.5, output: 1.5 },
-    capabilities: ['نص', 'محادثة سريعة'],
+    capabilities: ['Text', 'Quick chat'],
     icon: '⚡',
     color: 'from-gray-500 to-slate-600',
   },
   {
     id: 'claude-3-opus',
     name: 'Claude 3 Opus',
-    provider: 'anthropic',
+    provider: 'Anthropic',
     model: 'claude-3-opus-20240229',
-    description: 'الأكثر ذكاءً من Anthropic - تحليل عميق',
+    description: 'Most intelligent from Anthropic - Deep analysis',
     maxTokens: 200000,
     pricing: { input: 15, output: 75 },
-    capabilities: ['نص', 'كود', 'تحليل معقد', 'بحث'],
+    capabilities: ['Text', 'Code', 'Complex analysis', 'Research'],
     icon: '🎭',
     color: 'from-purple-500 to-pink-600',
   },
   {
     id: 'claude-3-sonnet',
     name: 'Claude 3 Sonnet',
-    provider: 'anthropic',
+    provider: 'Anthropic',
     model: 'claude-3-sonnet-20240229',
-    description: 'متوازن - سرعة ودقة',
+    description: 'Balanced - Speed and accuracy',
     maxTokens: 200000,
     pricing: { input: 3, output: 15 },
-    capabilities: ['نص', 'كود', 'محادثة'],
+    capabilities: ['Text', 'Code', 'Chat'],
     icon: '🎨',
     color: 'from-indigo-500 to-purple-600',
   },
   {
     id: 'gemini-pro',
     name: 'Gemini Pro',
-    provider: 'google',
+    provider: 'Google',
     model: 'gemini-pro',
-    description: 'من Google - متعدد الوسائط',
+    description: 'From Google - Multimodal',
     maxTokens: 32000,
     pricing: { input: 0.5, output: 1.5 },
-    capabilities: ['نص', 'صور', 'فيديو', 'كود'],
+    capabilities: ['Text', 'Images', 'Video', 'Code'],
     icon: '✨',
     color: 'from-yellow-500 to-orange-600',
   },
@@ -109,7 +109,7 @@ export function estimateCost(
 ): number {
   const model = getModelById(modelId);
   if (!model) return 0;
-  
+
   return (
     (inputTokens / 1000000) * model.pricing.input +
     (outputTokens / 1000000) * model.pricing.output

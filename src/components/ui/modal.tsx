@@ -25,6 +25,7 @@ export default function Modal({
     if (isOpen) {
       setIsVisible(true);
       document.body.style.overflow = 'hidden';
+      return;
     } else {
       const timeout = setTimeout(() => setIsVisible(false), 300);
       document.body.style.overflow = 'unset';

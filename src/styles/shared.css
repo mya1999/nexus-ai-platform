@@ -1,0 +1,31 @@
+/* التأثيرات المشتركة */
+.backdrop-overlay {
+  @apply absolute inset-0 bg-black/50 md:hidden;
+}
+
+.full-screen-overlay {
+  @apply absolute inset-0;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.4));
+}
+
+/* خلفية شبكة 64px */
+.grid-bg-64 {
+  background-image: linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+/* أنماط الحركة */
+.spin-reverse {
+  animation-duration: 0.8s;
+  animation-direction: reverse;
+}
+
+/* أنماط التفاعل */
+.interactive-overlay {
+  @apply absolute inset-0 bg-black/50 md:hidden;
+  cursor: pointer;
+}
+.interactive-overlay:focus-visible {
+  @apply outline-2 outline-offset-2 outline-white/50;
+}

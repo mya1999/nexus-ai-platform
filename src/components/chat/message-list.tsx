@@ -1,6 +1,6 @@
 'use client';
 
-import { Message } from '@/store/chat-store';
+import type { Message } from '@/store/chat-store';
 import { useEffect, useRef } from 'react';
 import MessageBubble from './message-bubble';
 
@@ -24,18 +24,18 @@ export default function MessageList({ messages, isLoading }: MessageListProps) {
             <span className="text-5xl">💬</span>
           </div>
           <h2 className="text-3xl font-bold mb-4 gradient-text-white">
-            ابدأ محادثة جديدة
+            Start a New Conversation
           </h2>
           <p className="text-gray-400 text-lg">
-            اختر نموذج الذكاء الاصطناعي واطرح أي سؤال تريده
+            Choose your AI model and ask anything you want
           </p>
 
           {/* Suggestions */}
           <div className="mt-8 grid gap-3">
             {[
-              '💡 اشرح لي مفهوم الذكاء الاصطناعي',
-              '🚀 ساعدني في كتابة كود برمجي',
-              '✨ اقترح أفكار إبداعية',
+              '💡 Explain artificial intelligence to me',
+              '🚀 Help me write some code',
+              '✨ Suggest creative ideas',
             ].map((suggestion, i) => (
               <button
                 key={i}
