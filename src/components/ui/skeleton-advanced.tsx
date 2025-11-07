@@ -46,7 +46,7 @@ const SkeletonText: React.FC<{ lines?: number; className?: string }> = ({
   <div className={cn('space-y-2', className)}>
     {Array.from({ length: lines }).map((_, i) => (
       <Skeleton
-        key={i}
+        key={`skeleton-text-${i}-${lines}`}
         variant="text"
         className={cn(
           'h-4',
@@ -109,7 +109,7 @@ const SkeletonList: React.FC<{ items?: number; className?: string }> = ({
 }) => (
   <div className={cn('space-y-3', className)}>
     {Array.from({ length: items }).map((_, i) => (
-      <div key={i} className="flex items-center gap-3">
+      <div key={`skeleton-list-item-${i}-${items}`} className="flex items-center gap-3">
         <SkeletonAvatar size="sm" />
         <div className="flex-1 space-y-2">
           <Skeleton variant="text" className="h-4 w-2/3" />

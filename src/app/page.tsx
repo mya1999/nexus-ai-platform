@@ -1,12 +1,24 @@
+'use client';
+
 import LanguageToggle from '@/components/language-toggle';
 import { translations } from '@/config/translations';
+import { useLanguage } from '@/hooks';
 import Link from 'next/link';
 
-// صفحة خادمية بالكامل لضمان عرض محتوى مبدئي حتى بدون تشغيل JavaScript
-// ملاحظة: سيتم عرض المحتوى باللغة الإنجليزية افتراضيًا على الخادم.
-// يمكن لاحقًا تحسينها لاختيار اللغة من الكوكيز/الرأس Accept-Language.
 export default function Home() {
-  const t = translations.en;
+  const { language, mounted } = useLanguage();
+
+  // استخدام اللغة المحفوظة أو الافتراضية
+  const t = translations[language];
+
+  // عرض شاشة فارغة حتى يتم تحميل اللغة من localStorage لتجنب الوميض
+  if (!mounted) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white flex items-center justify-center">
+        <div className="animate-pulse text-xl">Loading...</div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white relative overflow-hidden">

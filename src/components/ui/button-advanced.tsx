@@ -98,8 +98,8 @@ const ButtonAdvanced = React.forwardRef<HTMLButtonElement, ButtonProps>(
         )}
         disabled={isDisabled}
         // Motion effects
-        whileHover={!isDisabled ? { scale: 1.02 } : undefined}
-        whileTap={!isDisabled ? { scale: 0.98 } : undefined}
+        whileHover={isDisabled ? undefined : { scale: 1.02 }}
+        whileTap={isDisabled ? undefined : { scale: 0.98 }}
         transition={{ type: 'spring', stiffness: 400, damping: 17 }}
         {...props}
       >
