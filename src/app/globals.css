@@ -27,6 +27,16 @@
     --input: 240 3.7% 15.9%;
     --ring: 263 70% 50%;
     --radius: 0.75rem;
+
+    /* Geometric spacing system: 8px baseline */
+    --spacing-unit: 0.5rem; /* 8px */
+    --toolbar-height: 5rem; /* 80px = 10 units */
+    --input-height: 3.5rem; /* 56px = 7 units */
+    --status-height: 2rem; /* 32px = 4 units */
+    --model-selector-height: 4rem; /* 64px = 8 units */
+    
+    /* Optical center adjustment */
+    --optical-center: 54%; /* Compensates for top-heavy layout */
   }
 
   .dark {
@@ -321,5 +331,58 @@
   .neural-line {
     stroke-dasharray: 1000;
     animation: neural-pulse 3s ease-in-out infinite;
+  }
+
+  /* Development grid overlay: add .debug-grid to body */
+  .debug-grid::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(139, 92, 246, 0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(139, 92, 246, 0.05) 1px, transparent 1px);
+    background-size: 4rem 4rem; /* 64px = 8 units */
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* Baseline grid (8px) */
+  .debug-grid::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image:
+      linear-gradient(rgba(236, 72, 153, 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(236, 72, 153, 0.03) 1px, transparent 1px);
+    background-size: var(--spacing-unit) var(--spacing-unit);
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  /* Center crosshair for precise alignment verification */
+  .debug-center::before {
+    content: '';
+    position: fixed;
+    top: var(--optical-center);
+    left: 50%;
+    width: 100vw;
+    height: 1px;
+    background: rgba(34, 211, 238, 0.3);
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  .debug-center::after {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 50%;
+    width: 1px;
+    height: 100vh;
+    background: rgba(34, 211, 238, 0.3);
+    transform: translateX(-50%);
+    pointer-events: none;
+    z-index: 9999;
   }
 }
