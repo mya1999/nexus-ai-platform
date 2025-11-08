@@ -21,125 +21,184 @@ export default function Home() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 text-white relative overflow-hidden">
-      {/* Modern Grid Background */}
-      <div className="fixed inset-0 opacity-20 pointer-events-none">
-        <div className="absolute inset-0 grid-bg-64"></div>
-      </div>
-
-      {/* Gradient Orbs */}
+    <div className="min-h-screen bg-black text-white relative overflow-hidden">
+      {/* Neural Network Animated Background */}
       <div className="fixed inset-0 pointer-events-none">
-        <div className="absolute -top-40 -right-40 w-96 h-96 bg-indigo-600/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute -bottom-40 -left-40 w-96 h-96 bg-purple-600/20 rounded-full blur-3xl animate-pulse"></div>
+        {/* Gradient Mesh */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-900/20 via-black to-black"></div>
+        
+        {/* Animated Grid */}
+        <div className="absolute inset-0" style={{
+          backgroundImage: 'linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px)',
+          backgroundSize: '100px 100px',
+          animation: 'gridMove 20s linear infinite'
+        }}></div>
+
+        {/* Floating Particles */}
+        <div className="absolute inset-0">
+          {[...Array(20)].map((_, i) => (
+            <div
+              key={i}
+              className="absolute w-1 h-1 bg-purple-500/30 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
+                animation: `float ${5 + Math.random() * 10}s ease-in-out infinite`,
+                animationDelay: `${Math.random() * 5}s`
+              }}
+            ></div>
+          ))}
+        </div>
+
+        {/* Gradient Orbs - Neural Style */}
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-pink-600/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
       </div>
 
-      {/* Navigation - Centered Logo */}
-      <nav className="fixed top-0 w-full z-50 backdrop-blur-md bg-slate-950/50 border-b border-white/5">
-        <div className="container mx-auto px-6 py-4">
-          <div className="flex items-center justify-between">
-            <Link href="/" className="flex items-center gap-3 group">
-              <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-xl blur-md opacity-60 group-hover:opacity-100 transition-all"></div>
-                <div className="relative w-10 h-10 bg-gradient-to-br from-indigo-600 to-purple-600 rounded-xl flex items-center justify-center">
-                  <svg className="w-6 h-6 text-white" viewBox="0 0 24 24" fill="none">
-                    <path d="M12 2L2 7L12 12L22 7L12 2Z" fill="currentColor" fillOpacity="0.9"/>
-                    <path d="M2 17L12 22L22 17M2 12L12 17L22 12" stroke="currentColor" strokeWidth="2"/>
-                  </svg>
+      <style jsx>{`
+        @keyframes gridMove {
+          0% { transform: translateY(0) translateX(0); }
+          100% { transform: translateY(100px) translateX(100px); }
+        }
+        @keyframes float {
+          0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
+          50% { transform: translateY(-100px) translateX(50px); opacity: 1; }
+        }
+      `}</style>
+
+      {/* Language Toggle - Neural Style */}
+      <div className="fixed top-8 right-8 z-50">
+        <div className="backdrop-blur-xl bg-white/5 border border-purple-500/20 rounded-2xl p-1 shadow-[0_0_30px_rgba(168,85,247,0.15)]">
+          <LanguageToggle />
+        </div>
+      </div>
+
+      {/* Main Content - Premium Layout */}
+      <main className="relative z-10 min-h-screen flex items-center justify-center px-6 py-20">
+        <div className="max-w-7xl w-full">
+          <div className="text-center space-y-12">
+          
+            {/* Logo Icon - 3D Effect */}
+            <div className="flex justify-center perspective-1000">
+              <div className="relative group transform hover:scale-110 transition-all duration-500">
+                {/* Glow Effect */}
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-3xl blur-3xl opacity-50 group-hover:opacity-100 animate-pulse"></div>
+                
+                {/* 3D Icon Container */}
+                <div className="relative">
+                  <div className="w-32 h-32 bg-gradient-to-br from-purple-600 via-pink-600 to-blue-600 rounded-3xl flex items-center justify-center shadow-[0_20px_60px_rgba(168,85,247,0.4)] transform group-hover:rotate-y-12 transition-transform duration-500">
+                    {/* AI Brain Icon */}
+                    <svg className="w-20 h-20 text-white drop-shadow-2xl" viewBox="0 0 24 24" fill="none" stroke="currentColor">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                      <circle cx="12" cy="12" r="3" fill="currentColor" opacity="0.5"/>
+                    </svg>
+                  </div>
                 </div>
               </div>
-              <span className="text-xl font-bold"><span className="text-white">NEXUS</span><span className="text-indigo-400">AI</span></span>
-            </Link>
-            <LanguageToggle />
-          </div>
-        </div>
-      </nav>
-
-      {/* Hero - Centered */}
-      <main className="relative z-10">
-        <section className="container mx-auto px-6 pt-32 pb-12">
-          <div className="max-w-5xl text-center mx-auto">
-
-            {/* Status Badge */}
-            <div className="inline-flex items-center gap-2 px-4 py-2 bg-white/5 border border-white/10 rounded-full mb-6">
-              <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse"></div>
-              <span className="text-sm text-gray-300">Powered by Advanced AI</span>
             </div>
 
-            {/* Main Title - CENTERED */}
-            <h1 className="text-6xl md:text-7xl lg:text-8xl font-bold mb-5">
-              <span className="block bg-gradient-to-r from-white to-gray-100 bg-clip-text text-transparent">{t.hero.title}</span>
-              <span className="block text-4xl md:text-5xl lg:text-6xl bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent mt-2">{t.hero.subtitle}</span>
-            </h1>
+            {/* Project Title - Cinematic */}
+            <div className="space-y-6">
+              <h1 className="text-7xl sm:text-8xl md:text-9xl font-black tracking-tighter leading-none">
+                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-white animate-gradient-x">
+                  ZORO
+                </span>
+                <span className="block mt-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500 animate-gradient-x">
+                  AI
+                </span>
+              </h1>
 
-            {/* Description */}
-            <p className="text-lg md:text-xl text-gray-400 mb-8 max-w-3xl mx-auto">{t.hero.description}</p>
-
-            {/* AI Badges */}
-            <div className="inline-flex items-center gap-3 px-6 py-3 bg-white/5 border border-white/10 rounded-2xl mb-8">
-              <span className="text-lg font-semibold">GPT-4</span>
-              <span className="text-gray-600">•</span>
-              <span className="text-lg font-semibold">Claude</span>
-              <span className="text-gray-600">•</span>
-              <span className="text-lg font-semibold">Gemini</span>
+              {/* Subtitle with Typewriter Effect */}
+              <p className="text-xl sm:text-2xl md:text-3xl font-light text-gray-400 tracking-wide">
+                {language === 'ar' ? (
+                  <>
+                    <span className="text-purple-400">الذكاء الاصطناعي</span>
+                    {' '}• بلا حدود
+                  </>
+                ) : (
+                  <>
+                    <span className="text-purple-400">Artificial Intelligence</span>
+                    {' '}• Unlimited
+                  </>
+                )}
+              </p>
             </div>
 
-            {/* CTA Buttons */}
-            <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link href="/chat" className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-xl font-semibold hover:shadow-2xl hover:shadow-indigo-500/50 transition-all">
-                {t.hero.cta.primary} →
+            {/* AI Models - Premium Cards */}
+            <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto">
+              {['GPT-4', 'Claude 3', 'Gemini Pro'].map((model, index) => (
+                <div 
+                  key={model}
+                  className="group relative px-6 py-3 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-2xl backdrop-blur-sm hover:border-purple-500/50 transition-all duration-300 hover:scale-105"
+                >
+                  <span className="relative z-10 text-lg font-semibold text-gray-200 group-hover:text-white transition-colors">
+                    {model}
+                  </span>
+                  <div className="absolute inset-0 bg-gradient-to-r from-purple-600/0 to-pink-600/0 group-hover:from-purple-600/20 group-hover:to-pink-600/20 rounded-2xl transition-all duration-300"></div>
+                </div>
+              ))}
+            </div>
+
+            {/* CTA Button - Magnetic Effect */}
+            <div className="pt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link 
+                href="/chat" 
+                className="group relative px-12 py-6 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-2xl font-bold text-xl text-white shadow-[0_20px_60px_rgba(168,85,247,0.4)] hover:shadow-[0_20px_80px_rgba(168,85,247,0.6)] transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
+              >
+                {/* Animated Gradient Background */}
+                <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 animate-gradient-x"></div>
+                
+                {/* Shine Effect */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
+                </div>
+                
+                <span className="relative z-10 flex items-center gap-3">
+                  {language === 'ar' ? 'ابدأ الآن' : 'Get Started'}
+                  <svg className="w-6 h-6 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                  </svg>
+                </span>
               </Link>
-              <button className="px-8 py-4 bg-white/5 border border-white/10 rounded-xl font-semibold hover:bg-white/10 transition-all">
-                {t.hero.cta.secondary}
+
+              {/* Secondary Button */}
+              <button className="px-12 py-6 border-2 border-purple-500/30 rounded-2xl font-semibold text-lg text-gray-300 hover:text-white hover:border-purple-500 backdrop-blur-sm hover:bg-purple-500/10 transition-all duration-300">
+                {language === 'ar' ? 'اكتشف المزيد' : 'Explore More'}
               </button>
             </div>
-          </div>
-        </section>
 
-        {/* Stats */}
-        <section className="container mx-auto px-6 py-12">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-6xl mx-auto">
-            {[
-              { id: 'models', icon: '🤖', value: t.stats.models.title, label: t.stats.models.subtitle },
-              { id: 'conversations', icon: '💬', value: t.stats.conversations.title, label: t.stats.conversations.subtitle },
-              { id: 'uptime', icon: '⚡', value: t.stats.uptime.title, label: t.stats.uptime.subtitle },
-              { id: 'support', icon: '🛡️', value: t.stats.support.title, label: t.stats.support.subtitle },
-            ].map((stat) => (
-              <div key={stat.id} className="p-6 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 hover:scale-105 transition-all text-center">
-                <div className="text-4xl mb-3">{stat.icon}</div>
-                <div className="text-3xl font-black bg-gradient-to-r from-white to-gray-300 bg-clip-text text-transparent mb-1">{stat.value}</div>
-                <div className="text-gray-400 text-xs">{stat.label}</div>
-              </div>
-            ))}
-          </div>
-        </section>
+            {/* Stats - World Class Design */}
+            <div className="grid grid-cols-3 gap-8 max-w-3xl mx-auto pt-16">
+              {[
+                { value: '10M+', label: language === 'ar' ? 'مستخدم' : 'Users' },
+                { value: '99.9%', label: language === 'ar' ? 'دقة' : 'Accuracy' },
+                { value: '24/7', label: language === 'ar' ? 'دعم' : 'Support' }
+              ].map((stat, index) => (
+                <div 
+                  key={index}
+                  className="relative group"
+                >
+                  <div className="text-center space-y-2 p-6 rounded-2xl backdrop-blur-sm bg-white/5 border border-purple-500/10 hover:border-purple-500/30 transition-all duration-300">
+                    <div className="text-4xl sm:text-5xl font-black text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400">
+                      {stat.value}
+                    </div>
+                    <div className="text-sm text-gray-400 uppercase tracking-wider">
+                      {stat.label}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
 
-        {/* Features */}
-        <section className="container mx-auto px-6 py-12">
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4 max-w-7xl mx-auto">
-            {[
-              { id: 'ai-models', title: t.features.aiModels.title, description: t.features.aiModels.description, icon: '🧠' },
-              { id: 'real-time', title: t.features.realTime.title, description: t.features.realTime.description, icon: '⚡' },
-              { id: 'security', title: t.features.security.title, description: t.features.security.description, icon: '🔐' },
-              { id: 'multi-modal', title: t.features.multiModal.title, description: t.features.multiModal.description, icon: '🎨' },
-              { id: 'availability', title: t.features.availability.title, description: t.features.availability.description, icon: '🌐' },
-              { id: 'api', title: t.features.api.title, description: t.features.api.description, icon: '🔌' },
-            ].map((feature) => (
-              <div key={feature.id} className="p-6 bg-white/5 border border-white/10 rounded-2xl hover:bg-white/10 hover:-translate-y-1 transition-all text-center">
-                <div className="text-4xl mb-3">{feature.icon}</div>
-                <h3 className="text-lg font-bold mb-2">{feature.title}</h3>
-                <p className="text-gray-400 text-sm">{feature.description}</p>
-              </div>
-            ))}
           </div>
-        </section>
-
-        {/* Footer */}
-        <footer className="border-t border-white/5 mt-12 py-8">
-          <div className="container mx-auto px-6 text-center">
-            <p className="text-gray-400">© {new Date().getFullYear()} NexusAI. All rights reserved.</p>
-          </div>
-        </footer>
-      </main>
+        </div>
+      </main>      {/* Footer - Minimal */}
+      <footer className="fixed bottom-6 left-0 right-0 z-10">
+        <div className="text-center">
+          <p className="text-sm text-gray-500">© {new Date().getFullYear()} NexusAI</p>
+        </div>
+      </footer>
     </div>
   );
 }

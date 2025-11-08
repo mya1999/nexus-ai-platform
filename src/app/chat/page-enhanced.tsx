@@ -24,7 +24,7 @@ export default function ChatPageEnhanced() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedModelId, setSelectedModelId] = useState('gpt-4-turbo');
-  
+
   const { toasts, removeToast, success, error: showError } = useToastAdvanced();
   const { chats, currentChatId, createChat, setCurrentChat, addMessage } = useChatStore();
 
@@ -74,7 +74,7 @@ export default function ChatPageEnhanced() {
         role: 'assistant',
         content: data.message,
       });
-      
+
       success('تم إرسال الرسالة بنجاح');
     } catch (error) {
       console.error('Error sending message:', error);
@@ -97,7 +97,7 @@ export default function ChatPageEnhanced() {
   return (
     <div className="h-screen flex bg-gradient-to-br from-surface-0 via-slate-900 to-surface-0 text-foreground relative overflow-hidden">
       {/* Animated Background */}
-      <motion.div 
+      <motion.div
         className="fixed inset-0 opacity-20 pointer-events-none"
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.2 }}
@@ -108,7 +108,7 @@ export default function ChatPageEnhanced() {
 
       {/* Gradient Orbs with animation */}
       <div className="fixed inset-0 pointer-events-none">
-        <motion.div 
+        <motion.div
           className="absolute -top-40 -right-40 w-96 h-96 bg-brand-primary/20 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
@@ -120,7 +120,7 @@ export default function ChatPageEnhanced() {
             ease: 'easeInOut',
           }}
         />
-        <motion.div 
+        <motion.div
           className="absolute -bottom-40 -left-40 w-96 h-96 bg-brand-accent/20 rounded-full blur-3xl"
           animate={{
             scale: [1.2, 1, 1.2],
@@ -153,7 +153,7 @@ export default function ChatPageEnhanced() {
               }}
               {...motionVariants.modalOverlay}
             />
-            
+
             {/* Sidebar Content */}
             <motion.div
               className="fixed left-0 top-0 h-full w-80 bg-surface-1 border-r border-white/10 z-modal md:static md:translate-x-0"
@@ -168,7 +168,7 @@ export default function ChatPageEnhanced() {
       {/* Main Content */}
       <div className="flex-1 flex flex-col relative z-10">
         {/* Enhanced Header */}
-        <motion.header 
+        <motion.header
           className="flex-shrink-0 border-b border-white/10 bg-surface-1/50 backdrop-blur-xl"
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -206,7 +206,7 @@ export default function ChatPageEnhanced() {
                 selectedModelId={selectedModelId}
                 onSelectModel={setSelectedModelId}
               />
-              
+
               <ButtonAdvanced
                 variant="primary"
                 size="md"
@@ -216,7 +216,7 @@ export default function ChatPageEnhanced() {
               >
                 محادثة جديدة
               </ButtonAdvanced>
-              
+
               <ButtonAdvanced
                 variant="ghost"
                 size="icon"
@@ -264,15 +264,15 @@ export default function ChatPageEnhanced() {
                 >
                   <Sparkles className="w-10 h-10 text-white" />
                 </motion.div>
-                
+
                 <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">
                   مرحباً بك في NexusAI
                 </h2>
-                
+
                 <p className="text-muted-foreground mb-8">
                   ابدأ محادثة جديدة مع أقوى نماذج الذكاء الاصطناعي
                 </p>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
                   <CardAdvanced
                     elevation="sm"
@@ -282,7 +282,7 @@ export default function ChatPageEnhanced() {
                   >
                     <p className="text-sm font-medium">💡 اطرح سؤالاً</p>
                   </CardAdvanced>
-                  
+
                   <CardAdvanced
                     elevation="sm"
                     hoverable
@@ -291,7 +291,7 @@ export default function ChatPageEnhanced() {
                   >
                     <p className="text-sm font-medium">✍️ اكتب محتوى</p>
                   </CardAdvanced>
-                  
+
                   <CardAdvanced
                     elevation="sm"
                     hoverable
@@ -300,7 +300,7 @@ export default function ChatPageEnhanced() {
                   >
                     <p className="text-sm font-medium">🔍 ابحث عن معلومة</p>
                   </CardAdvanced>
-                  
+
                   <CardAdvanced
                     elevation="sm"
                     hoverable

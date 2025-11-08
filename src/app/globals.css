@@ -217,4 +217,109 @@
   .nexus-input {
     @apply w-full px-4 py-2 rounded-lg bg-white/5 border border-white/10 focus:border-purple-500 focus:outline-none focus:ring-2 focus:ring-purple-500/50 transition-all duration-200;
   }
+
+  /* World-Class Neural Animations */
+  @keyframes gradient-x {
+    0%, 100% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+  }
+
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0px) translateX(0px);
+      opacity: 0.3;
+    }
+    50% {
+      transform: translateY(-20px) translateX(10px);
+      opacity: 0.8;
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px rgba(168, 85, 247, 0.4),
+                  0 0 40px rgba(168, 85, 247, 0.2);
+    }
+    50% {
+      box-shadow: 0 0 40px rgba(168, 85, 247, 0.6),
+                  0 0 80px rgba(168, 85, 247, 0.3);
+    }
+  }
+
+  @keyframes shimmer {
+    0% {
+      transform: translateX(-100%);
+    }
+    100% {
+      transform: translateX(100%);
+    }
+  }
+
+  .animate-gradient-x {
+    background-size: 200% 200%;
+    animation: gradient-x 3s ease infinite;
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 2s ease-in-out infinite;
+  }
+
+  /* Perspective for 3D effects */
+  .perspective-1000 {
+    perspective: 1000px;
+  }
+
+  .transform-3d {
+    transform-style: preserve-3d;
+  }
+
+  /* Hover effects */
+  .hover-lift {
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .hover-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 60px rgba(168, 85, 247, 0.3);
+  }
+
+  /* Magnetic effect */
+  .magnetic {
+    transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Glass morphism enhanced */
+  .glass-premium {
+    background: rgba(255, 255, 255, 0.03);
+    backdrop-filter: blur(20px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  }
+
+  /* Text glow */
+  .text-glow {
+    text-shadow: 0 0 20px rgba(168, 85, 247, 0.5),
+                 0 0 40px rgba(168, 85, 247, 0.3);
+  }
+
+  /* Neural lines animation */
+  @keyframes neural-pulse {
+    0%, 100% {
+      opacity: 0.2;
+      stroke-dashoffset: 1000;
+    }
+    50% {
+      opacity: 1;
+      stroke-dashoffset: 0;
+    }
+  }
+
+  .neural-line {
+    stroke-dasharray: 1000;
+    animation: neural-pulse 3s ease-in-out infinite;
+  }
 }
