@@ -21,6 +21,11 @@ interface ChatStore {
   chats: Chat[];
   currentChatId: string | null;
   isDarkMode: boolean;
+  uiPrefs: {
+    reduceMotion: boolean;
+    fontScale: number; // 1 = base
+    density: 'compact' | 'comfortable';
+  };
 
   createChat: () => string;
   deleteChat: (id: string) => void;
@@ -30,6 +35,9 @@ interface ChatStore {
   setModelForChat: (chatId: string, modelId: string) => void;
   toggleDarkMode: () => void;
   clearAllChats: () => void;
+  setReduceMotion: (value: boolean) => void;
+  setFontScale: (value: number) => void;
+  setDensity: (value: 'compact' | 'comfortable') => void;
 }
 
 export const useChatStore = create<ChatStore>()(
@@ -38,10 +46,15 @@ export const useChatStore = create<ChatStore>()(
       chats: [],
       currentChatId: null,
       isDarkMode: false,
+      uiPrefs: {
+        reduceMotion: false,
+        fontScale: 1,
+        density: 'comfortable',
+      },
 
       createChat: () => {
         const newChat: Chat = {
-          id: 'chat-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9),
+          id: 'chat-' + Date.now() + '-' + Math.random().toString(36).slice(2, 11),
           title: 'New Conversation',
           messages: [],
           modelId: 'gpt-4-turbo',
@@ -81,7 +94,7 @@ export const useChatStore = create<ChatStore>()(
 
           const newMessage: Message = {
             ...message,
-            id: 'msg-' + Date.now() + '-' + Math.random().toString(36).substr(2, 9),
+            id: 'msg-' + Date.now() + '-' + Math.random().toString(36).slice(2, 11),
             timestamp: new Date(),
           };
 
@@ -125,6 +138,18 @@ export const useChatStore = create<ChatStore>()(
 
       toggleDarkMode: () => {
         set((state) => ({ isDarkMode: !state.isDarkMode }));
+      },
+
+      setReduceMotion: (value: boolean) => {
+        set((state) => ({ uiPrefs: { ...state.uiPrefs, reduceMotion: value } }));
+      },
+      setFontScale: (value: number) => {
+        // clamp between 0.85 and 1.5 for safety
+        const clamped = Math.min(1.5, Math.max(0.85, value));
+        set((state) => ({ uiPrefs: { ...state.uiPrefs, fontScale: clamped } }));
+      },
+      setDensity: (value: 'compact' | 'comfortable') => {
+        set((state) => ({ uiPrefs: { ...state.uiPrefs, density: value } }));
       },
 
       clearAllChats: () => {

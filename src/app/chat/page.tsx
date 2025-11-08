@@ -6,15 +6,17 @@
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
-import { Menu, X, Sparkles, Settings, Plus, MessageSquare, Zap } from 'lucide-react';
-import Link from 'next/link';
+// icons not needed after removing welcome panel
+import { ConversationToolbar } from '@/components/chat-new/conversation-toolbar';
+import { SystemStatusBar } from '@/components/chat-new/system-status-bar';
+import { SettingsModal } from '@/components/settings/settings-modal';
+// Link is handled inside ConversationToolbar
 import { useState } from 'react';
 import ChatSidebar from '@/components/chat/chat-sidebar';
 import InputArea from '@/components/chat/input-area';
 import MessageList from '@/components/chat/message-list';
 import ModelSelector from '@/components/chat/model-selector';
-import { ButtonAdvanced } from '@/components/ui/button-advanced';
-import { CardAdvanced } from '@/components/ui/card-advanced';
+// removed advanced button/card from welcome panel
 
 import { ToastContainer, useToastAdvanced } from '@/components/ui/toast-advanced';
 import { useChatStore } from '@/store/chat-store';
@@ -24,6 +26,7 @@ export default function ChatPage() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedModelId, setSelectedModelId] = useState('gpt-4-turbo');
+  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
   const { toasts, removeToast, success, error: showError } = useToastAdvanced();
   const { chats, currentChatId, createChat, setCurrentChat, addMessage } = useChatStore();
@@ -171,129 +174,33 @@ export default function ChatPage() {
         )}
       </AnimatePresence>
 
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col relative z-10">
-        {/* Enhanced Header */}
-        <motion.header
-          className="flex-shrink-0 border-b border-white/10 bg-surface-1/50 backdrop-blur-xl"
-          initial={{ y: -100, opacity: 0 }}
-          animate={{ y: 0, opacity: 1 }}
-          transition={{ type: 'spring', stiffness: 300, damping: 30 }}
-        >
-          <div className="container mx-auto px-4 py-4">
-            {/* Centered Logo/Title */}
-            <div className="flex flex-col items-center justify-center gap-3 mb-3">
-              <Link href="/" className="flex items-center gap-2 group">
-                <motion.div
-                  className="w-12 h-12 bg-gradient-to-br from-brand-primary to-brand-accent rounded-xl flex items-center justify-center shadow-glow-purple"
-                  whileHover={{ scale: 1.05, rotate: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Sparkles className="w-6 h-6 text-white" />
-                </motion.div>
-                <span className="text-2xl font-bold">
-                  <span className="text-white">ZORO</span>
-                  <span className="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">AI</span>
-                </span>
-              </Link>
-            </div>
-
-            {/* Controls Row */}
-            <div className="flex items-center justify-between gap-3">
-              <ButtonAdvanced
-                variant="ghost"
-                size="icon"
-                onClick={() => setIsSidebarOpen(!isSidebarOpen)}
-                className="md:hidden"
-                aria-label={isSidebarOpen ? 'إغلاق القائمة' : 'فتح القائمة'}
-              >
-                {isSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-              </ButtonAdvanced>
-
-              <div className="flex-1 max-w-md mx-auto">
-                <ModelSelector
-                  selectedModelId={selectedModelId}
-                  onSelectModel={setSelectedModelId}
-                />
-              </div>
-
-              <div className="flex items-center gap-2">
-                <ButtonAdvanced
-                  variant="primary"
-                  size="md"
-                  leftIcon={<Plus className="w-4 h-4" />}
-                  onClick={handleNewChat}
-                  className="hidden sm:flex"
-                >
-                  محادثة جديدة
-                </ButtonAdvanced>
-
-                <ButtonAdvanced
-                  variant="ghost"
-                  size="icon"
-                  aria-label="الإعدادات"
-                >
-                  <Settings className="w-5 h-5" />
-                </ButtonAdvanced>
-              </div>
-            </div>
-          </div>
-        </motion.header>
+  {/* Main Content */}
+  <div className="flex-1 flex flex-col relative z-10">
+        <ConversationToolbar
+          isSidebarOpen={isSidebarOpen}
+          onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
+          selectedModelId={selectedModelId}
+          onSelectModel={setSelectedModelId}
+          onNewChat={handleNewChat}
+          onOpenSettings={() => setIsSettingsOpen(true)}
+          showModelSelector={false}
+        />
 
         {/* Chat Area */}
         <div className="flex-1 flex flex-col overflow-hidden">
-          {/* Welcome Screen or Messages */}
-          {!currentChat?.messages || currentChat.messages.length === 0 ? (
-            <motion.div
-              className="flex-1 flex items-center justify-center p-8"
-              {...motionVariants.fadeIn}
-            >
-              <CardAdvanced
-                elevation="lg"
-                glow="purple"
-                className="max-w-2xl w-full p-8 text-center"
-              >
-                <motion.div
-                  className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-brand-primary to-brand-accent rounded-2xl flex items-center justify-center shadow-glow-purple"
-                  whileHover={{ scale: 1.05, rotate: 5 }}
-                  whileTap={{ scale: 0.95 }}
-                >
-                  <Sparkles className="w-10 h-10 text-white" />
-                </motion.div>
-
-                <h2 className="text-3xl font-bold mb-4">
-                  مرحباً بك في <span className="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">ZORO AI</span>
-                </h2>
-
-                <p className="text-foreground-secondary text-lg mb-6">
-                  ابدأ محادثة جديدة واستمتع بتجربة AI متطورة
-                </p>
-
-                <div className="flex flex-wrap gap-3 justify-center">
-                  <ButtonAdvanced
-                    variant="primary"
-                    size="lg"
-                    leftIcon={<MessageSquare className="w-5 h-5" />}
-                    onClick={handleNewChat}
-                  >
-                    بدء محادثة جديدة
-                  </ButtonAdvanced>
-
-                  <ButtonAdvanced
-                    variant="outline"
-                    size="lg"
-                    leftIcon={<Zap className="w-5 h-5" />}
-                  >
-                    استكشف الميزات
-                  </ButtonAdvanced>
-                </div>
-              </CardAdvanced>
-            </motion.div>
+          {/* Messages only - if empty show minimal placeholder logo */}
+          {currentChat?.messages && currentChat.messages.length > 0 ? (
+            <MessageList messages={currentChat.messages} isLoading={isLoading} />
           ) : (
-            <MessageList
-              messages={currentChat.messages}
-              isLoading={isLoading}
-            />
+            <div className="flex-1 flex items-center justify-center select-none">
+              <div className="text-center opacity-40">
+                <div className="mx-auto mb-6 w-14 h-14 rounded-2xl bg-gradient-to-br from-brand-primary to-brand-accent" />
+                <h1 className="text-3xl font-bold tracking-tight">
+                  <span className="text-white">ZORO</span>
+                  <span className="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">AI</span>
+                </h1>
+              </div>
+            </div>
           )}
 
           {/* Input Area */}
@@ -309,11 +216,22 @@ export default function ChatPage() {
               disabled={!currentChat}
             />
           </motion.div>
+          {/* Compact model selector beside input */}
+          <div className="absolute bottom-[72px] right-4 md:right-6 z-20">
+            <div className="rounded-xl border border-white/10 bg-black/60 backdrop-blur-md px-3 py-2 shadow-inner">
+              <fieldset className="min-w-[200px] scale-95 md:scale-100">
+                <legend className="sr-only">اختيار النموذج</legend>
+                <ModelSelector selectedModelId={selectedModelId} onSelectModel={setSelectedModelId} />
+              </fieldset>
+            </div>
+          </div>
+          <SystemStatusBar modelId={selectedModelId} messagesCount={currentChat?.messages.length || 0} />
         </div>
       </div>
 
-      {/* Toast Notifications */}
-      <ToastContainer toasts={toasts} onClose={removeToast} />
+  {/* Toast Notifications */}
+  <ToastContainer toasts={toasts} onClose={removeToast} />
+  <SettingsModal open={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
     </div>
   );
 }

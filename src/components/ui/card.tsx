@@ -45,7 +45,7 @@ const Card = forwardRef<HTMLDivElement, CardProps>(
     return (
       <div
         ref={ref}
-        className={`${baseStyles} ${variants[variant]} ${hoverStyles} ${paddings[padding]} ${className}`}
+        className={`${baseStyles} ${variants[variant]} ${hoverStyles} ${paddings[padding]} ${className} backdrop-blur-md`}
         {...props}
       >
         {children}
