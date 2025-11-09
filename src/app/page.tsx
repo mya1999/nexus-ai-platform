@@ -26,46 +26,25 @@ export default function Home() {
       <div className="fixed inset-0 pointer-events-none">
         {/* Gradient Mesh */}
         <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-purple-900/20 via-black to-black"></div>
-        
+
         {/* Animated Grid */}
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'linear-gradient(rgba(139, 92, 246, 0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(139, 92, 246, 0.03) 1px, transparent 1px)',
-          backgroundSize: '100px 100px',
-          animation: 'gridMove 20s linear infinite'
-        }}></div>
+        <div className="absolute inset-0 animated-grid"></div>
 
         {/* Floating Particles */}
         <div className="absolute inset-0">
-          {[...Array(20)].map((_, i) => (
+          {[...new Array(20)].map((_, i) => (
             <div
-              key={i}
-              className="absolute w-1 h-1 bg-purple-500/30 rounded-full"
-              style={{
-                left: `${Math.random() * 100}%`,
-                top: `${Math.random() * 100}%`,
-                animation: `float ${5 + Math.random() * 10}s ease-in-out infinite`,
-                animationDelay: `${Math.random() * 5}s`
-              }}
+              key={`particle-${i}`}
+              className="absolute w-1 h-1 bg-purple-500/30 rounded-full particle"
             ></div>
           ))}
         </div>
 
         {/* Gradient Orbs - Neural Style */}
-        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-600/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-        <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-pink-600/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }}></div>
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 neural-orb"></div>
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 neural-orb delay-1"></div>
+        <div className="absolute top-1/2 left-1/2 w-64 h-64 neural-orb delay-2"></div>
       </div>
-
-      <style jsx>{`
-        @keyframes gridMove {
-          0% { transform: translateY(0) translateX(0); }
-          100% { transform: translateY(100px) translateX(100px); }
-        }
-        @keyframes float {
-          0%, 100% { transform: translateY(0) translateX(0); opacity: 0; }
-          50% { transform: translateY(-100px) translateX(50px); opacity: 1; }
-        }
-      `}</style>
 
       {/* Language Toggle - Neural Style */}
       <div className="fixed top-8 right-8 z-50">
@@ -78,13 +57,13 @@ export default function Home() {
       <main className="relative z-10 min-h-screen flex items-center justify-center px-6 py-20">
         <div className="max-w-7xl w-full">
           <div className="text-center space-y-12">
-          
+
             {/* Logo Icon - 3D Effect */}
             <div className="flex justify-center perspective-1000">
               <div className="relative group transform hover:scale-110 transition-all duration-500">
                 {/* Glow Effect */}
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-3xl blur-3xl opacity-50 group-hover:opacity-100 animate-pulse"></div>
-                
+
                 {/* 3D Icon Container */}
                 <div className="relative">
                   <div className="w-32 h-32 bg-gradient-to-br from-purple-600 via-pink-600 to-blue-600 rounded-3xl flex items-center justify-center shadow-[0_20px_60px_rgba(168,85,247,0.4)] transform group-hover:rotate-y-12 transition-transform duration-500">
@@ -128,7 +107,7 @@ export default function Home() {
             {/* AI Models - Premium Cards */}
             <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto">
               {['GPT-4', 'Claude 3', 'Gemini Pro'].map((model, index) => (
-                <div 
+                <div
                   key={model}
                   className="group relative px-6 py-3 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-2xl backdrop-blur-sm hover:border-purple-500/50 transition-all duration-300 hover:scale-105"
                 >
@@ -142,18 +121,18 @@ export default function Home() {
 
             {/* CTA Button - Magnetic Effect */}
             <div className="pt-8 flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <Link 
-                href="/chat" 
+              <Link
+                href="/chat"
                 className="group relative px-12 py-6 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 rounded-2xl font-bold text-xl text-white shadow-[0_20px_60px_rgba(168,85,247,0.4)] hover:shadow-[0_20px_80px_rgba(168,85,247,0.6)] transform hover:scale-105 hover:-translate-y-1 transition-all duration-300 overflow-hidden"
               >
                 {/* Animated Gradient Background */}
                 <div className="absolute inset-0 bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 animate-gradient-x"></div>
-                
+
                 {/* Shine Effect */}
                 <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000"></div>
                 </div>
-                
+
                 <span className="relative z-10 flex items-center gap-3">
                   {language === 'ar' ? 'ابدأ الآن' : 'Get Started'}
                   <svg className="w-6 h-6 transform group-hover:translate-x-1 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -175,7 +154,7 @@ export default function Home() {
                 { value: '99.9%', label: language === 'ar' ? 'دقة' : 'Accuracy' },
                 { value: '24/7', label: language === 'ar' ? 'دعم' : 'Support' }
               ].map((stat, index) => (
-                <div 
+                <div
                   key={index}
                   className="relative group"
                 >

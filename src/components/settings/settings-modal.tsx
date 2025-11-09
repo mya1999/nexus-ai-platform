@@ -1,9 +1,9 @@
 "use client";
 
-import React, { useState } from 'react';
-import Modal from '@/components/ui/modal';
 import { ButtonAdvanced } from '@/components/ui/button-advanced';
+import Modal from '@/components/ui/modal';
 import { useChatStore } from '@/store/chat-store';
+import { useState } from 'react';
 
 interface SettingsModalProps {
   open: boolean;

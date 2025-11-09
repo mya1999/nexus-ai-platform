@@ -24,10 +24,10 @@ import { motionVariants } from '@/styles/motion';
 
 /**
  * Chat Page with Geometric Precision
- * 
+ *
  * Optical Center: 54% from top (compensates top-heavy layout)
  * Spacing System: 8px baseline (0.5rem units)
- * 
+ *
  * Dev Tools (add to <body> in layout.tsx):
  * - .debug-grid: Shows 64px major grid + 8px baseline
  * - .debug-center: Shows optical center crosshair
@@ -184,8 +184,8 @@ export default function ChatPage() {
         )}
       </AnimatePresence>
 
-  {/* Main Content */}
-  <div className="flex-1 flex flex-col relative z-10">
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col relative z-10">
         <ConversationToolbar
           isSidebarOpen={isSidebarOpen}
           onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -198,60 +198,62 @@ export default function ChatPage() {
 
         {/* Chat Area */}
         <div className="flex-1 flex flex-col overflow-hidden relative">
-          {/* Messages only */}
-          {currentChat?.messages && currentChat.messages.length > 0 ? (
-            <MessageList messages={currentChat.messages} isLoading={isLoading} />
-          ) : (
-            /* Optical center placeholder: 54% from top for visual balance */
-            <div className="absolute inset-0 pointer-events-none">
-              <div className="absolute left-1/2 top-[54%] -translate-x-1/2 -translate-y-1/2 select-none">
-                <motion.div 
-                  className="text-center"
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 0.4, scale: 1 }}
-                  transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-                >
-                  {/* Icon: 64px (8 units) with golden ratio proportions */}
-                  <div className="mx-auto mb-8 w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-primary to-brand-accent shadow-2xl shadow-brand-primary/20" />
-                  {/* Title: precise tracking for optical balance */}
-                  <h1 className="text-4xl font-bold tracking-[-0.02em] whitespace-nowrap">
-                    <span className="text-white">ZORO</span>
-                    <span className="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">AI</span>
-                  </h1>
-                </motion.div>
+          <div className="flex-1 flex flex-col justify-end">
+            {/* Messages only */}
+            {currentChat?.messages && currentChat.messages.length > 0 ? (
+              <MessageList messages={currentChat.messages} isLoading={isLoading} />
+            ) : (
+              /* Optical center placeholder: 54% from top for visual balance */
+              <div className="absolute inset-0 pointer-events-none">
+                <div className="absolute left-1/2 top-[54%] -translate-x-1/2 -translate-y-1/2 select-none">
+                  <motion.div
+                    className="text-center"
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 0.4, scale: 1 }}
+                    transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+                  >
+                    {/* Icon: 64px (8 units) with golden ratio proportions */}
+                    <div className="mx-auto mb-8 w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-primary to-brand-accent shadow-2xl shadow-brand-primary/20" />
+                    {/* Title: precise tracking for optical balance */}
+                    <h1 className="text-4xl font-bold tracking-[-0.02em] whitespace-nowrap">
+                      <span className="text-white">ZORO</span>
+                      <span className="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">AI</span>
+                    </h1>
+                  </motion.div>
+                </div>
+              </div>
+            )}
+
+            {/* Input Area */}
+            <motion.div
+              className="flex-shrink-0"
+              initial={{ y: 100, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30, delay: 0.2 }}
+            >
+              <InputArea
+                onSend={handleSendMessage}
+                isLoading={isLoading}
+                disabled={!currentChat}
+              />
+            </motion.div>
+            {/* Compact model selector beside input - geometric positioning */}
+            <div className="absolute bottom-[4.5rem] right-4 md:right-6 z-20">
+              <div className="rounded-xl border border-white/10 bg-black/60 backdrop-blur-md px-3 py-2 shadow-lg shadow-brand-primary/10">
+                <fieldset className="min-w-[200px]">
+                  <legend className="sr-only">اختيار النموذج</legend>
+                  <ModelSelector selectedModelId={selectedModelId} onSelectModel={setSelectedModelId} />
+                </fieldset>
               </div>
             </div>
-          )}
-
-          {/* Input Area */}
-          <motion.div
-            className="flex-shrink-0"
-            initial={{ y: 100, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ type: 'spring', stiffness: 300, damping: 30, delay: 0.2 }}
-          >
-            <InputArea
-              onSend={handleSendMessage}
-              isLoading={isLoading}
-              disabled={!currentChat}
-            />
-          </motion.div>
-          {/* Compact model selector beside input - geometric positioning */}
-          <div className="absolute bottom-[4.5rem] right-4 md:right-6 z-20">
-            <div className="rounded-xl border border-white/10 bg-black/60 backdrop-blur-md px-3 py-2 shadow-lg shadow-brand-primary/10">
-              <fieldset className="min-w-[200px]">
-                <legend className="sr-only">اختيار النموذج</legend>
-                <ModelSelector selectedModelId={selectedModelId} onSelectModel={setSelectedModelId} />
-              </fieldset>
-            </div>
+            <SystemStatusBar modelId={selectedModelId} messagesCount={currentChat?.messages.length || 0} />
           </div>
-          <SystemStatusBar modelId={selectedModelId} messagesCount={currentChat?.messages.length || 0} />
         </div>
       </div>
 
-  {/* Toast Notifications */}
-  <ToastContainer toasts={toasts} onClose={removeToast} />
-  <SettingsModal open={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
+      {/* Toast Notifications */}
+      <ToastContainer toasts={toasts} onClose={removeToast} />
+      <SettingsModal open={isSettingsOpen} onClose={() => setIsSettingsOpen(false)} />
     </div>
   );
 }

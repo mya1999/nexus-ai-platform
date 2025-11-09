@@ -1,9 +1,9 @@
 "use client";
+import ModelSelector from '@/components/chat/model-selector';
+import { ButtonAdvanced } from '@/components/ui/button-advanced';
 import { motion } from 'framer-motion';
 import { Menu, Plus, Settings, Sparkles } from 'lucide-react';
 import Link from 'next/link';
-import { ButtonAdvanced } from '@/components/ui/button-advanced';
-import ModelSelector from '@/components/chat/model-selector';
 
 export type ConversationToolbarProps = Readonly<{
   isSidebarOpen: boolean;

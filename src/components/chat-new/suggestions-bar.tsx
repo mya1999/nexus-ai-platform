@@ -1,6 +1,6 @@
 "use client";
-import { motion } from 'framer-motion';
 import { ButtonAdvanced } from '@/components/ui/button-advanced';
+import { motion } from 'framer-motion';
 
 interface SuggestionsBarProps {
   visible: boolean;

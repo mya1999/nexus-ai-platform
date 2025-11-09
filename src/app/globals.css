@@ -34,7 +34,7 @@
     --input-height: 3.5rem; /* 56px = 7 units */
     --status-height: 2rem; /* 32px = 4 units */
     --model-selector-height: 4rem; /* 64px = 8 units */
-    
+
     /* Optical center adjustment */
     --optical-center: 54%; /* Compensates for top-heavy layout */
   }
@@ -169,8 +169,8 @@
     width: 10px;
     height: 10px;
     border-radius: 5px;
-    background-color: #8B5CF6;
-    color: #8B5CF6;
+    background-color: #6D28D9; /* Adjusted for better contrast */
+    color: #6D28D9; /* Adjusted for better contrast */
     animation: dot-flashing 1.5s infinite linear alternate;
     animation-delay: 0.5s;
   }
@@ -188,8 +188,8 @@
     width: 10px;
     height: 10px;
     border-radius: 5px;
-    background-color: #8B5CF6;
-    color: #8B5CF6;
+    background-color: #6D28D9; /* Adjusted for better contrast */
+    color: #6D28D9; /* Adjusted for better contrast */
     animation: dot-flashing 1.5s infinite alternate;
     animation-delay: 0s;
   }
@@ -199,8 +199,8 @@
     width: 10px;
     height: 10px;
     border-radius: 5px;
-    background-color: #8B5CF6;
-    color: #8B5CF6;
+    background-color: #6D28D9; /* Adjusted for better contrast */
+    color: #6D28D9; /* Adjusted for better contrast */
     animation: dot-flashing 1.5s infinite alternate;
     animation-delay: 1s;
   }
@@ -386,3 +386,264 @@
     z-index: 9999;
   }
 }
+
+/* ============================================
+   World-Class AI Platform Styling
+   ============================================ */
+
+/* Vibrant Color Palette for All Demographics */
+@layer utilities {
+  /* Universal Color Palette - Inclusive & Accessible */
+  .vibrant-gradient {
+    @apply bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500;
+  }
+
+  .soft-gradient {
+    @apply bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50;
+  }
+
+  .dark-gradient {
+    @apply bg-gradient-to-br from-slate-900 via-slate-800 to-slate-900;
+  }
+
+  .warm-gradient {
+    @apply bg-gradient-to-r from-amber-400 via-orange-400 to-red-400;
+  }
+
+  .cool-gradient {
+    @apply bg-gradient-to-r from-cyan-400 via-blue-400 to-indigo-400;
+  }
+
+  /* Neural Design System */
+  .neural-border {
+    @apply border-l-4 border-indigo-500 pl-4;
+  }
+
+  .glass-effect {
+    @apply bg-white/10 backdrop-blur-xl border border-white/20;
+  }
+
+  .glass-effect-light {
+    @apply bg-white/20 backdrop-blur-2xl border border-white/30;
+  }
+
+  .shadow-neural {
+    @apply shadow-2xl shadow-indigo-500/20;
+  }
+
+  .shadow-strong {
+    @apply shadow-2xl shadow-black/50;
+  }
+
+  /* Premium Typography */
+  .font-hero {
+    @apply text-5xl font-bold tracking-tight;
+  }
+
+  .font-subtitle {
+    @apply text-xl font-semibold tracking-wide;
+  }
+
+  .font-body {
+    @apply text-base font-normal leading-relaxed;
+  }
+
+  /* Interactive States */
+  .btn-hover-effect {
+    @apply transition-all duration-300 hover:scale-105 active:scale-95;
+  }
+
+  .link-hover {
+    @apply text-indigo-400 hover:text-indigo-300 transition-colors duration-200;
+  }
+
+  /* Accessibility Enhancements */
+  .focus-visible {
+    @apply focus:outline-none focus:ring-2 focus:ring-indigo-400 focus:ring-offset-2 focus:ring-offset-slate-900;
+  }
+
+  /* Motion-Reduced Mode Support */
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      @apply !animate-none !transition-none;
+    }
+  }
+
+  /* Dark Mode Enhancements */
+  .dark-mode-text {
+    @apply text-slate-100 dark:text-slate-50;
+  }
+
+  .dark-mode-secondary {
+    @apply text-slate-400 dark:text-slate-500;
+  }
+
+  /* High Contrast Mode Support */
+  @media (prefers-contrast: more) {
+    .glass-effect {
+      @apply bg-white/30 backdrop-blur-xl border-2 border-white/50;
+    }
+
+    .neural-border {
+      @apply border-l-8;
+    }
+  }
+}
+
+/* ============================================
+   Advanced Animations for Premium Feel
+   ============================================ */
+
+@keyframes slide-in-top {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-bottom {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scale-up {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes rotate-subtle {
+  0%, 100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(2deg);
+  }
+}
+
+/* Animation Classes */
+.animate-slide-in-top {
+  animation: slide-in-top 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-slide-in-bottom {
+  animation: slide-in-bottom 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-fade-in {
+  animation: fade-in 0.8s ease-out;
+}
+
+.animate-scale-up {
+  animation: scale-up 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.animate-rotate-subtle {
+  animation: rotate-subtle 3s ease-in-out infinite;
+}
+
+/* ============================================
+   Component Enhancements
+   ============================================ */
+
+/* Enhanced Input Components */
+.input-enhanced {
+  @apply px-4 py-3 rounded-lg bg-slate-900/50 border border-slate-700 
+    text-slate-100 placeholder-slate-500 
+    transition-all duration-200
+    focus:bg-slate-900 focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500/20
+    hover:border-slate-600;
+}
+
+/* Enhanced Button Components */
+.btn-primary {
+  @apply px-6 py-3 rounded-lg font-semibold
+    bg-gradient-to-r from-indigo-500 to-purple-500
+    text-white shadow-lg shadow-indigo-500/50
+    transition-all duration-300
+    hover:shadow-xl hover:shadow-indigo-500/70 hover:scale-105
+    active:scale-95
+    focus-visible;
+}
+
+.btn-secondary {
+  @apply px-6 py-3 rounded-lg font-semibold
+    bg-slate-800 border border-slate-700
+    text-slate-100
+    transition-all duration-300
+    hover:bg-slate-700 hover:border-indigo-400
+    focus-visible;
+}
+
+/* Card Components */
+.card-premium {
+  @apply rounded-xl border border-slate-700 bg-slate-900/50
+    p-6 transition-all duration-300
+    hover:border-indigo-400 hover:shadow-lg hover:shadow-indigo-500/10
+    backdrop-blur-sm;
+}
+
+/* Badge Components */
+.badge-ai {
+  @apply inline-flex items-center gap-2 px-3 py-1 rounded-full
+    bg-gradient-to-r from-indigo-500/20 to-purple-500/20
+    border border-indigo-400/30 text-indigo-300 text-sm font-medium;
+}
+
+/* ============================================
+   Responsive Design Enhancements
+   ============================================ */
+
+@media (max-width: 768px) {
+  .font-hero {
+    @apply text-3xl;
+  }
+
+  .font-subtitle {
+    @apply text-lg;
+  }
+
+  .card-premium {
+    @apply p-4;
+  }
+}
+
+/* ============================================
+   Print Styles
+   ============================================ */
+
+@media print {
+  .no-print {
+    @apply hidden;
+  }
+
+  .card-premium {
+    @apply border-black bg-white text-black;
+    break-inside: avoid;
+  }
+}
+
