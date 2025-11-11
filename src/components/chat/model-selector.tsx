@@ -1,7 +1,7 @@
 'use client';
 
 import { AI_MODELS } from '@/lib/ai-models';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Badge from '../ui/badge';
 import Card from '../ui/card';
 
@@ -12,8 +12,22 @@ interface ModelSelectorProps {
 
 export default function ModelSelector({ selectedModelId, onSelectModel }: ModelSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
+  const [openUpward, setOpenUpward] = useState(false);
+  const buttonRef = useRef<HTMLButtonElement>(null);
 
   const selectedModel = AI_MODELS.find(m => m.id === selectedModelId) || AI_MODELS[0];
+
+  // تحديد اتجاه فتح القائمة (للأعلى أو للأسفل)
+  useEffect(() => {
+    if (isOpen && buttonRef.current) {
+      const rect = buttonRef.current.getBoundingClientRect();
+      const spaceBelow = window.innerHeight - rect.bottom;
+      const spaceAbove = rect.top;
+      
+      // إذا كان المسافة للأسفل أقل من 450px والمسافة للأعلى أكبر، افتح للأعلى
+      setOpenUpward(spaceBelow < 450 && spaceAbove > spaceBelow);
+    }
+  }, [isOpen]);
 
   // أيقونات واقعية احترافية لكل نموذج
   const modelIcons: Record<string, string> = {
@@ -28,6 +42,7 @@ export default function ModelSelector({ selectedModelId, onSelectModel }: ModelS
     <div className="relative w-full">
       {/* زر الاختيار المدمج - تصميم مينيمال احترافي */}
       <button
+        ref={buttonRef}
         onClick={() => setIsOpen(!isOpen)}
         className="group relative w-full flex items-center justify-between gap-3
                    px-4 py-2.5 bg-gradient-to-r from-slate-900/95 to-slate-800/95
@@ -80,8 +95,12 @@ export default function ModelSelector({ selectedModelId, onSelectModel }: ModelS
             aria-label="Close model selector"
           />
 
-          {/* القائمة */}
-          <div className="absolute top-full left-0 right-0 mt-2 z-50 animate-in fade-in slide-in-from-top-2 duration-200">
+          {/* القائمة - تفتح للأعلى أو للأسفل حسب المساحة المتاحة */}
+          <div className={`absolute left-0 right-0 z-50 animate-in fade-in duration-200 ${
+            openUpward 
+              ? 'bottom-full mb-2 slide-in-from-bottom-2' 
+              : 'top-full mt-2 slide-in-from-top-2'
+          }`}>
             <Card
               variant="glass"
               padding="sm"
