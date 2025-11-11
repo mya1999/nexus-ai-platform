@@ -40,6 +40,51 @@
   "dart.enabled": false,
   "sonarqube.enabled": false,
 
+  // ⚙️ GitHub Copilot - الإعدادات المحسّنة
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "plaintext": false,
+    "markdown": true
+  },
+  "github.copilot.editor.enableAutoCompletions": true,
+  "github.copilot.advanced": {
+    "debug.overrideEngine": "gpt-4",
+    "debug.testOverrideProxyUrl": "",
+    "debug.overrideProxyUrl": ""
+  },
+
+  // 🎯 TypeScript - إعدادات متقدمة
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.preferences.quoteStyle": "single",
+  "javascript.preferences.quoteStyle": "single",
+
+  // 🎨 Tailwind CSS
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+  "tailwindCSS.emmetCompletions": true,
+
+  // 🔍 معاينة الأخطاء
+  "problems.decorations.enabled": true,
+  "problems.showCurrentInStatus": true,
+
+  // 🚀 الأداء
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/.next/**": true,
+    "**/dist/**": true
+  },
+
+  "extensions.experimental.affinity": {
+    "vscodevim.vim": 1
+  },
+
   // إعدادات الطرفية لضمان استخدام pwsh حتى لو كان PATH ناقصًا
   "terminal.integrated.defaultProfile.windows": "PowerShell",
   "terminal.integrated.profiles.windows": {

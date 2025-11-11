@@ -3,7 +3,7 @@
     // 🤖 AI & Copilot - الأولوية القصوى
     "GitHub.copilot",
     "GitHub.copilot-chat",
-    
+
     // إضافات أساسية للتطوير
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
