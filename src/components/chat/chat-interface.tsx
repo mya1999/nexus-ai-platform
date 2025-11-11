@@ -17,8 +17,10 @@ export default function ChatInterface() {
     toggleDarkMode,
   } = useChatStore();
 
+  // const [currentModel, setCurrentModel] = useState('gpt-4');
   const [isLoading, setIsLoading] = useState(false);
-  const [abortController, setAbortController] = useState<AbortController | null>(null);
+  const [, setAbortController] = useState<AbortController | null>(null);
+  // const [error, setError] = useState<string | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const currentChat = chats.find((c) => c.id === currentChatId);
@@ -94,11 +96,11 @@ export default function ChatInterface() {
     }
   };
 
-  const handleStop = () => {
-    abortController?.abort();
-    setIsLoading(false);
-    setAbortController(null);
-  };
+  // const handleStop = () => {
+  //   abortController?.abort();
+  //   setIsLoading(false);
+  //   setAbortController(null);
+  // };
 
   return (
     <div className="flex h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 transition-colors duration-300">

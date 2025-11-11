@@ -1,7 +1,6 @@
 'use client';
 
 import LanguageToggle from '@/components/language-toggle';
-import { translations } from '@/config/translations';
 import { useLanguage } from '@/hooks';
 import Link from 'next/link';
 
@@ -9,7 +8,7 @@ export default function Home() {
   const { language, mounted } = useLanguage();
 
   // استخدام اللغة المحفوظة أو الافتراضية
-  const t = translations[language];
+  // const t = translations[language]; // TODO: استخدام الترجمات لاحقاً
 
   // عرض شاشة فارغة حتى يتم تحميل اللغة من localStorage لتجنب الوميض
   if (!mounted) {
@@ -106,7 +105,7 @@ export default function Home() {
 
             {/* AI Models - Premium Cards */}
             <div className="flex flex-wrap justify-center gap-4 max-w-2xl mx-auto">
-              {['GPT-4', 'Claude 3', 'Gemini Pro'].map((model, index) => (
+              {['GPT-4', 'Claude 3', 'Gemini Pro'].map((model) => (
                 <div
                   key={model}
                   className="group relative px-6 py-3 bg-gradient-to-r from-purple-500/10 to-pink-500/10 border border-purple-500/20 rounded-2xl backdrop-blur-sm hover:border-purple-500/50 transition-all duration-300 hover:scale-105"

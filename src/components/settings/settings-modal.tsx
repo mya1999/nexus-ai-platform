@@ -12,7 +12,7 @@ interface SettingsModalProps {
 
 type TabId = 'general' | 'appearance' | 'chat' | 'models';
 
-function TabButton({ id, label, active, onClick }: Readonly<{ id: TabId; label: string; active: boolean; onClick: () => void }>) {
+function TabButton({ label, active, onClick }: Readonly<{ id: TabId; label: string; active: boolean; onClick: () => void }>) {
   return (
     <button
       onClick={onClick}
