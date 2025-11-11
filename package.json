@@ -18,7 +18,17 @@
 		"typecheck": "tsc --noEmit",
 		"validate": "npm run typecheck && npm run lint && npm run format:check",
 		"analyze": "ANALYZE=true next build",
-		"test": "echo \"No tests configured\" && exit 0"
+		"test": "echo \"No tests configured\" && exit 0",
+		"dev:auto": "npm run validate && npm run dev",
+		"dev:watch": "npm run dev",
+		"prepare": "node -e \"try { require('fs').mkdirSync('.next') } catch (e) {}\"",
+		"postinstall": "echo '✅ Dependencies installed successfully'",
+		"clean": "rm -rf .next out node_modules/.cache",
+		"clean:install": "npm run clean && npm install",
+		"check": "npm run typecheck && npm run lint",
+		"fix": "npm run lint:fix && npm run format",
+		"prod:build": "npm run validate && npm run build",
+		"prod:start": "npm run build && npm run start"
 	},
 	"dependencies": {
 		"@anthropic-ai/sdk": "^0.20.0",

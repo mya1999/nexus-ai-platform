@@ -98,6 +98,113 @@
   // تقليل استهلاك خادم TypeScript في المشاريع الصغيرة
   "typescript.tsserver.maxTsServerMemory": 3072,
   "typescript.tsserver.experimental.enableProjectDiagnostics": false,
-  "Codegeex.RepoIndex": true
+  "Codegeex.RepoIndex": true,
+
+  // ═══════════════════════════════════════════════════════════
+  // 🤖 GitHub Copilot & AI Automation Settings
+  // ═══════════════════════════════════════════════════════════
+
+  // GitHub Copilot - تفعيل كامل
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": true,
+    "markdown": true,
+    "scminput": false
+  },
+  "github.copilot.editor.enableAutoCompletions": true,
+  "github.copilot.editor.enableCodeActions": true,
+
+  // Copilot Suggestions
+  "editor.inlineSuggest.enabled": true,
+  "editor.quickSuggestions": {
+    "other": "on",
+    "comments": "on",
+    "strings": "on"
+  },
+  "editor.suggestOnTriggerCharacters": true,
+  "editor.acceptSuggestionOnEnter": "on",
+  "editor.wordBasedSuggestions": "allDocuments",
+
+  // Auto Save & Actions
+  "files.autoSave": "afterDelay",
+  "files.autoSaveDelay": 1000,
+
+  // Auto Fix & Format
+  "editor.formatOnType": true,
+  "editor.formatOnPaste": true,
+
+  // TypeScript Auto Imports
+  "typescript.suggest.autoImports": true,
+  "javascript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "javascript.updateImportsOnFileMove.enabled": "always",
+
+  // Auto Close & Complete
+  "editor.autoClosingBrackets": "always",
+  "editor.autoClosingQuotes": "always",
+  "editor.autoClosingDelete": "always",
+  "editor.autoSurround": "languageDefined",
+
+  // IntelliSense
+  "editor.parameterHints.enabled": true,
+  "editor.suggest.preview": true,
+  "editor.suggest.showInlineDetails": true,
+
+  // ═══════════════════════════════════════════════════════════
+  // 🔧 Development Automation
+  // ═══════════════════════════════════════════════════════════
+
+  // Auto Build & Compile
+  "typescript.tsserver.useSyntaxServer": "auto",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "javascript.preferences.importModuleSpecifier": "relative",
+
+  // Error Detection
+  "problems.autoReveal": true,
+  "problems.showCurrentInStatus": true,
+
+  // Git Integration
+  "git.autofetch": true,
+  "git.autoStash": true,
+  "git.confirmSync": false,
+  "git.enableSmartCommit": true,
+
+  // ═══════════════════════════════════════════════════════════
+  // 🎨 UI & Experience
+  // ═══════════════════════════════════════════════════════════
+
+  // Breadcrumbs & Navigation
+  "breadcrumbs.enabled": true,
+  "breadcrumbs.filePath": "on",
+  "breadcrumbs.symbolPath": "on",
+
+  // Minimap
+  "editor.minimap.enabled": true,
+  "editor.minimap.renderCharacters": false,
+  "editor.minimap.maxColumn": 80,
+
+  // Smooth Scrolling
+  "editor.smoothScrolling": true,
+  "workbench.list.smoothScrolling": true,
+
+  // ═══════════════════════════════════════════════════════════
+  // 📦 Node.js & Package Management
+  // ═══════════════════════════════════════════════════════════
+
+  "npm.packageManager": "npm",
+  "npm.autoDetect": "on",
+  "npm.enableRunFromFolder": true,
+
+  // ═══════════════════════════════════════════════════════════
+  // 🚀 Performance Optimizations
+  // ═══════════════════════════════════════════════════════════
+
+  "editor.semanticHighlighting.enabled": true,
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": "active",
+
+  // Disable Heavy Features for Better Performance
+  "workbench.enableExperiments": false,
+  "telemetry.telemetryLevel": "off"
 }
 
