@@ -11,17 +11,28 @@ const config: Config = {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: {
+        DEFAULT: "1rem",
+        sm: "1.5rem",
+        lg: "2rem",
+        xl: "3rem",
+        "2xl": "4rem",
+      },
       screens: {
+        sm: "640px",
+        md: "768px",
+        lg: "1024px",
+        xl: "1280px",
         "2xl": "1400px",
+        "3xl": "1600px",
       },
     },
     extend: {
-      // Design Tokens Integration
+      // 🎯 Design Tokens Integration
       spacing: designTokens.spacing,
 
       colors: {
-        // Shadcn/ui colors (preserved)
+        // 🎨 Shadcn/ui base colors (preserved for compatibility)
         border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
@@ -56,54 +67,27 @@ const config: Config = {
           foreground: "hsl(var(--card-foreground))",
         },
 
-        // Design System Semantic Colors
-        success: {
-          light: `hsl(${designTokens.colors.semantic.success.light})`,
-          DEFAULT: `hsl(${designTokens.colors.semantic.success.DEFAULT})`,
-          dark: `hsl(${designTokens.colors.semantic.success.dark})`,
-        },
-        warning: {
-          light: `hsl(${designTokens.colors.semantic.warning.light})`,
-          DEFAULT: `hsl(${designTokens.colors.semantic.warning.DEFAULT})`,
-          dark: `hsl(${designTokens.colors.semantic.warning.dark})`,
-        },
-        error: {
-          light: `hsl(${designTokens.colors.semantic.error.light})`,
-          DEFAULT: `hsl(${designTokens.colors.semantic.error.DEFAULT})`,
-          dark: `hsl(${designTokens.colors.semantic.error.dark})`,
-        },
-        info: {
-          light: `hsl(${designTokens.colors.semantic.info.light})`,
-          DEFAULT: `hsl(${designTokens.colors.semantic.info.DEFAULT})`,
-          dark: `hsl(${designTokens.colors.semantic.info.dark})`,
-        },
-
-        // Brand Colors
+        // 🌈 OKLCH Brand Colors - Full palette
         brand: {
-          primary: `hsl(${designTokens.colors.brand.primary})`,
-          secondary: `hsl(${designTokens.colors.brand.secondary})`,
-          accent: `hsl(${designTokens.colors.brand.accent})`,
+          ...designTokens.colors.brand.primary,
+          ...designTokens.colors.brand.secondary,
+          ...designTokens.colors.brand.accent,
         },
 
-        // Surface Elevation
-        surface: {
-          0: `hsl(${designTokens.colors.surface[0]})`,
-          1: `hsl(${designTokens.colors.surface[1]})`,
-          2: `hsl(${designTokens.colors.surface[2]})`,
-          3: `hsl(${designTokens.colors.surface[3]})`,
-          4: `hsl(${designTokens.colors.surface[4]})`,
-        },
+        // 🎭 Semantic States
+        success: designTokens.colors.semantic.success,
+        warning: designTokens.colors.semantic.warning,
+        error: designTokens.colors.semantic.error,
+        info: designTokens.colors.semantic.info,
 
-        // Legacy nexus colors (preserved for backwards compatibility)
-        nexus: {
-          purple: "#8B5CF6",
-          blue: "#3B82F6",
-          pink: "#EC4899",
-          orange: "#F97316",
-          cyan: "#06B6D4",
-          dark: "#0A0E27",
-          darker: "#050816",
-        },
+        // 🌑 Neutral Scale
+        neutral: designTokens.colors.neutral,
+
+        // 🪟 Surface Layers
+        surface: designTokens.colors.surface,
+
+        // 📝 Text Hierarchy
+        text: designTokens.colors.text,
       },
 
       // Fluid Typography
@@ -146,30 +130,58 @@ const config: Config = {
         lg: designTokens.elevation.lg,
         xl: designTokens.elevation.xl,
         '2xl': designTokens.elevation['2xl'],
+        '3xl': designTokens.elevation['3xl'],
         inner: designTokens.elevation.inner,
-        'glow-purple': designTokens.elevation.glow.purple,
-        'glow-blue': designTokens.elevation.glow.blue,
-        'glow-pink': designTokens.elevation.glow.pink,
+        // Glow effects with default variants
+        'glow-purple': designTokens.elevation.glow.purple.DEFAULT,
+        'glow-purple-sm': designTokens.elevation.glow.purple.sm,
+        'glow-purple-lg': designTokens.elevation.glow.purple.lg,
+        'glow-purple-xl': designTokens.elevation.glow.purple.xl,
+        'glow-blue': designTokens.elevation.glow.blue.DEFAULT,
+        'glow-blue-sm': designTokens.elevation.glow.blue.sm,
+        'glow-blue-lg': designTokens.elevation.glow.blue.lg,
+        'glow-blue-xl': designTokens.elevation.glow.blue.xl,
+        'glow-pink': designTokens.elevation.glow.pink.DEFAULT,
+        'glow-pink-sm': designTokens.elevation.glow.pink.sm,
+        'glow-pink-lg': designTokens.elevation.glow.pink.lg,
+        'glow-pink-xl': designTokens.elevation.glow.pink.xl,
+        'glow-gradient': designTokens.elevation.glow.gradient,
       },
 
-      // Z-Index
+      // Z-Index Hierarchy
       zIndex: designTokens.zIndex,
 
-      // Animation Duration & Timing
-      transitionDuration: {
-        instant: designTokens.animation.duration.instant,
-        fast: designTokens.animation.duration.fast,
-        normal: designTokens.animation.duration.normal,
-        slow: designTokens.animation.duration.slow,
-        slower: designTokens.animation.duration.slower,
-        slowest: designTokens.animation.duration.slowest,
-      },
+      // ⏱️ Animation System
+      transitionDuration: designTokens.animation.duration,
 
       transitionTimingFunction: {
-        emphasized: designTokens.animation.easing.emphasized,
+        // Standard
+        linear: designTokens.animation.easing.linear,
+        ease: designTokens.animation.easing.ease,
+        'ease-in': designTokens.animation.easing.easeIn,
+        'ease-out': designTokens.animation.easing.easeOut,
+        'ease-in-out': designTokens.animation.easing.easeInOut,
+        // Apple
+        'apple-ease': designTokens.animation.easing.appleEase,
+        'apple-ease-in': designTokens.animation.easing.appleEaseIn,
+        'apple-ease-out': designTokens.animation.easing.appleEaseOut,
+        'apple-ease-in-out': designTokens.animation.easing.appleEaseInOut,
+        // Material
+        'emphasized': designTokens.animation.easing.emphasized,
         'emphasized-decelerate': designTokens.animation.easing.emphasizedDecelerate,
         'emphasized-accelerate': designTokens.animation.easing.emphasizedAccelerate,
-        bounce: designTokens.animation.easing.bounce,
+        // Spring
+        'spring': designTokens.animation.easing.spring,
+        'spring-gentle': designTokens.animation.easing.springGentle,
+        'spring-snappy': designTokens.animation.easing.springSnappy,
+        // Power
+        'power-in': designTokens.animation.easing.powerIn,
+        'power-out': designTokens.animation.easing.powerOut,
+        'power-in-out': designTokens.animation.easing.powerInOut,
+        // Elite
+        'silk': designTokens.animation.easing.silk,
+        'snap': designTokens.animation.easing.snap,
+        'smooth': designTokens.animation.easing.smooth,
       },
 
       keyframes: {

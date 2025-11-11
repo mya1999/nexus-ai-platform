@@ -1,3 +1,10 @@
+/**
+ * ╔═══════════════════════════════════════════════════════════════╗
+ * ║  ZORO-AI SOVEREIGN GLOBAL STYLES                              ║
+ * ║  OKLCH Color System | P3 Gamut | Elite Design                ║
+ * ╚═══════════════════════════════════════════════════════════════╝
+ */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -6,17 +13,19 @@
 @import '../styles/shared.css';
 
 @layer base {
+  /* 🎨 Root Variables - OKLCH Elite Color System */
   :root {
+    /* Shadcn/ui base colors (HSL for compatibility) */
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
+    --card: 240 10% 5.9%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
+    --popover: 240 10% 7.9%;
     --popover-foreground: 0 0% 98%;
     --primary: 263 70% 50%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
     --muted: 240 3.7% 15.9%;
     --muted-foreground: 240 5% 64.9%;
     --accent: 240 3.7% 15.9%;
@@ -26,25 +35,46 @@
     --border: 240 3.7% 15.9%;
     --input: 240 3.7% 15.9%;
     --ring: 263 70% 50%;
-    --radius: 0.75rem;
+    --radius: 0.5rem;
 
-    /* Geometric spacing system: 8px baseline */
-    --spacing-unit: 0.5rem; /* 8px */
-    --toolbar-height: 5rem; /* 80px = 10 units */
-    --input-height: 3.5rem; /* 56px = 7 units */
-    --status-height: 2rem; /* 32px = 4 units */
-    --model-selector-height: 4rem; /* 64px = 8 units */
+    /* 🌈 OKLCH Brand Colors - P3 Gamut Support */
+    --brand-primary-500: oklch(0.58 0.24 295);
+    --brand-secondary-500: oklch(0.60 0.26 240);
+    --brand-accent-500: oklch(0.62 0.28 330);
 
-    /* Optical center adjustment */
-    --optical-center: 54%; /* Compensates for top-heavy layout */
+    /* 🪟 Surface Layers */
+    --surface-base: oklch(0.10 0.020 270);
+    --surface-raised: oklch(0.14 0.022 270);
+    --surface-elevated: oklch(0.18 0.024 270);
+    --surface-overlay: oklch(0.22 0.026 270);
+
+    /* 📝 Text Hierarchy */
+    --text-primary: oklch(0.98 0.002 270);
+    --text-secondary: oklch(0.78 0.008 270);
+    --text-tertiary: oklch(0.58 0.012 270);
+    --text-disabled: oklch(0.38 0.014 270);
+
+    /* 💫 Effects */
+    --glow-purple: 0 0 24px oklch(0.58 0.24 295 / 0.4);
+    --glow-blue: 0 0 24px oklch(0.60 0.26 240 / 0.4);
+    --glow-pink: 0 0 24px oklch(0.62 0.28 330 / 0.4);
+
+    /* 📐 Spacing & Layout */
+    --spacing-unit: 0.25rem; /* 4px base */
+    --toolbar-height: 5rem;
+    --input-height: 3.5rem;
+    --status-height: 2rem;
+    --model-selector-height: 4rem;
+    --optical-center: 54%;
   }
 
+  /* 🌙 Dark Mode Enhancement (optimized contrast) */
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
-    --card: 240 10% 3.9%;
+    --card: 240 10% 5.9%;
     --card-foreground: 0 0% 98%;
-    --popover: 240 10% 3.9%;
+    --popover: 240 10% 7.9%;
     --popover-foreground: 0 0% 98%;
     --primary: 263 70% 50%;
     --primary-foreground: 0 0% 98%;
@@ -60,43 +90,135 @@
     --input: 240 3.7% 15.9%;
     --ring: 263 70% 50%;
   }
-}
 
-@layer base {
+  /* 🎯 Universal Reset & Optimization */
   * {
     @apply border-border;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
   }
 
-  body {
-    @apply bg-background text-foreground;
-    font-feature-settings: "rlig" 1, "calt" 1;
-  }
-
+  /* 🌐 Root HTML */
   html {
     scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
+    font-feature-settings: "rlig" 1, "calt" 1, "ss01" 1;
   }
 
-  /* Custom Scrollbar */
+  /* 📄 Body Foundation */
+  body {
+    @apply bg-background text-foreground;
+    background: var(--surface-base);
+    color: var(--text-primary);
+    font-feature-settings: "rlig" 1, "calt" 1, "kern" 1;
+    font-optical-sizing: auto;
+    letter-spacing: -0.011em;
+    overflow-x: hidden;
+  }
+
+  /* 🎨 Premium Scrollbar Design */
   ::-webkit-scrollbar {
-    width: 8px;
-    height: 8px;
+    width: 10px;
+    height: 10px;
   }
 
   ::-webkit-scrollbar-track {
-    @apply bg-background;
+    background: var(--surface-base);
   }
 
   ::-webkit-scrollbar-thumb {
-    @apply bg-muted rounded-full;
+    background: var(--surface-elevated);
+    border-radius: 9999px;
+    border: 2px solid var(--surface-base);
+    transition: background 0.2s ease;
   }
 
   ::-webkit-scrollbar-thumb:hover {
-    @apply bg-muted-foreground;
+    background: var(--surface-overlay);
+  }
+
+  ::-webkit-scrollbar-corner {
+    background: var(--surface-base);
+  }
+
+  /* 🔤 Typography Enhancements */
+  h1, h2, h3, h4, h5, h6 {
+    font-feature-settings: "ss01" 1, "ss02" 1, "cv01" 1;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  /* ⚡ Selection Styling */
+  ::selection {
+    background: var(--brand-primary-500);
+    color: var(--text-primary);
+    text-shadow: none;
+  }
+
+  ::-moz-selection {
+    background: var(--brand-primary-500);
+    color: var(--text-primary);
+    text-shadow: none;
+  }
+
+  /* 🎯 Focus Visible (A11y) */
+  :focus-visible {
+    outline: 2px solid var(--brand-primary-500);
+    outline-offset: 2px;
+    border-radius: 0.25rem;
+  }
+
+  /* 🖼️ Image Optimization */
+  img, picture, video, canvas, svg {
+    display: block;
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* 🔗 Link Enhancement */
+  a {
+    text-decoration: none;
+    color: inherit;
+    transition: opacity 0.2s ease;
+  }
+
+  a:hover {
+    opacity: 0.85;
+  }
+
+  /* 📦 Button Reset */
+  button {
+    font: inherit;
+    cursor: pointer;
+    user-select: none;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  button:disabled {
+    cursor: not-allowed;
+    opacity: 0.5;
+  }
+
+  /* 📝 Input Enhancement */
+  input, textarea, select {
+    font: inherit;
+    color: inherit;
+  }
+
+  input::placeholder,
+  textarea::placeholder {
+    color: var(--text-tertiary);
+    opacity: 1;
   }
 }
 
 @layer utilities {
-  /* Gradient Backgrounds */
+  /* 🎨 Premium Gradient Backgrounds */
   .bg-gradient-nexus {
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
   }

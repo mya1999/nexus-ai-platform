@@ -2,6 +2,7 @@
 
 import { AI_MODELS } from '@/lib/ai-models';
 import { useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import Badge from '../ui/badge';
 import Card from '../ui/card';
 
@@ -13,19 +14,62 @@ interface ModelSelectorProps {
 export default function ModelSelector({ selectedModelId, onSelectModel }: ModelSelectorProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [openUpward, setOpenUpward] = useState(false);
+  const [menuStyle, setMenuStyle] = useState<React.CSSProperties | null>(null);
   const buttonRef = useRef<HTMLButtonElement>(null);
 
   const selectedModel = AI_MODELS.find(m => m.id === selectedModelId) || AI_MODELS[0];
 
-  // تحديد اتجاه فتح القائمة (للأعلى أو للأسفل)
+  // تحديد اتجاه فتح القائمة (للأعلى أو للأسفل) وحساب موضع ثابت يمنع الانقصاص من الشاشة
   useEffect(() => {
-    if (isOpen && buttonRef.current) {
-      const rect = buttonRef.current.getBoundingClientRect();
-      const spaceBelow = window.innerHeight - rect.bottom;
+    function positionMenu() {
+      const btn = buttonRef.current;
+      if (!btn) return;
+      const rect = btn.getBoundingClientRect();
+      const viewportW = window.innerWidth;
+      const viewportH = window.innerHeight;
+
+      // أبعاد القائمة المتوقعة
+      const estimatedHeight = 420; // نفس max-height
+      const gap = 8;
+
+      const spaceBelow = viewportH - rect.bottom;
       const spaceAbove = rect.top;
-      
-      // إذا كان المسافة للأسفل أقل من 450px والمسافة للأعلى أكبر، افتح للأعلى
-      setOpenUpward(spaceBelow < 450 && spaceAbove > spaceBelow);
+      const shouldOpenUp = spaceBelow < 320 && spaceAbove > spaceBelow; // عتبة عملية
+      setOpenUpward(shouldOpenUp);
+
+      // العرض يطابق عرض الزر مع حد أدنى/أقصى منطقي
+      const width = Math.min(Math.max(rect.width, 280), 520);
+
+      // الموضع الأفقي: تأكد من عدم تجاوز الحافة اليمنى
+      let left = rect.left;
+      if (left + width > viewportW - 12) {
+        left = Math.max(12, viewportW - width - 12);
+      }
+
+      // الموضع العمودي
+      let top = shouldOpenUp ? rect.top - Math.min(estimatedHeight, spaceAbove - gap) - gap : rect.bottom + gap;
+      // في حال الفتح للأسفل مع مساحة أقل من المقدرة، ارفع للأعلى ضمن المتاح
+      if (!shouldOpenUp && top + estimatedHeight > viewportH - 12) {
+        top = Math.max(gap, viewportH - estimatedHeight - 12);
+      }
+
+      setMenuStyle({
+        position: 'fixed',
+        top,
+        left,
+        width,
+        zIndex: 9999,
+      });
+    }
+
+    if (isOpen) {
+      positionMenu();
+      window.addEventListener('resize', positionMenu);
+      window.addEventListener('scroll', positionMenu, true);
+      return () => {
+        window.removeEventListener('resize', positionMenu);
+        window.removeEventListener('scroll', positionMenu, true);
+      };
     }
   }, [isOpen]);
 
@@ -83,31 +127,28 @@ export default function ModelSelector({ selectedModelId, onSelectModel }: ModelS
       </button>
 
 
-      {/* القائمة المنسدلة - تصميم احترافي عالي الدقة */}
+      {/* القائمة المنسدلة - تصميم احترافي عالي الدقة (ببوابة + موضع ثابت) */}
       {isOpen && (
         <>
           {/* Backdrop */}
           <button
             type="button"
-            className="fixed inset-0 z-40 bg-black/20 backdrop-blur-sm cursor-default"
+            className="fixed inset-0 z-[9998] bg-black/20 backdrop-blur-sm cursor-default"
             onClick={() => setIsOpen(false)}
             onKeyDown={(e) => e.key === 'Escape' && setIsOpen(false)}
             aria-label="Close model selector"
           />
 
-          {/* القائمة - تفتح للأعلى أو للأسفل حسب المساحة المتاحة */}
-          <div className={`absolute left-0 right-0 z-50 animate-in fade-in duration-200 ${
-            openUpward 
-              ? 'bottom-full mb-2 slide-in-from-bottom-2' 
-              : 'top-full mt-2 slide-in-from-top-2'
-          }`}>
-            <Card
-              variant="glass"
-              padding="sm"
-              className="max-h-[420px] overflow-y-auto shadow-2xl shadow-slate-900/50
-                         border-slate-700/50 backdrop-blur-xl bg-slate-900/98
-                         scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-900/50"
-            >
+          {/* القائمة عبر بوابة لضمان عدم القص ضمن أي حاوية */}
+          {menuStyle && createPortal(
+            <div style={menuStyle} className={`animate-in fade-in duration-200 ${openUpward ? 'slide-in-from-bottom-2' : 'slide-in-from-top-2'}`}>
+              <Card
+                variant="glass"
+                padding="sm"
+                className="max-h-[420px] overflow-y-auto shadow-2xl shadow-slate-900/50
+                           border-slate-700/50 backdrop-blur-xl bg-slate-900/98
+                           scrollbar-thin scrollbar-thumb-slate-700 scrollbar-track-slate-900/50"
+              >
               <div className="grid gap-2 p-2">
                 {AI_MODELS.map((model) => {
                   const isSelected = model.id === selectedModelId;
@@ -204,7 +245,9 @@ export default function ModelSelector({ selectedModelId, onSelectModel }: ModelS
                 })}
               </div>
             </Card>
-          </div>
+            </div>,
+            document.body
+          )}
         </>
       )}
     </div>

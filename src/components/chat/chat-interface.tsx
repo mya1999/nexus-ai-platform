@@ -1,5 +1,6 @@
 'use client';
 
+import BrandLogo from '@/components/brand-logo';
 import { useChatStore } from '@/store/chat-store';
 import { Moon, Sparkles, Sun } from 'lucide-react';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -101,19 +102,9 @@ export default function ChatInterface() {
         {/* Header */}
         <header className="border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl shadow-sm">
           <div className="container mx-auto px-4 py-4">
-            <div className="flex items-center justify-between">
-              <div className="flex items-center gap-3">
-                <div className="w-12 h-12 bg-gradient-to-br from-blue-600 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg">
-                  <Sparkles className="w-7 h-7 text-white" />
-                </div>
-                <div>
-                  <h1 className="text-2xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-                    Nexus AI
-                  </h1>
-                  <p className="text-xs text-slate-600 dark:text-slate-400">
-                    منصة الذكاء الاصطناعي المتقدمة
-                  </p>
-                </div>
+              <div className="flex items-center justify-between">
+              <div className="flex items-center">
+                <BrandLogo size="md" />
               </div>
 
               <div className="flex items-center gap-2">

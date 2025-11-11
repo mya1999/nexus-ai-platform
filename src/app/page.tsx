@@ -1,5 +1,6 @@
 'use client';
 
+import BrandLogo from '@/components/brand-logo';
 import LanguageToggle from '@/components/language-toggle';
 import { useLanguage } from '@/hooks';
 import Link from 'next/link';
@@ -73,75 +74,17 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Project Title - Ultra Premium Design */}
-            <div className="relative space-y-8 py-6">
-              {/* عنوان المشروع - هندسة سحرية */}
-              <div className="relative flex justify-center">
-                {/* Glow Effect Background */}
-                <div className="absolute -inset-8 bg-gradient-to-r from-purple-600/30 via-pink-600/30 to-blue-600/30 rounded-3xl blur-3xl opacity-60 animate-pulse"></div>
-
-                <h1 className="relative text-center">
-                  {/* الجزء الأول - ZORO */}
-                  <div className="mb-2">
-                    <span className="text-[clamp(4rem,12vw,10rem)] font-black tracking-[-0.05em] leading-none
-                                   text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-white
-                                   drop-shadow-[0_0_30px_rgba(168,85,247,0.5)]
-                                   animate-gradient-x">
-                      ZORO
-                    </span>
+            {/* Project Title - Framed ZORO-AI only */}
+            <div className="relative py-10">
+              <div className="max-w-6xl mx-auto px-6">
+                {/* إطار هندسي فخم */}
+                <div className="relative">
+                  <div className="absolute -inset-3 rounded-3xl bg-gradient-to-r from-purple-600/25 via-pink-600/25 to-blue-600/25 blur-2xl" />
+                  <div className="relative rounded-3xl border border-white/10 bg-white/5 backdrop-blur-xl p-6 sm:p-8 lg:p-10 flex items-center justify-center">
+                    {/* شعار موحّد + العنوان */}
+                    <BrandLogo size="xl" />
                   </div>
-
-                  {/* الجزء الثاني - AI Platform */}
-                  <div className="flex items-center justify-center gap-4">
-                    <span className="text-[clamp(3.5rem,10vw,8rem)] font-black tracking-[-0.03em] leading-none
-                                   text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500
-                                   drop-shadow-[0_0_40px_rgba(168,85,247,0.6)]
-                                   animate-gradient-x">
-                      AI
-                    </span>
-                    <div className="h-[clamp(3rem,8vw,6rem)] w-1 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full
-                                    shadow-[0_0_20px_rgba(168,85,247,0.5)]"></div>
-                    <span className="text-[clamp(1.75rem,4vw,3.5rem)] font-bold tracking-wide leading-none
-                                   text-transparent bg-clip-text bg-gradient-to-r from-gray-300 via-white to-gray-300
-                                   drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
-                      Platform
-                    </span>
-                  </div>
-                </h1>
-              </div>
-
-              {/* Subtitle - عالي الدقة */}
-              <div className="relative">
-                <p className="text-[clamp(1.125rem,2.5vw,1.875rem)] font-medium text-center
-                             text-gray-300 tracking-wide leading-relaxed
-                             drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
-                  {language === 'ar' ? (
-                    <>
-                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400
-                                     font-bold">
-                        الذكاء الاصطناعي المتقدم
-                      </span>
-                      <span className="mx-3 text-purple-500/60">•</span>
-                      <span className="text-gray-200">في خدمتك</span>
-                    </>
-                  ) : (
-                    <>
-                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400
-                                     font-bold">
-                        Advanced Artificial Intelligence
-                      </span>
-                      <span className="mx-3 text-purple-500/60">•</span>
-                      <span className="text-gray-200">At Your Service</span>
-                    </>
-                  )}
-                </p>
-              </div>
-
-              {/* Decorative Line */}
-              <div className="flex items-center justify-center gap-3 pt-4">
-                <div className="h-[2px] w-16 bg-gradient-to-r from-transparent via-purple-500 to-transparent rounded-full"></div>
-                <div className="w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.8)] animate-pulse"></div>
-                <div className="h-[2px] w-16 bg-gradient-to-r from-transparent via-purple-500 to-transparent rounded-full"></div>
+                </div>
               </div>
             </div>
 
