@@ -2,7 +2,7 @@
 
 import { useChatStore } from '@/store/chat-store';
 import { Moon, Sparkles, Sun } from 'lucide-react';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import ChatSidebar from './chat-sidebar';
 import InputArea from './input-area';
 import MessageBubble from './message-bubble';
@@ -17,14 +17,12 @@ export default function ChatInterface() {
     toggleDarkMode,
   } = useChatStore();
 
-  // const [currentModel, setCurrentModel] = useState('gpt-4');
   const [isLoading, setIsLoading] = useState(false);
-  const [, setAbortController] = useState<AbortController | null>(null);
-  // const [error, setError] = useState<string | null>(null);
+  const [_abortController, setAbortController] = useState<AbortController | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const currentChat = chats.find((c) => c.id === currentChatId);
-  const messages = currentChat?.messages || [];
+  const messages = useMemo(() => currentChat?.messages || [], [currentChat?.messages]);
 
   // Auto-scroll to bottom
   useEffect(() => {
@@ -95,12 +93,6 @@ export default function ChatInterface() {
       setAbortController(null);
     }
   };
-
-  // const handleStop = () => {
-  //   abortController?.abort();
-  //   setIsLoading(false);
-  //   setAbortController(null);
-  // };
 
   return (
     <div className="flex h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 transition-colors duration-300">
@@ -194,9 +186,9 @@ function EmptyState() {
       </p>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
-        {suggestions.map((suggestion, index) => (
+        {suggestions.map((suggestion) => (
           <button
-            key={index}
+            key={`suggestion-${suggestion.icon}-${suggestion.text.substring(0, 20)}`}
             className="group p-6 text-right bg-white dark:bg-slate-800 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-500 transition-all hover:shadow-2xl transform hover:scale-[1.02]"
           >
             <div className="flex items-start gap-4">

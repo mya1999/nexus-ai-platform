@@ -7,9 +7,6 @@ import Link from 'next/link';
 export default function Home() {
   const { language, mounted } = useLanguage();
 
-  // استخدام اللغة المحفوظة أو الافتراضية
-  // const t = translations[language]; // TODO: استخدام الترجمات لاحقاً
-
   // عرض شاشة فارغة حتى يتم تحميل اللغة من localStorage لتجنب الوميض
   if (!mounted) {
     return (
@@ -31,7 +28,7 @@ export default function Home() {
 
         {/* Floating Particles */}
         <div className="absolute inset-0">
-          {[...new Array(20)].map((_, i) => (
+          {Array.from({ length: 20 }, (_, i) => (
             <div
               key={`particle-${i}`}
               className="absolute w-1 h-1 bg-purple-500/30 rounded-full particle"
@@ -76,31 +73,76 @@ export default function Home() {
               </div>
             </div>
 
-            {/* Project Title - Cinematic */}
-            <div className="space-y-6">
-              <h1 className="text-7xl sm:text-8xl md:text-9xl font-black tracking-tighter leading-none">
-                <span className="block text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-200 to-white animate-gradient-x">
-                  ZORO
-                </span>
-                <span className="block mt-4 text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500 animate-gradient-x">
-                  AI
-                </span>
-              </h1>
+            {/* Project Title - Ultra Premium Design */}
+            <div className="relative space-y-8 py-6">
+              {/* عنوان المشروع - هندسة سحرية */}
+              <div className="relative flex justify-center">
+                {/* Glow Effect Background */}
+                <div className="absolute -inset-8 bg-gradient-to-r from-purple-600/30 via-pink-600/30 to-blue-600/30 rounded-3xl blur-3xl opacity-60 animate-pulse"></div>
 
-              {/* Subtitle with Typewriter Effect */}
-              <p className="text-xl sm:text-2xl md:text-3xl font-light text-gray-400 tracking-wide">
-                {language === 'ar' ? (
-                  <>
-                    <span className="text-purple-400">الذكاء الاصطناعي</span>
-                    {' '}• بلا حدود
-                  </>
-                ) : (
-                  <>
-                    <span className="text-purple-400">Artificial Intelligence</span>
-                    {' '}• Unlimited
-                  </>
-                )}
-              </p>
+                <h1 className="relative text-center">
+                  {/* الجزء الأول - ZORO */}
+                  <div className="mb-2">
+                    <span className="text-[clamp(4rem,12vw,10rem)] font-black tracking-[-0.05em] leading-none
+                                   text-transparent bg-clip-text bg-gradient-to-r from-white via-purple-100 to-white
+                                   drop-shadow-[0_0_30px_rgba(168,85,247,0.5)]
+                                   animate-gradient-x">
+                      ZORO
+                    </span>
+                  </div>
+
+                  {/* الجزء الثاني - AI Platform */}
+                  <div className="flex items-center justify-center gap-4">
+                    <span className="text-[clamp(3.5rem,10vw,8rem)] font-black tracking-[-0.03em] leading-none
+                                   text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-500 to-blue-500
+                                   drop-shadow-[0_0_40px_rgba(168,85,247,0.6)]
+                                   animate-gradient-x">
+                      AI
+                    </span>
+                    <div className="h-[clamp(3rem,8vw,6rem)] w-1 bg-gradient-to-b from-purple-500 to-pink-500 rounded-full
+                                    shadow-[0_0_20px_rgba(168,85,247,0.5)]"></div>
+                    <span className="text-[clamp(1.75rem,4vw,3.5rem)] font-bold tracking-wide leading-none
+                                   text-transparent bg-clip-text bg-gradient-to-r from-gray-300 via-white to-gray-300
+                                   drop-shadow-[0_0_20px_rgba(255,255,255,0.3)]">
+                      Platform
+                    </span>
+                  </div>
+                </h1>
+              </div>
+
+              {/* Subtitle - عالي الدقة */}
+              <div className="relative">
+                <p className="text-[clamp(1.125rem,2.5vw,1.875rem)] font-medium text-center
+                             text-gray-300 tracking-wide leading-relaxed
+                             drop-shadow-[0_2px_10px_rgba(0,0,0,0.5)]">
+                  {language === 'ar' ? (
+                    <>
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400
+                                     font-bold">
+                        الذكاء الاصطناعي المتقدم
+                      </span>
+                      <span className="mx-3 text-purple-500/60">•</span>
+                      <span className="text-gray-200">في خدمتك</span>
+                    </>
+                  ) : (
+                    <>
+                      <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-pink-400
+                                     font-bold">
+                        Advanced Artificial Intelligence
+                      </span>
+                      <span className="mx-3 text-purple-500/60">•</span>
+                      <span className="text-gray-200">At Your Service</span>
+                    </>
+                  )}
+                </p>
+              </div>
+
+              {/* Decorative Line */}
+              <div className="flex items-center justify-center gap-3 pt-4">
+                <div className="h-[2px] w-16 bg-gradient-to-r from-transparent via-purple-500 to-transparent rounded-full"></div>
+                <div className="w-2 h-2 rounded-full bg-purple-500 shadow-[0_0_10px_rgba(168,85,247,0.8)] animate-pulse"></div>
+                <div className="h-[2px] w-16 bg-gradient-to-r from-transparent via-purple-500 to-transparent rounded-full"></div>
+              </div>
             </div>
 
             {/* AI Models - Premium Cards */}
@@ -152,9 +194,9 @@ export default function Home() {
                 { value: '10M+', label: language === 'ar' ? 'مستخدم' : 'Users' },
                 { value: '99.9%', label: language === 'ar' ? 'دقة' : 'Accuracy' },
                 { value: '24/7', label: language === 'ar' ? 'دعم' : 'Support' }
-              ].map((stat, index) => (
+              ].map((stat) => (
                 <div
-                  key={index}
+                  key={`stat-${stat.value}-${stat.label}`}
                   className="relative group"
                 >
                   <div className="text-center space-y-2 p-6 rounded-2xl backdrop-blur-sm bg-white/5 border border-purple-500/10 hover:border-purple-500/30 transition-all duration-300">
