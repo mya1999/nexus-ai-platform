@@ -1,0 +1,12 @@
+# Vercel Ignore
+node_modules
+.next
+.env*.local
+.git
+.husky
+*.log
+.DS_Store
+.cache
+coverage
+dist
+build

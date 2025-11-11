@@ -3,6 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   poweredByHeader: false,
+  output: 'standalone',
 
   // تحسينات الأداء
   experimental: {
@@ -15,8 +16,6 @@ const nextConfig = {
     serverActions: {
       bodySizeLimit: '10mb',
     },
-    optimizeCss: true,
-    scrollRestoration: true,
   },
 
   // تحسينات الصور
