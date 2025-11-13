@@ -1,0 +1,15 @@
+/* Model Selector Floating Menu Styles */
+
+.floating-menu {
+  position: fixed;
+  z-index: 9999;
+}
+
+.menu-container {
+  /* Position and size will be set via CSS variables from JavaScript */
+  position: fixed;
+  z-index: 9999;
+  top: var(--menu-top);
+  left: var(--menu-left);
+  width: var(--menu-width);
+}
