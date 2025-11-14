@@ -13,21 +13,21 @@ export const motionVariants = {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
     exit: { opacity: 0 },
-    transition: { duration: 0.25, ease: [0.4, 0, 0.2, 1] }
+    transition: { duration: 0.25, ease: [0.4, 0, 0.2, 1] },
   },
 
   fadeInUp: {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: -20 },
-    transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
+    transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
   },
 
   fadeInDown: {
     initial: { opacity: 0, y: -20 },
     animate: { opacity: 1, y: 0 },
     exit: { opacity: 0, y: 20 },
-    transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
+    transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
   },
 
   // Scale animations
@@ -35,7 +35,7 @@ export const motionVariants = {
     initial: { opacity: 0, scale: 0.9 },
     animate: { opacity: 1, scale: 1 },
     exit: { opacity: 0, scale: 0.9 },
-    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
+    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
   },
 
   scaleInCenter: {
@@ -45,8 +45,8 @@ export const motionVariants = {
     transition: {
       duration: 0.4,
       ease: [0.4, 0, 0.2, 1],
-      scale: { type: 'spring', stiffness: 300, damping: 25 }
-    }
+      scale: { type: 'spring', stiffness: 300, damping: 25 },
+    },
   },
 
   // Slide animations
@@ -54,28 +54,28 @@ export const motionVariants = {
     initial: { x: '100%', opacity: 0 },
     animate: { x: 0, opacity: 1 },
     exit: { x: '100%', opacity: 0 },
-    transition: { type: 'spring', damping: 25, stiffness: 300 }
+    transition: { type: 'spring', damping: 25, stiffness: 300 },
   },
 
   slideInFromLeft: {
     initial: { x: '-100%', opacity: 0 },
     animate: { x: 0, opacity: 1 },
     exit: { x: '-100%', opacity: 0 },
-    transition: { type: 'spring', damping: 25, stiffness: 300 }
+    transition: { type: 'spring', damping: 25, stiffness: 300 },
   },
 
   slideInFromTop: {
     initial: { y: '-100%', opacity: 0 },
     animate: { y: 0, opacity: 1 },
     exit: { y: '-100%', opacity: 0 },
-    transition: { type: 'spring', damping: 25, stiffness: 300 }
+    transition: { type: 'spring', damping: 25, stiffness: 300 },
   },
 
   slideInFromBottom: {
     initial: { y: '100%', opacity: 0 },
     animate: { y: 0, opacity: 1 },
     exit: { y: '100%', opacity: 0 },
-    transition: { type: 'spring', damping: 25, stiffness: 300 }
+    transition: { type: 'spring', damping: 25, stiffness: 300 },
   },
 
   // Stagger children animation
@@ -84,14 +84,14 @@ export const motionVariants = {
       transition: {
         staggerChildren: 0.1,
         delayChildren: 0.1,
-      }
-    }
+      },
+    },
   },
 
   staggerItem: {
     initial: { opacity: 0, y: 20 },
     animate: { opacity: 1, y: 0 },
-    transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
+    transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
   },
 
   // Modal/Dialog animations
@@ -99,7 +99,7 @@ export const motionVariants = {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
     exit: { opacity: 0 },
-    transition: { duration: 0.2 }
+    transition: { duration: 0.2 },
   },
 
   modalContent: {
@@ -109,8 +109,8 @@ export const motionVariants = {
     transition: {
       duration: 0.3,
       ease: [0.4, 0, 0.2, 1],
-      scale: { type: 'spring', stiffness: 300, damping: 25 }
-    }
+      scale: { type: 'spring', stiffness: 300, damping: 25 },
+    },
   },
 
   // Drawer animations
@@ -118,14 +118,14 @@ export const motionVariants = {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
     exit: { opacity: 0 },
-    transition: { duration: 0.3 }
+    transition: { duration: 0.3 },
   },
 
   drawerContent: {
     initial: { x: '100%' },
     animate: { x: 0 },
     exit: { x: '100%' },
-    transition: { type: 'spring', damping: 30, stiffness: 300 }
+    transition: { type: 'spring', damping: 30, stiffness: 300 },
   },
 
   // Collapse/Expand animations
@@ -133,7 +133,7 @@ export const motionVariants = {
     initial: { height: 0, opacity: 0 },
     animate: { height: 'auto', opacity: 1 },
     exit: { height: 0, opacity: 0 },
-    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
+    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
   },
 
   // Rotation animations
@@ -141,7 +141,7 @@ export const motionVariants = {
     initial: { opacity: 0, rotate: -180 },
     animate: { opacity: 1, rotate: 0 },
     exit: { opacity: 0, rotate: 180 },
-    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] }
+    transition: { duration: 0.5, ease: [0.4, 0, 0.2, 1] },
   },
 
   // Loading animations
@@ -154,7 +154,7 @@ export const motionVariants = {
       duration: 2,
       repeat: Infinity,
       ease: 'easeInOut',
-    }
+    },
   },
 
   spin: {
@@ -163,7 +163,7 @@ export const motionVariants = {
       duration: 1,
       repeat: Infinity,
       ease: 'linear',
-    }
+    },
   },
 
   bounce: {
@@ -174,7 +174,7 @@ export const motionVariants = {
       duration: 0.6,
       repeat: Infinity,
       ease: 'easeInOut',
-    }
+    },
   },
 } as const;
 
@@ -186,44 +186,44 @@ export const interactionEffects = {
   buttonPress: {
     whileHover: { scale: 1.02 },
     whileTap: { scale: 0.98 },
-    transition: { type: 'spring', stiffness: 400, damping: 17 }
+    transition: { type: 'spring', stiffness: 400, damping: 17 },
   },
 
   buttonPressStrong: {
     whileHover: { scale: 1.05 },
     whileTap: { scale: 0.95 },
-    transition: { type: 'spring', stiffness: 400, damping: 17 }
+    transition: { type: 'spring', stiffness: 400, damping: 17 },
   },
 
   // Card interactions
   cardHover: {
     whileHover: { y: -4, transition: { duration: 0.2 } },
-    transition: { type: 'spring', stiffness: 300, damping: 25 }
+    transition: { type: 'spring', stiffness: 300, damping: 25 },
   },
 
   cardPress: {
     whileHover: { scale: 1.02 },
     whileTap: { scale: 0.98 },
-    transition: { type: 'spring', stiffness: 400, damping: 17 }
+    transition: { type: 'spring', stiffness: 400, damping: 17 },
   },
 
   // Icon interactions
   iconSpin: {
     whileHover: { rotate: 360 },
-    transition: { duration: 0.5, ease: 'easeInOut' }
+    transition: { duration: 0.5, ease: 'easeInOut' },
   },
 
   iconBounce: {
     whileHover: { y: -2 },
     whileTap: { y: 0 },
-    transition: { type: 'spring', stiffness: 400, damping: 10 }
+    transition: { type: 'spring', stiffness: 400, damping: 10 },
   },
 
   // Link interactions
   linkUnderline: {
     whileHover: { scaleX: 1 },
     initial: { scaleX: 0 },
-    transition: { duration: 0.2 }
+    transition: { duration: 0.2 },
   },
 } as const;
 
@@ -235,21 +235,21 @@ export const pageTransitions = {
     initial: { opacity: 0 },
     animate: { opacity: 1 },
     exit: { opacity: 0 },
-    transition: { duration: 0.3 }
+    transition: { duration: 0.3 },
   },
 
   slide: {
     initial: { x: 20, opacity: 0 },
     animate: { x: 0, opacity: 1 },
     exit: { x: -20, opacity: 0 },
-    transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] }
+    transition: { duration: 0.4, ease: [0.4, 0, 0.2, 1] },
   },
 
   scale: {
     initial: { scale: 0.95, opacity: 0 },
     animate: { scale: 1, opacity: 1 },
     exit: { scale: 1.05, opacity: 0 },
-    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] }
+    transition: { duration: 0.3, ease: [0.4, 0, 0.2, 1] },
   },
 } as const;
 

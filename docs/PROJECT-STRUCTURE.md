@@ -53,6 +53,7 @@ nexus-ai-platform/
 ## 📂 الشرح التفصيلي
 
 ### 1️⃣ `src/app/` - تطبيق Next.js
+
 **المسؤولية**: جميع صفحات ومسارات التطبيق
 
 ```
@@ -74,6 +75,7 @@ app/
 ```
 
 **أفضل الممارسات:**
+
 - كل مسار في مجلد منفصل
 - استخدام Server Components افتراضياً
 - Client Components فقط عند الحاجة (`'use client'`)
@@ -81,6 +83,7 @@ app/
 ---
 
 ### 2️⃣ `src/components/` - المكونات
+
 **المسؤولية**: مكونات UI قابلة لإعادة الاستخدام
 
 ```
@@ -106,6 +109,7 @@ components/
 ```
 
 **معايير التنظيم:**
+
 - مكون واحد لكل ملف
 - تسمية واضحة ووصفية
 - تصدير مركزي عبر `index.ts`
@@ -113,6 +117,7 @@ components/
 ---
 
 ### 3️⃣ `src/lib/` - المكتبات والوظائف المساعدة
+
 **المسؤولية**: وظائف قابلة لإعادة الاستخدام
 
 ```
@@ -124,6 +129,7 @@ lib/
 ```
 
 **المبادئ:**
+
 - وظائف نقية (Pure Functions) قدر الإمكان
 - توثيق شامل لكل وظيفة
 - اختبارات شاملة
@@ -131,6 +137,7 @@ lib/
 ---
 
 ### 4️⃣ `src/hooks/` - React Hooks المخصصة
+
 **المسؤولية**: منطق قابل لإعادة الاستخدام
 
 ```
@@ -144,6 +151,7 @@ hooks/
 ---
 
 ### 5️⃣ `src/store/` - إدارة الحالة العامة
+
 **المسؤولية**: الحالة المشتركة باستخدام Zustand
 
 ```
@@ -156,6 +164,7 @@ store/
 ---
 
 ### 6️⃣ `src/types/` - تعريفات TypeScript
+
 **المسؤولية**: الأنواع والواجهات المشتركة
 
 ```
@@ -168,6 +177,7 @@ types/
 ---
 
 ### 7️⃣ `scripts/` - سكربتات الأتمتة
+
 **المسؤولية**: أتمتة المهام التكرارية
 
 ```
@@ -179,6 +189,7 @@ scripts/
 ```
 
 **الاستخدام:**
+
 ```powershell
 # تشخيص النظام
 ./scripts/system-diagnostics.ps1
@@ -195,33 +206,36 @@ scripts/
 ## 🎯 معايير التنظيم
 
 ### 📝 تسمية الملفات
+
 - **المكونات**: `PascalCase` → `ChatInterface.tsx`
 - **الوظائف**: `camelCase` → `aiModels.ts`
 - **الأنماط**: `kebab-case` → `chat-styles.css`
 - **الثوابت**: `UPPER_SNAKE_CASE` → `API_KEYS.ts`
 
 ### 📦 تنظيم الاستيرادات
+
 ```typescript
 // 1. مكتبات خارجية
-import React from 'react'
-import { useRouter } from 'next/navigation'
+import React from 'react';
+import { useRouter } from 'next/navigation';
 
 // 2. مكونات داخلية
-import { Button } from '@/components/ui'
-import { ChatInterface } from '@/components/chat'
+import { Button } from '@/components/ui';
+import { ChatInterface } from '@/components/chat';
 
 // 3. Hooks ووظائف
-import { useLanguage } from '@/hooks'
-import { cn } from '@/lib/utils'
+import { useLanguage } from '@/hooks';
+import { cn } from '@/lib/utils';
 
 // 4. أنواع
-import type { Message } from '@/types'
+import type { Message } from '@/types';
 
 // 5. أنماط
-import './styles.css'
+import './styles.css';
 ```
 
 ### 🔧 هيكل المكونات
+
 ```typescript
 // 1. الاستيرادات
 import React from 'react'
@@ -235,13 +249,13 @@ interface Props {
 export function Component({ title }: Props) {
   // Hooks
   const [state, setState] = useState()
-  
+
   // Effects
   useEffect(() => {}, [])
-  
+
   // Handlers
   const handleClick = () => {}
-  
+
   // Render
   return <div>{title}</div>
 }
@@ -252,6 +266,7 @@ export function Component({ title }: Props) {
 ## 🚀 أوامر سريعة
 
 ### التطوير
+
 ```bash
 npm run dev              # بدء خادم التطوير
 npm run build            # بناء للإنتاج
@@ -259,6 +274,7 @@ npm run start            # تشغيل النسخة المبنية
 ```
 
 ### الجودة
+
 ```bash
 npm run lint             # فحص الكود
 npm run lint:fix         # إصلاح تلقائي
@@ -267,6 +283,7 @@ npm run format           # تنسيق الكود
 ```
 
 ### الشامل
+
 ```bash
 npm run validate         # فحص شامل
 npm run fix              # إصلاح وتنسيق

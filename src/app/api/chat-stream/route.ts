@@ -9,7 +9,7 @@ export const runtime = 'edge';
 
 // Initialize AI clients
 const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY || 'dummy-key'
+  apiKey: process.env.OPENAI_API_KEY || 'dummy-key',
 });
 
 const anthropic = new Anthropic({
@@ -32,7 +32,7 @@ export async function POST(req: NextRequest) {
     if (!model) {
       return new Response(JSON.stringify({ error: 'Model not found' }), {
         status: 404,
-        headers: { 'Content-Type': 'application/json' }
+        headers: { 'Content-Type': 'application/json' },
       });
     }
 
@@ -46,7 +46,6 @@ export async function POST(req: NextRequest) {
         stream: false,
       });
       responseText = completion.choices[0]?.message?.content || 'No response';
-
     } else if (model.provider === 'Anthropic') {
       const response = await anthropic.messages.create({
         model: model.model,
@@ -57,13 +56,11 @@ export async function POST(req: NextRequest) {
         })),
       });
       responseText = response.content[0]?.text || 'No response';
-
     } else if (model.provider === 'Google') {
       const genModel = genAI.getGenerativeModel({ model: model.model });
       const lastMessage = messages[messages.length - 1];
       const result = await genModel.generateContent(lastMessage.content);
       responseText = result.response.text() || 'No response';
-
     } else {
       throw new Error('Unsupported provider');
     }
@@ -75,17 +72,19 @@ export async function POST(req: NextRequest) {
         'Cache-Control': 'no-cache',
       },
     });
-
   } catch (error: unknown) {
     console.error('API Error:', error);
     const errorMessage = error instanceof Error ? error.message : 'An unknown error occurred';
 
-    return new Response(JSON.stringify({
-      error: 'Failed to get AI response',
-      message: errorMessage
-    }), {
-      status: 500,
-      headers: { 'Content-Type': 'application/json' },
-    });
+    return new Response(
+      JSON.stringify({
+        error: 'Failed to get AI response',
+        message: errorMessage,
+      }),
+      {
+        status: 500,
+        headers: { 'Content-Type': 'application/json' },
+      }
+    );
   }
 }

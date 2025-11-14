@@ -58,26 +58,24 @@ const ToastItem: React.FC<ToastItemProps> = ({ toast, onClose }) => {
       exit={{ opacity: 0, x: 100, scale: 0.9 }}
       transition={{ type: 'spring', stiffness: 300, damping: 25 }}
       className={cn(
-        'flex items-start gap-3 p-4 rounded-xl border backdrop-blur-sm',
-        'shadow-xl min-w-[320px] max-w-md',
+        'flex items-start gap-3 rounded-xl border p-4 backdrop-blur-sm',
+        'min-w-[320px] max-w-md shadow-xl',
         toastStyles[toast.type]
       )}
     >
-      <Icon className="w-5 h-5 mt-0.5 shrink-0" />
+      <Icon className="mt-0.5 h-5 w-5 shrink-0" />
 
-      <div className="flex-1 min-w-0">
-        <p className="font-semibold text-sm">{toast.title}</p>
-        {toast.description && (
-          <p className="text-xs mt-1 opacity-80">{toast.description}</p>
-        )}
+      <div className="min-w-0 flex-1">
+        <p className="text-sm font-semibold">{toast.title}</p>
+        {toast.description && <p className="mt-1 text-xs opacity-80">{toast.description}</p>}
       </div>
 
       <button
         onClick={() => onClose(toast.id)}
-        className="shrink-0 p-1 rounded-lg hover:bg-white/10 transition-colors"
+        className="shrink-0 rounded-lg p-1 transition-colors hover:bg-white/10"
         aria-label="إغلاق"
       >
-        <X className="w-4 h-4" />
+        <X className="h-4 w-4" />
       </button>
     </motion.div>
   );
@@ -89,10 +87,10 @@ export const ToastContainer: React.FC<{ toasts: Toast[]; onClose: (id: string) =
   onClose,
 }) => {
   return (
-    <div className="fixed bottom-4 right-4 z-notification pointer-events-none">
-      <div className="flex flex-col gap-2 pointer-events-auto">
+    <div className="pointer-events-none fixed bottom-4 right-4 z-notification">
+      <div className="pointer-events-auto flex flex-col gap-2">
         <AnimatePresence mode="popLayout">
-          {toasts.map((toast) => (
+          {toasts.map(toast => (
             <ToastItem key={toast.id} toast={toast} onClose={onClose} />
           ))}
         </AnimatePresence>
@@ -105,16 +103,13 @@ export const ToastContainer: React.FC<{ toasts: Toast[]; onClose: (id: string) =
 export const useToastAdvanced = () => {
   const [toasts, setToasts] = React.useState<Toast[]>([]);
 
-  const addToast = React.useCallback(
-    (toast: Omit<Toast, 'id'>) => {
-      const id = Math.random().toString(36).substring(7);
-      setToasts((prev) => [...prev, { ...toast, id }]);
-    },
-    []
-  );
+  const addToast = React.useCallback((toast: Omit<Toast, 'id'>) => {
+    const id = Math.random().toString(36).substring(7);
+    setToasts(prev => [...prev, { ...toast, id }]);
+  }, []);
 
   const removeToast = React.useCallback((id: string) => {
-    setToasts((prev) => prev.filter((t) => t.id !== id));
+    setToasts(prev => prev.filter(t => t.id !== id));
   }, []);
 
   const success = React.useCallback(

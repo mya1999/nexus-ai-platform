@@ -37,10 +37,7 @@
   "compounds": [
     {
       "name": "🎯 Full Stack Debugging",
-      "configurations": [
-        "🚀 Next.js: Debug Server",
-        "🌐 Next.js: Debug Client"
-      ],
+      "configurations": ["🚀 Next.js: Debug Server", "🌐 Next.js: Debug Client"],
       "stopAll": true
     }
   ]

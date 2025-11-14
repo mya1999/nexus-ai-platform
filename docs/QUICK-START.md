@@ -5,17 +5,20 @@
 ## ⚡ البدء السريع (3 خطوات)
 
 ### 1. استنساخ المشروع
+
 ```powershell
 git clone https://github.com/mya1999/nexus-ai-platform.git
 cd nexus-ai-platform
 ```
 
 ### 2. التفعيل التلقائي
+
 ```powershell
 ./scripts/auto-setup.ps1
 ```
 
 ### 3. التشغيل
+
 ```powershell
 npm run dev
 ```
@@ -28,12 +31,12 @@ npm run dev
 
 ### ✅ المتطلبات الأساسية
 
-| الأداة | الإصدار المطلوب | التحقق | التثبيت |
-|--------|-----------------|--------|---------|
-| **Node.js** | ≥18.0.0 <23.0.0 | `node --version` | [تحميل](https://nodejs.org/) |
-| **npm** | ≥9.0.0 | `npm --version` | يأتي مع Node.js |
-| **Git** | أحدث إصدار | `git --version` | [تحميل](https://git-scm.com/) |
-| **PowerShell** | 7.0+ | `$PSVersionTable` | [تحميل](https://github.com/PowerShell/PowerShell) |
+| الأداة         | الإصدار المطلوب | التحقق            | التثبيت                                           |
+| -------------- | --------------- | ----------------- | ------------------------------------------------- |
+| **Node.js**    | ≥18.0.0 <23.0.0 | `node --version`  | [تحميل](https://nodejs.org/)                      |
+| **npm**        | ≥9.0.0          | `npm --version`   | يأتي مع Node.js                                   |
+| **Git**        | أحدث إصدار      | `git --version`   | [تحميل](https://git-scm.com/)                     |
+| **PowerShell** | 7.0+            | `$PSVersionTable` | [تحميل](https://github.com/PowerShell/PowerShell) |
 
 ### 🎯 الأدوات الموصى بها
 
@@ -71,6 +74,7 @@ GOOGLE_AI_API_KEY=...
 ```
 
 > 💡 **احصل على المفاتيح من:**
+>
 > - OpenAI: https://platform.openai.com/api-keys
 > - Anthropic: https://console.anthropic.com/
 > - Google AI: https://makersuite.google.com/app/apikey
@@ -211,12 +215,14 @@ git config --global user.email "your@email.com"
 سيتم اقتراح الإضافات تلقائياً عند فتح المشروع في VS Code:
 
 ### ⚡ ضرورية
+
 - ✅ **GitHub Copilot** - مساعد الذكاء الاصطناعي
 - ✅ **Prettier** - تنسيق الكود
 - ✅ **ESLint** - فحص الكود
 - ✅ **Tailwind CSS IntelliSense** - إكمال تلقائي
 
 ### 📝 موصى بها
+
 - 🔹 **GitLens** - تحسينات Git
 - 🔹 **Path Intellisense** - إكمال المسارات
 - 🔹 **Pretty TypeScript Errors** - أخطاء واضحة
@@ -286,6 +292,7 @@ git config --global user.email "your@email.com"
 ### 4. استخدم المهام Tasks
 
 في VS Code اضغط `Ctrl+Shift+B` لتشغيل:
+
 - 🚀 Start Development Server
 - ✅ Validate & Check
 - 🔧 Auto Fix & Format

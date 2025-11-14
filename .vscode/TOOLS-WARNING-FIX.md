@@ -1,8 +1,11 @@
 # ══════════════════════════════════════════════════════════
+
 # 🔧 حل مشكلة "More than 128 tools are enabled"
+
 # ══════════════════════════════════════════════════════════
 
 ## المشكلة
+
 ظهور تحذير: "More than 128 tools are enabled, you may experience degraded tool calling"
 
 ## الحل
@@ -22,15 +25,16 @@
 
 \`\`\`json
 {
-  "github.copilot.advanced": {
-    "debug.overrideEngine": "gpt-4"
-  }
+"github.copilot.advanced": {
+"debug.overrideEngine": "gpt-4"
+}
 }
 \`\`\`
 
 ### 3. إعادة تحميل النافذة
 
 بعد التعديل:
+
 1. اضغط `Ctrl+Shift+P`
 2. اكتب "Reload Window"
 3. اختر "Developer: Reload Window"

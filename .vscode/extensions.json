@@ -23,7 +23,9 @@
     // تحسين جودة الكود
     "streetsidesoftware.code-spell-checker",
     "davidanson.vscode-markdownlint",
-    "redhat.vscode-yaml"
+    "redhat.vscode-yaml",
+    "spadin.remote-x11-ssh",
+    "spadin.remote-x11"
   ],
   "unwantedRecommendations": [
     // تعطيل الاقتراحات غير الضرورية
@@ -34,4 +36,3 @@
     "ms-vscode.azure-account"
   ]
 }
-

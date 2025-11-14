@@ -22,7 +22,8 @@ const buttonVariants = {
     error: 'bg-error hover:bg-error/90 text-white shadow-md hover:shadow-lg',
     ghost: 'hover:bg-surface-1 text-foreground',
     link: 'text-brand-primary hover:text-brand-primary/80 underline-offset-4 hover:underline',
-    outline: 'border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white',
+    outline:
+      'border-2 border-brand-primary text-brand-primary hover:bg-brand-primary hover:text-white',
   },
 
   // Size styles
@@ -77,7 +78,7 @@ const ButtonAdvanced = React.forwardRef<HTMLButtonElement, ButtonProps>(
           // Base styles
           'inline-flex items-center justify-center gap-2',
           'font-medium transition-all duration-normal',
-          'focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary focus-visible:ring-offset-2',
+          'focus-visible:ring-brand-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
           'disabled:pointer-events-none disabled:opacity-50',
 
           // Variant styles
@@ -103,9 +104,7 @@ const ButtonAdvanced = React.forwardRef<HTMLButtonElement, ButtonProps>(
         transition={{ type: 'spring', stiffness: 400, damping: 17 }}
         {...props}
       >
-        {loading && (
-          <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
-        )}
+        {loading && <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />}
 
         {!loading && leftIcon && (
           <span className="inline-flex shrink-0" aria-hidden="true">
@@ -128,4 +127,3 @@ const ButtonAdvanced = React.forwardRef<HTMLButtonElement, ButtonProps>(
 ButtonAdvanced.displayName = 'ButtonAdvanced';
 
 export { ButtonAdvanced, buttonVariants };
-

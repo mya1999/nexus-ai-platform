@@ -62,7 +62,7 @@ export const useChatStore = create<ChatStore>()(
           updatedAt: new Date(),
         };
 
-        set((state) => ({
+        set(state => ({
           chats: [newChat, ...state.chats],
           currentChatId: newChat.id,
         }));
@@ -71,11 +71,12 @@ export const useChatStore = create<ChatStore>()(
       },
 
       deleteChat: (id: string) => {
-        set((state) => {
-          const newChats = state.chats.filter((chat) => chat.id !== id);
+        set(state => {
+          const newChats = state.chats.filter(chat => chat.id !== id);
           return {
             chats: newChats,
-            currentChatId: state.currentChatId === id ? (newChats[0]?.id || null) : state.currentChatId,
+            currentChatId:
+              state.currentChatId === id ? newChats[0]?.id || null : state.currentChatId,
           };
         });
       },
@@ -85,8 +86,8 @@ export const useChatStore = create<ChatStore>()(
       },
 
       addMessage: (chatId: string, message: Omit<Message, 'id' | 'timestamp'>) => {
-        set((state) => {
-          const chatIndex = state.chats.findIndex((c) => c.id === chatId);
+        set(state => {
+          const chatIndex = state.chats.findIndex(c => c.id === chatId);
           if (chatIndex === -1) return state;
 
           const newChats = [...state.chats];
@@ -111,8 +112,8 @@ export const useChatStore = create<ChatStore>()(
       },
 
       updateChatTitle: (chatId: string, title: string) => {
-        set((state) => {
-          const chatIndex = state.chats.findIndex((c) => c.id === chatId);
+        set(state => {
+          const chatIndex = state.chats.findIndex(c => c.id === chatId);
           if (chatIndex === -1) return state;
 
           const newChats = [...state.chats];
@@ -124,8 +125,8 @@ export const useChatStore = create<ChatStore>()(
       },
 
       setModelForChat: (chatId: string, modelId: string) => {
-        set((state) => {
-          const chatIndex = state.chats.findIndex((c) => c.id === chatId);
+        set(state => {
+          const chatIndex = state.chats.findIndex(c => c.id === chatId);
           if (chatIndex === -1) return state;
 
           const newChats = [...state.chats];
@@ -137,19 +138,19 @@ export const useChatStore = create<ChatStore>()(
       },
 
       toggleDarkMode: () => {
-        set((state) => ({ isDarkMode: !state.isDarkMode }));
+        set(state => ({ isDarkMode: !state.isDarkMode }));
       },
 
       setReduceMotion: (value: boolean) => {
-        set((state) => ({ uiPrefs: { ...state.uiPrefs, reduceMotion: value } }));
+        set(state => ({ uiPrefs: { ...state.uiPrefs, reduceMotion: value } }));
       },
       setFontScale: (value: number) => {
         // clamp between 0.85 and 1.5 for safety
         const clamped = Math.min(1.5, Math.max(0.85, value));
-        set((state) => ({ uiPrefs: { ...state.uiPrefs, fontScale: clamped } }));
+        set(state => ({ uiPrefs: { ...state.uiPrefs, fontScale: clamped } }));
       },
       setDensity: (value: 'compact' | 'comfortable') => {
-        set((state) => ({ uiPrefs: { ...state.uiPrefs, density: value } }));
+        set(state => ({ uiPrefs: { ...state.uiPrefs, density: value } }));
       },
 
       clearAllChats: () => {
@@ -158,6 +159,30 @@ export const useChatStore = create<ChatStore>()(
     }),
     {
       name: 'nexus-chat-storage',
+      storage: {
+        getItem: async (name: string) => {
+          try {
+            const item = localStorage.getItem(name);
+            return item ? JSON.parse(item) : null;
+          } catch {
+            return null;
+          }
+        },
+        setItem: async (name: string, value: unknown) => {
+          try {
+            localStorage.setItem(name, JSON.stringify(value));
+          } catch {
+            // Silently fail if localStorage is not available
+          }
+        },
+        removeItem: async (name: string) => {
+          try {
+            localStorage.removeItem(name);
+          } catch {
+            // Silently fail
+          }
+        },
+      },
     }
   )
 );

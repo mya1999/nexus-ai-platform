@@ -26,14 +26,19 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
     },
     ref
   ) => {
-    const baseStyles = 'inline-flex items-center justify-center gap-2 font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl';
+    const baseStyles =
+      'inline-flex items-center justify-center gap-2 font-semibold transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed rounded-xl';
 
     const variants = {
-      primary: 'bg-white text-black hover:bg-gray-200 shadow-luxury-white hover:shadow-2xl hover:scale-105',
-      secondary: 'bg-black/50 hover:bg-black/70 text-white border border-white/20 hover:border-white/40 backdrop-blur-xl',
+      primary:
+        'bg-white text-black hover:bg-gray-200 shadow-luxury-white hover:shadow-2xl hover:scale-105',
+      secondary:
+        'bg-black/50 hover:bg-black/70 text-white border border-white/20 hover:border-white/40 backdrop-blur-xl',
       ghost: 'bg-transparent hover:bg-white/5 text-gray-300 hover:text-white',
-      danger: 'bg-gray-800 hover:bg-gray-900 text-white border border-red-500/50 hover:border-red-500',
-      success: 'bg-gray-800 hover:bg-gray-900 text-white border border-green-500/50 hover:border-green-500',
+      danger:
+        'bg-gray-800 hover:bg-gray-900 text-white border border-red-500/50 hover:border-red-500',
+      success:
+        'bg-gray-800 hover:bg-gray-900 text-white border border-green-500/50 hover:border-green-500',
     };
 
     const sizes = {
@@ -53,7 +58,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(
         {...props}
       >
         {isLoading ? (
-          <div className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+          <div className="h-5 w-5 animate-spin rounded-full border-2 border-white/30 border-t-white" />
         ) : icon ? (
           icon
         ) : null}

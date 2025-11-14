@@ -18,17 +18,13 @@ export default function MessageList({ messages, isLoading }: MessageListProps) {
 
   if (messages.length === 0) {
     return (
-      <div className="flex-1 flex items-center justify-center p-8">
-        <div className="text-center max-w-md">
-          <div className="w-24 h-24 mx-auto mb-6 bg-white rounded-3xl flex items-center justify-center shadow-luxury-white animate-float-luxury">
+      <div className="flex flex-1 items-center justify-center p-8">
+        <div className="max-w-md text-center">
+          <div className="shadow-luxury-white animate-float-luxury mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-3xl bg-white">
             <span className="text-5xl">💬</span>
           </div>
-          <h2 className="text-3xl font-bold mb-4 gradient-text-white">
-            Start a New Conversation
-          </h2>
-          <p className="text-gray-400 text-lg">
-            Choose your AI model and ask anything you want
-          </p>
+          <h2 className="gradient-text-white mb-4 text-3xl font-bold">Start a New Conversation</h2>
+          <p className="text-lg text-gray-400">Choose your AI model and ask anything you want</p>
 
           {/* Suggestions */}
           <div className="mt-8 grid gap-3">
@@ -39,7 +35,7 @@ export default function MessageList({ messages, isLoading }: MessageListProps) {
             ].map((suggestion, i) => (
               <button
                 key={i}
-                className="px-4 py-3 bg-black/30 hover:bg-black/50 border border-white/20 hover:border-white rounded-xl text-right transition-all duration-300"
+                className="rounded-xl border border-white/20 bg-black/30 px-4 py-3 text-right transition-all duration-300 hover:border-white hover:bg-black/50"
               >
                 {suggestion}
               </button>
@@ -51,8 +47,8 @@ export default function MessageList({ messages, isLoading }: MessageListProps) {
   }
 
   return (
-    <div className="flex-1 overflow-y-auto px-6 py-4 luxury-scrollbar">
-      <div className="max-w-4xl mx-auto">
+    <div className="luxury-scrollbar flex-1 overflow-y-auto px-6 py-4">
+      <div className="mx-auto max-w-4xl">
         {messages.map((message, index) => (
           <MessageBubble
             key={message.id}

@@ -10,7 +10,8 @@
 
 /* خلفية شبكة 64px */
 .grid-bg-64 {
-  background-image: linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
+  background-image:
+    linear-gradient(rgba(99, 102, 241, 0.1) 1px, transparent 1px),
     linear-gradient(90deg, rgba(99, 102, 241, 0.1) 1px, transparent 1px);
   background-size: 64px 64px;
 }

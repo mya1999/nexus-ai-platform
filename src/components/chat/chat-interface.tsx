@@ -9,20 +9,14 @@ import InputArea from './input-area';
 import MessageBubble from './message-bubble';
 
 export default function ChatInterface() {
-  const {
-    currentChatId,
-    chats,
-    addMessage,
-    createChat,
-    isDarkMode,
-    toggleDarkMode,
-  } = useChatStore();
+  const { currentChatId, chats, addMessage, createChat, isDarkMode, toggleDarkMode } =
+    useChatStore();
 
   const [isLoading, setIsLoading] = useState(false);
   const [_abortController, setAbortController] = useState<AbortController | null>(null);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
-  const currentChat = chats.find((c) => c.id === currentChatId);
+  const currentChat = chats.find(c => c.id === currentChatId);
   const messages = useMemo(() => currentChat?.messages || [], [currentChat?.messages]);
 
   // Auto-scroll to bottom
@@ -96,13 +90,13 @@ export default function ChatInterface() {
   };
 
   return (
-    <div className="flex h-screen bg-gradient-to-br from-slate-50 to-slate-100 dark:from-slate-950 dark:to-slate-900 transition-colors duration-300">
+    <div className="flex h-screen bg-gradient-to-br from-slate-50 to-slate-100 transition-colors duration-300 dark:from-slate-950 dark:to-slate-900">
       {/* Main Content */}
-      <div className="flex-1 flex flex-col">
+      <div className="flex flex-1 flex-col">
         {/* Header */}
-        <header className="border-b border-slate-200 dark:border-slate-800 bg-white/90 dark:bg-slate-900/90 backdrop-blur-xl shadow-sm">
+        <header className="border-b border-slate-200 bg-white/90 shadow-sm backdrop-blur-xl dark:border-slate-800 dark:bg-slate-900/90">
           <div className="container mx-auto px-4 py-4">
-              <div className="flex items-center justify-between">
+            <div className="flex items-center justify-between">
               <div className="flex items-center">
                 <BrandLogo size="md" />
               </div>
@@ -111,13 +105,13 @@ export default function ChatInterface() {
                 {/* Dark Mode Toggle */}
                 <button
                   onClick={toggleDarkMode}
-                  className="p-3 rounded-xl bg-slate-100 dark:bg-slate-800 hover:bg-slate-200 dark:hover:bg-slate-700 transition-all"
+                  className="rounded-xl bg-slate-100 p-3 transition-all hover:bg-slate-200 dark:bg-slate-800 dark:hover:bg-slate-700"
                   title={isDarkMode ? 'الوضع الفاتح' : 'الوضع الداكن'}
                 >
                   {isDarkMode ? (
-                    <Sun className="w-5 h-5 text-amber-500" />
+                    <Sun className="h-5 w-5 text-amber-500" />
                   ) : (
-                    <Moon className="w-5 h-5 text-slate-700" />
+                    <Moon className="h-5 w-5 text-slate-700" />
                   )}
                 </button>
               </div>
@@ -127,12 +121,12 @@ export default function ChatInterface() {
 
         {/* Messages Area */}
         <div className="flex-1 overflow-y-auto">
-          <div className="container mx-auto px-4 py-8 max-w-5xl">
+          <div className="container mx-auto max-w-5xl px-4 py-8">
             {messages.length === 0 ? (
               <EmptyState />
             ) : (
               <div className="space-y-8">
-                {messages.map((message) => (
+                {messages.map(message => (
                   <MessageBubble key={message.id} message={message} />
                 ))}
                 {isLoading && <LoadingIndicator />}
@@ -143,10 +137,7 @@ export default function ChatInterface() {
         </div>
 
         {/* Input Area */}
-        <InputArea
-          onSend={handleSubmit}
-          isLoading={isLoading}
-        />
+        <InputArea onSend={handleSubmit} isLoading={isLoading} />
       </div>
 
       {/* Sidebar */}
@@ -164,28 +155,28 @@ function EmptyState() {
   ];
 
   return (
-    <div className="text-center py-20">
-      <div className="w-24 h-24 mx-auto mb-8 bg-gradient-to-br from-blue-600 to-purple-600 rounded-3xl flex items-center justify-center shadow-2xl animate-pulse">
-        <Sparkles className="w-12 h-12 text-white" />
+    <div className="py-20 text-center">
+      <div className="mx-auto mb-8 flex h-24 w-24 animate-pulse items-center justify-center rounded-3xl bg-gradient-to-br from-blue-600 to-purple-600 shadow-2xl">
+        <Sparkles className="h-12 w-12 text-white" />
       </div>
-      <h2 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+      <h2 className="mb-4 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-4xl font-bold text-transparent">
         مرحباً بك في Nexus AI
       </h2>
-      <p className="text-lg text-slate-600 dark:text-slate-400 mb-12 max-w-2xl mx-auto leading-relaxed">
-        منصة ذكاء اصطناعي متقدمة تجمع أقوى النماذج في مكان واحد.
-        اطرح أي سؤال واحصل على إجابات ذكية ودقيقة.
+      <p className="mx-auto mb-12 max-w-2xl text-lg leading-relaxed text-slate-600 dark:text-slate-400">
+        منصة ذكاء اصطناعي متقدمة تجمع أقوى النماذج في مكان واحد. اطرح أي سؤال واحصل على إجابات ذكية
+        ودقيقة.
       </p>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-w-3xl mx-auto">
-        {suggestions.map((suggestion) => (
+      <div className="mx-auto grid max-w-3xl grid-cols-1 gap-4 md:grid-cols-2">
+        {suggestions.map(suggestion => (
           <button
             key={`suggestion-${suggestion.icon}-${suggestion.text.substring(0, 20)}`}
-            className="group p-6 text-right bg-white dark:bg-slate-800 rounded-2xl border-2 border-slate-200 dark:border-slate-700 hover:border-blue-500 dark:hover:border-blue-500 transition-all hover:shadow-2xl transform hover:scale-[1.02]"
+            className="group transform rounded-2xl border-2 border-slate-200 bg-white p-6 text-right transition-all hover:scale-[1.02] hover:border-blue-500 hover:shadow-2xl dark:border-slate-700 dark:bg-slate-800 dark:hover:border-blue-500"
           >
             <div className="flex items-start gap-4">
               <span className="text-4xl">{suggestion.icon}</span>
               <div className="flex-1">
-                <p className="text-slate-700 dark:text-slate-300 group-hover:text-blue-600 dark:group-hover:text-blue-400 transition-colors font-medium">
+                <p className="font-medium text-slate-700 transition-colors group-hover:text-blue-600 dark:text-slate-300 dark:group-hover:text-blue-400">
                   {suggestion.text}
                 </p>
               </div>
@@ -199,15 +190,15 @@ function EmptyState() {
 
 function LoadingIndicator() {
   return (
-    <div className="flex gap-4 animate-in fade-in slide-in-from-bottom-4 duration-500">
-      <div className="w-10 h-10 rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
-        <Sparkles className="w-6 h-6 text-white animate-pulse" />
+    <div className="flex gap-4 duration-500 animate-in fade-in slide-in-from-bottom-4">
+      <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg">
+        <Sparkles className="h-6 w-6 animate-pulse text-white" />
       </div>
-      <div className="bg-white dark:bg-slate-800/90 backdrop-blur-lg rounded-2xl px-6 py-4 border-2 border-slate-200 dark:border-slate-700/50 shadow-2xl">
+      <div className="rounded-2xl border-2 border-slate-200 bg-white px-6 py-4 shadow-2xl backdrop-blur-lg dark:border-slate-700/50 dark:bg-slate-800/90">
         <div className="flex gap-2">
-          <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce" />
-          <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce [animation-delay:150ms]" />
-          <div className="w-2 h-2 bg-slate-400 rounded-full animate-bounce [animation-delay:300ms]" />
+          <div className="h-2 w-2 animate-bounce rounded-full bg-slate-400" />
+          <div className="h-2 w-2 animate-bounce rounded-full bg-slate-400 [animation-delay:150ms]" />
+          <div className="h-2 w-2 animate-bounce rounded-full bg-slate-400 [animation-delay:300ms]" />
         </div>
       </div>
     </div>

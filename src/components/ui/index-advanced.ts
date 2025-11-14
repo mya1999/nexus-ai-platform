@@ -27,10 +27,7 @@ export {
   SkeletonList,
 } from './skeleton-advanced';
 
-export {
-  ToastContainer,
-  useToastAdvanced,
-} from './toast-advanced';
+export { ToastContainer, useToastAdvanced } from './toast-advanced';
 
 // Legacy Components (for backwards compatibility)
 export { default as Button } from './button';

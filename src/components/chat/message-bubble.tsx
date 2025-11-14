@@ -20,51 +20,29 @@ export default function MessageBubble({ message, isLast }: MessageBubbleProps) {
 
   return (
     <div
-      className={`
-        flex items-start gap-3 mb-4
-        transform transition-all duration-500
-        ${isVisible ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}
-        ${isUser ? 'flex-row-reverse' : 'flex-row'}
-      `}
+      className={`mb-4 flex transform items-start gap-3 transition-all duration-500 ${isVisible ? 'translate-y-0 opacity-100' : 'translate-y-4 opacity-0'} ${isUser ? 'flex-row-reverse' : 'flex-row'} `}
     >
       {/* Avatar */}
       <div
-        className={`
-          w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0
-          ${
-            isUser
-              ? 'bg-white text-black shadow-luxury-white'
-              : 'bg-gray-800 border border-white/20'
-          }
-        `}
+        className={`flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl ${
+          isUser ? 'shadow-luxury-white bg-white text-black' : 'border border-white/20 bg-gray-800'
+        } `}
       >
-        <span className="text-xl">
-          {isUser ? '👤' : '🤖'}
-        </span>
+        <span className="text-xl">{isUser ? '👤' : '🤖'}</span>
       </div>
 
       {/* Message Content */}
       <div
-        className={`
-          max-w-[75%] rounded-2xl px-5 py-3
-          ${
-            isUser
-              ? 'bg-white text-black shadow-luxury-white'
-              : 'bg-black/50 border border-white/20 text-gray-100'
-          }
-        `}
+        className={`max-w-[75%] rounded-2xl px-5 py-3 ${
+          isUser
+            ? 'shadow-luxury-white bg-white text-black'
+            : 'border border-white/20 bg-black/50 text-gray-100'
+        } `}
       >
-        <div className="whitespace-pre-wrap break-words leading-relaxed">
-          {message.content}
-        </div>
+        <div className="whitespace-pre-wrap break-words leading-relaxed">{message.content}</div>
 
         {/* Timestamp */}
-        <div
-          className={`
-            text-xs mt-2 opacity-60
-            ${isUser ? 'text-gray-700' : 'text-gray-400'}
-          `}
-        >
+        <div className={`mt-2 text-xs opacity-60 ${isUser ? 'text-gray-700' : 'text-gray-400'} `}>
           {new Date(message.timestamp).toLocaleTimeString('ar-SA', {
             hour: '2-digit',
             minute: '2-digit',
@@ -74,10 +52,10 @@ export default function MessageBubble({ message, isLast }: MessageBubbleProps) {
 
       {/* Typing Indicator for AI */}
       {!isUser && isLast && (
-        <div className="flex gap-1 items-center mt-2">
-          <div className="w-2 h-2 bg-white rounded-full animate-bounce [animation-delay:0ms]" />
-          <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce [animation-delay:150ms]" />
-          <div className="w-2 h-2 bg-gray-600 rounded-full animate-bounce [animation-delay:300ms]" />
+        <div className="mt-2 flex items-center gap-1">
+          <div className="h-2 w-2 animate-bounce rounded-full bg-white [animation-delay:0ms]" />
+          <div className="h-2 w-2 animate-bounce rounded-full bg-gray-400 [animation-delay:150ms]" />
+          <div className="h-2 w-2 animate-bounce rounded-full bg-gray-600 [animation-delay:300ms]" />
         </div>
       )}
     </div>

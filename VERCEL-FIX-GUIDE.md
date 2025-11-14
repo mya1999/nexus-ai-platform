@@ -3,6 +3,7 @@
 ## 📋 تحليل المشاكل
 
 ### المشاكل المكتشفة من الصور:
+
 1. ❌ **Framework Preset**: تم تعيينه على "Other" بدلاً من "Next.js"
 2. ❌ **Build Command**: غير صحيح أو مفقود
 3. ❌ **Node.js Version**: قد تكون 22.x غير متوافقة مع بعض الحزم
@@ -13,6 +14,7 @@
 ## ✅ الحلول المطبقة
 
 ### 1. تحديث `vercel.json`
+
 ```json
 {
   "buildCommand": "next build",
@@ -29,11 +31,13 @@
 ```
 
 **التغييرات:**
+
 - ✅ `buildCommand`: تغيير من `npm run build` إلى `next build` مباشرة
 - ✅ `outputDirectory`: إضافة `.next` بشكل صريح
 - ✅ `framework`: التأكيد على "nextjs"
 
 ### 2. تحديث `package.json`
+
 ```json
 {
   "engines": {
@@ -46,6 +50,7 @@
 **السبب:** تحديد نطاق إصدارات Node.js المتوافقة
 
 ### 3. تحسين `next.config.js`
+
 ```javascript
 const nextConfig = {
   reactStrictMode: true,
@@ -62,10 +67,12 @@ const nextConfig = {
 ```
 
 **التغييرات:**
+
 - ✅ إضافة `output: 'standalone'` للنشر المحسّن
 - ✅ إزالة `optimizeCss` و `scrollRestoration` (قد تسبب مشاكل)
 
 ### 4. إضافة `.vercelignore`
+
 ```
 node_modules
 .next
@@ -89,6 +96,7 @@ node_modules
    - اضغط على "Settings"
 
 3. **تحديث Build & Development Settings**:
+
    ```
    Framework Preset: Next.js  ← تأكد أنه Next.js وليس Other
    Build Command: next build
@@ -103,6 +111,7 @@ node_modules
    - لا تستخدم 22.x حالياً
 
 5. **Environment Variables** (إذا كانت مطلوبة):
+
    ```
    NODE_ENV=production
    NEXT_PUBLIC_APP_URL=https://nexus-ai-platform.vercel.app
@@ -133,6 +142,7 @@ git push origin copilot/vscode1761865374544
 ## 🔍 التحقق من نجاح النشر
 
 ### علامات النجاح:
+
 - ✅ Status: **Ready** (أخضر)
 - ✅ Build Logs: "Build Completed Successfully"
 - ✅ يمكن فتح الرابط: `https://nexus-ai-platform.vercel.app`
@@ -146,12 +156,14 @@ git push origin copilot/vscode1761865374544
 2. **الأخطاء الشائعة وحلولها**:
 
    **خطأ: "Cannot find module"**
+
    ```bash
    # الحل: تأكد من تثبيت جميع الحزم
    npm install --legacy-peer-deps
    ```
 
    **خطأ: "Build exceeded maximum duration"**
+
    ```json
    // vercel.json
    {
@@ -197,15 +209,18 @@ First Load JS: 87.2 kB
 قم بأحد الإجراءين:
 
 ### الخيار 1: تحديث إعدادات Vercel يدوياً
+
 1. افتح: https://vercel.com/nexusai/nexus-ai-platform/settings
 2. غيّر Framework من "Other" إلى "Next.js"
 3. غيّر Node.js Version من "22.x" إلى "20.x"
 4. احفظ ثم Redeploy
 
 ### الخيار 2: Push التغييرات وانتظر
+
 ```bash
 git push origin copilot/vscode1761865374544
 ```
+
 Vercel سيكتشف `vercel.json` الجديد ويطبق الإعدادات تلقائياً
 
 ---
@@ -213,6 +228,7 @@ Vercel سيكتشف `vercel.json` الجديد ويطبق الإعدادات ت�
 ## 📞 في حالة استمرار المشاكل
 
 شارك معي:
+
 1. Screenshot من Build Logs الكامل
 2. Screenshot من Project Settings → Build & Development Settings
 3. أي رسالة خطأ محددة

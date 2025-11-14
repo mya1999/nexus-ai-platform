@@ -24,7 +24,7 @@ export const viewport: Viewport = {
   maximumScale: 5,
   themeColor: [
     { media: '(prefers-color-scheme: dark)', color: '#0f172a' },
-    { media: '(prefers-color-scheme: light)', color: '#ffffff' }
+    { media: '(prefers-color-scheme: light)', color: '#ffffff' },
   ],
 };
 
@@ -34,10 +34,11 @@ export const metadata: Metadata = {
 
   title: {
     default: 'NexusAI - Advanced AI Platform | GPT-4, Claude, Gemini',
-    template: '%s | NexusAI'
+    template: '%s | NexusAI',
   },
 
-  description: 'Experience the future of AI with NexusAI. Unified platform combining GPT-4, Claude, Gemini and more. Fast, secure, and powerful AI conversations.',
+  description:
+    'Experience the future of AI with NexusAI. Unified platform combining GPT-4, Claude, Gemini and more. Fast, secure, and powerful AI conversations.',
 
   keywords: [
     'artificial intelligence',
@@ -53,7 +54,7 @@ export const metadata: Metadata = {
     'natural language processing',
     'AI assistant',
     'conversational AI',
-    'multi-model AI'
+    'multi-model AI',
   ],
 
   authors: [{ name: 'NexusAI Team', url: 'https://nexusai.dev' }],
@@ -79,21 +80,23 @@ export const metadata: Metadata = {
     url: 'https://nexusai.dev',
     siteName: 'NexusAI',
     title: 'NexusAI - Advanced AI Platform',
-    description: 'Experience the future of AI. Unified platform combining GPT-4, Claude, Gemini and more.',
+    description:
+      'Experience the future of AI. Unified platform combining GPT-4, Claude, Gemini and more.',
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'NexusAI - Advanced AI Platform',
-      }
+      },
     ],
   },
 
   twitter: {
     card: 'summary_large_image',
     title: 'NexusAI - Advanced AI Platform',
-    description: 'Experience the future of AI. Unified platform combining GPT-4, Claude, Gemini and more.',
+    description:
+      'Experience the future of AI. Unified platform combining GPT-4, Claude, Gemini and more.',
     images: ['/twitter-image.png'],
     creator: '@nexusai',
   },
@@ -106,9 +109,7 @@ export const metadata: Metadata = {
       { url: '/icon-192.png', sizes: '192x192', type: 'image/png' },
       { url: '/icon-512.png', sizes: '512x512', type: 'image/png' },
     ],
-    apple: [
-      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
-    ],
+    apple: [{ url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }],
   },
 
   alternates: {
@@ -131,7 +132,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" dir="ltr" className={`scroll-smooth ${inter.variable} ${cairo.variable}`} suppressHydrationWarning>
+    <html
+      lang="en"
+      dir="ltr"
+      className={`scroll-smooth ${inter.variable} ${cairo.variable}`}
+      suppressHydrationWarning
+    >
       <head>
         {/* Preconnect to external domains */}
         <link rel="preconnect" href="https://api.openai.com" />
@@ -163,12 +169,10 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className={`antialiased bg-black min-h-screen font-sans`}>
+      <body className={`min-h-screen bg-black font-sans antialiased`}>
         <ErrorBoundary>
           {/* إطار الأمان للمحتوى المتحرك */}
-          <div className="overflow-x-hidden">
-            {children}
-          </div>
+          <div className="overflow-x-hidden">{children}</div>
 
           {/* إطار التحميل المتأخر */}
           <div id="modal-root"></div>

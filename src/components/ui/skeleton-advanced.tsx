@@ -27,7 +27,8 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
 
           // Animation styles
           animation === 'pulse' && 'animate-pulse',
-          animation === 'wave' && 'relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent',
+          animation === 'wave' &&
+            'relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent',
 
           className
         )}
@@ -48,10 +49,7 @@ const SkeletonText: React.FC<{ lines?: number; className?: string }> = ({
       <Skeleton
         key={`skeleton-text-${i}-${lines}`}
         variant="text"
-        className={cn(
-          'h-4',
-          i === lines - 1 ? 'w-3/4' : 'w-full'
-        )}
+        className={cn('h-4', i === lines - 1 ? 'w-3/4' : 'w-full')}
       />
     ))}
   </div>
@@ -67,16 +65,11 @@ const SkeletonAvatar: React.FC<{ size?: 'sm' | 'md' | 'lg'; className?: string }
     lg: 'w-12 h-12',
   };
 
-  return (
-    <Skeleton
-      variant="circular"
-      className={cn(sizeClasses[size], className)}
-    />
-  );
+  return <Skeleton variant="circular" className={cn(sizeClasses[size], className)} />;
 };
 
 const SkeletonCard: React.FC<{ className?: string }> = ({ className }) => (
-  <div className={cn('space-y-4 p-6 bg-surface-1 rounded-2xl', className)}>
+  <div className={cn('bg-surface-1 space-y-4 rounded-2xl p-6', className)}>
     <div className="flex items-center gap-4">
       <SkeletonAvatar size="lg" />
       <div className="flex-1 space-y-2">
@@ -93,7 +86,7 @@ const SkeletonCard: React.FC<{ className?: string }> = ({ className }) => (
 );
 
 const SkeletonChatMessage: React.FC<{ isUser?: boolean }> = ({ isUser = false }) => (
-  <div className={cn('flex items-start gap-3 mb-4', isUser && 'flex-row-reverse')}>
+  <div className={cn('mb-4 flex items-start gap-3', isUser && 'flex-row-reverse')}>
     <SkeletonAvatar />
     <div className="flex-1 space-y-2">
       <Skeleton variant="text" className="h-4 w-full" />
@@ -120,10 +113,4 @@ const SkeletonList: React.FC<{ items?: number; className?: string }> = ({
   </div>
 );
 
-export {
-    Skeleton, SkeletonAvatar,
-    SkeletonCard,
-    SkeletonChatMessage,
-    SkeletonList, SkeletonText
-};
-
+export { Skeleton, SkeletonAvatar, SkeletonCard, SkeletonChatMessage, SkeletonList, SkeletonText };

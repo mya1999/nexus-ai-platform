@@ -5,7 +5,7 @@ export const getImageSizes = (_width: number): { sizes: string; className: strin
     '(max-width: 768px) 80vw',
     '(max-width: 1024px) 70vw',
     '(max-width: 1280px) 60vw',
-    '50vw'
+    '50vw',
   ].join(', ');
 
   // الفئات المناسبة للصورة
@@ -15,7 +15,7 @@ export const getImageSizes = (_width: number): { sizes: string; className: strin
     'object-cover',
     'transition-opacity',
     'duration-300',
-    'rounded-xl'
+    'rounded-xl',
   ].join(' ');
 
   return { sizes, className };

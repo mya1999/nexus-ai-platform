@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-type Size = "sm" | "md" | "lg" | "xl";
+type Size = 'sm' | 'md' | 'lg' | 'xl';
 
 interface BrandLogoProps {
   size?: Size;
@@ -10,35 +10,35 @@ interface BrandLogoProps {
 
 const sizeMap: Record<Size, { icon: string; text: string; gap: string; glow: string }> = {
   sm: {
-    icon: "w-8 h-8",
-    text: "text-xl",
-    gap: "gap-2.5",
-    glow: "shadow-[0_8px_24px_oklch(0.58_0.24_295/0.35)]"
+    icon: 'w-8 h-8',
+    text: 'text-xl',
+    gap: 'gap-2.5',
+    glow: 'shadow-[0_8px_24px_oklch(0.58_0.24_295/0.35)]',
   },
   md: {
-    icon: "w-11 h-11",
-    text: "text-3xl",
-    gap: "gap-3.5",
-    glow: "shadow-[0_12px_32px_oklch(0.58_0.24_295/0.40)]"
+    icon: 'w-11 h-11',
+    text: 'text-3xl',
+    gap: 'gap-3.5',
+    glow: 'shadow-[0_12px_32px_oklch(0.58_0.24_295/0.40)]',
   },
   lg: {
-    icon: "w-16 h-16",
-    text: "text-6xl",
-    gap: "gap-5",
-    glow: "shadow-[0_16px_48px_oklch(0.58_0.24_295/0.45)]"
+    icon: 'w-16 h-16',
+    text: 'text-6xl',
+    gap: 'gap-5',
+    glow: 'shadow-[0_16px_48px_oklch(0.58_0.24_295/0.45)]',
   },
   xl: {
-    icon: "w-28 h-28",
-    text: "text-[clamp(4rem,12vw,10rem)]",
-    gap: "gap-7",
-    glow: "shadow-[0_24px_64px_oklch(0.58_0.24_295/0.50),0_0_96px_oklch(0.60_0.26_240/0.30)]"
+    icon: 'w-28 h-28',
+    text: 'text-[clamp(4rem,12vw,10rem)]',
+    gap: 'gap-7',
+    glow: 'shadow-[0_24px_64px_oklch(0.58_0.24_295/0.50),0_0_96px_oklch(0.60_0.26_240/0.30)]',
   },
 };
 
 export default function BrandLogo({
-  size = "md",
-  className = "",
-  animated = true
+  size = 'md',
+  className = '',
+  animated = true,
 }: BrandLogoProps) {
   const s = sizeMap[size];
 
@@ -47,16 +47,12 @@ export default function BrandLogo({
       className={`flex items-center ${s.gap} ${className}`}
       aria-label="ZORO-AI"
       style={{
-        filter: 'drop-shadow(0 0 1px oklch(0.98 0.002 270 / 0.1))'
+        filter: 'drop-shadow(0 0 1px oklch(0.98 0.002 270 / 0.1))',
       }}
     >
       {/* 💎 Premium Emblem with Glassmorphism */}
       <div
-        className={`
-          ${s.icon} ${s.glow}
-          rounded-[28%] relative overflow-hidden
-          ${animated ? 'transition-all duration-300 hover:scale-105 hover:rotate-3' : ''}
-        `}
+        className={` ${s.icon} ${s.glow} relative overflow-hidden rounded-[28%] ${animated ? 'transition-all duration-300 hover:rotate-3 hover:scale-105' : ''} `}
         style={{
           background: `
             linear-gradient(135deg,
@@ -83,7 +79,7 @@ export default function BrandLogo({
         {/* Shimmer effect */}
         {animated && (
           <div
-            className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500"
+            className="absolute inset-0 opacity-0 transition-opacity duration-500 hover:opacity-100"
             style={{
               background: `
                 linear-gradient(135deg,
@@ -100,7 +96,7 @@ export default function BrandLogo({
         {/* Premium Star Icon - Redesigned */}
         <svg
           viewBox="0 0 24 24"
-          className="absolute inset-0 m-auto w-[58%] h-[58%]"
+          className="absolute inset-0 m-auto h-[58%] w-[58%]"
           fill="none"
           style={{ filter: 'drop-shadow(0 2px 4px oklch(0 0 0 / 0.2))' }}
         >
@@ -125,10 +121,7 @@ export default function BrandLogo({
 
       {/* 🔤 Elite Wordmark */}
       <span
-        className={`
-          ${s.text} font-black tracking-[-0.03em] leading-none select-none
-          ${animated ? 'transition-all duration-300' : ''}
-        `}
+        className={` ${s.text} select-none font-black leading-none tracking-[-0.03em] ${animated ? 'transition-all duration-300' : ''} `}
         style={{
           fontFeatureSettings: '"ss01", "ss02", "cv01"',
           textRendering: 'optimizeLegibility',
@@ -143,14 +136,11 @@ export default function BrandLogo({
         >
           ZORO
         </span>
-        <span
-          className="inline-block mx-1 opacity-60"
-          style={{ color: 'oklch(0.78 0.008 270)' }}
-        >
+        <span className="mx-1 inline-block opacity-60" style={{ color: 'oklch(0.78 0.008 270)' }}>
           -
         </span>
         <span
-          className="inline-block bg-clip-text text-transparent font-black"
+          className="inline-block bg-clip-text font-black text-transparent"
           style={{
             backgroundImage: `
               linear-gradient(135deg,
@@ -169,8 +159,13 @@ export default function BrandLogo({
       {/* CSS Keyframes for shimmer animation */}
       <style jsx>{`
         @keyframes shimmer {
-          0%, 100% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
-          50% { transform: translateX(200%) translateY(200%) rotate(45deg); }
+          0%,
+          100% {
+            transform: translateX(-100%) translateY(-100%) rotate(45deg);
+          }
+          50% {
+            transform: translateX(200%) translateY(200%) rotate(45deg);
+          }
         }
       `}</style>
     </div>

@@ -39,34 +39,26 @@ export default function InputArea({ onSend, isLoading, disabled }: InputAreaProp
   };
 
   return (
-    <div className="border-t border-white/10 bg-black/50 backdrop-blur-xl p-4">
-      <div className="max-w-4xl mx-auto">
-        <div className="flex gap-3 items-end">
+    <div className="border-t border-white/10 bg-black/50 p-4 backdrop-blur-xl">
+      <div className="mx-auto max-w-4xl">
+        <div className="flex items-end gap-3">
           {/* Text Area */}
-          <div className="flex-1 relative">
+          <div className="relative flex-1">
             <textarea
               ref={textareaRef}
               value={message}
-              onChange={(e) => setMessage(e.target.value)}
+              onChange={e => setMessage(e.target.value)}
               onInput={handleInput}
               onKeyDown={handleKeyDown}
               placeholder="Type your message here... (Enter to send, Shift+Enter for new line)"
               disabled={disabled || isLoading}
-              className="
-                w-full px-5 py-3 bg-black/50 border border-white/20 rounded-2xl
-                text-white placeholder:text-gray-500
-                resize-none overflow-hidden
-                focus:outline-none focus:border-white focus:bg-black/70
-                disabled:opacity-50 disabled:cursor-not-allowed
-                transition-all duration-300
-                min-h-[56px] max-h-[200px]
-              "
+              className="max-h-[200px] min-h-[56px] w-full resize-none overflow-hidden rounded-2xl border border-white/20 bg-black/50 px-5 py-3 text-white transition-all duration-300 placeholder:text-gray-500 focus:border-white focus:bg-black/70 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
               rows={1}
             />
 
             {/* Character Counter */}
             {message.length > 0 && (
-              <div className="absolute left-3 bottom-2 text-xs text-gray-500">
+              <div className="absolute bottom-2 left-3 text-xs text-gray-500">
                 {message.length} characters
               </div>
             )}

@@ -50,11 +50,11 @@
     "*": true,
     "yaml": true,
     "markdown": true,
-    "plaintext": false
+    "plaintext": false,
   },
   "github.copilot.editor.enableAutoCompletions": true,
   "github.copilot.editor.enableCodeActions": true,
-  "editor.inlineSuggest.enabled": true
+  "editor.inlineSuggest.enabled": true,
 }
 ```
 
@@ -62,13 +62,13 @@
 
 #### الأوامر السريعة
 
-| الأمر | الوصف | الاختصار |
-|-------|--------|----------|
-| **Copilot Chat** | فتح محادثة Copilot | `Ctrl+I` |
-| **قبول الاقتراح** | قبول الكود المقترح | `Tab` |
-| **رفض الاقتراح** | رفض الاقتراح | `Esc` |
-| **التالي** | الاقتراح التالي | `Alt+]` |
-| **السابق** | الاقتراح السابق | `Alt+[` |
+| الأمر             | الوصف              | الاختصار |
+| ----------------- | ------------------ | -------- |
+| **Copilot Chat**  | فتح محادثة Copilot | `Ctrl+I` |
+| **قبول الاقتراح** | قبول الكود المقترح | `Tab`    |
+| **رفض الاقتراح**  | رفض الاقتراح       | `Esc`    |
+| **التالي**        | الاقتراح التالي    | `Alt+]`  |
+| **السابق**        | الاقتراح السابق    | `Alt+[`  |
 
 #### أمثلة عملية
 
@@ -159,7 +159,7 @@
 {
   "typescript.suggest.autoImports": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "typescript.preferences.importModuleSpecifier": "relative"
+  "typescript.preferences.importModuleSpecifier": "relative",
 }
 ```
 
@@ -171,8 +171,8 @@
 {
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
-    "source.organizeImports": "explicit"
-  }
+    "source.organizeImports": "explicit",
+  },
 }
 ```
 
@@ -184,7 +184,7 @@
 {
   "editor.formatOnSave": true,
   "editor.formatOnPaste": true,
-  "editor.formatOnType": true
+  "editor.formatOnType": true,
 }
 ```
 
@@ -230,7 +230,7 @@ export const MODEL_CONFIGS = {
     temperature: 0.7,
     streamSupported: true,
   },
-}
+};
 ```
 
 #### 2. إضافة المعالج
@@ -271,7 +271,7 @@ const apiKey = process.env.OPENAI_API_KEY
 
 ```typescript
 // ❌ لا تكشف المفاتيح في client-side
-const apiKey = 'sk-...'  // خطأ!
+const apiKey = 'sk-...'; // خطأ!
 
 // ❌ لا ترفع .env.local لـ Git
 ```
@@ -297,10 +297,10 @@ const apiKey = 'sk-...'  // خطأ!
 
 ```typescript
 // ✅ جيد
-function calculateUserAgeFromBirthDate(birthDate: Date): number
+function calculateUserAgeFromBirthDate(birthDate: Date): number;
 
 // ❌ سيئ
-function calc(d: Date): number
+function calc(d: Date): number;
 ```
 
 ### 2. المراجعة الدورية
@@ -398,12 +398,12 @@ jobs:
 
 ### مقاييس مفيدة
 
-| المقياس | قبل AI | بعد AI | التحسين |
-|---------|--------|--------|---------|
-| **سرعة الكتابة** | 100 سطر/ساعة | 250 سطر/ساعة | +150% |
-| **الأخطاء** | 5-10/ملف | 1-2/ملف | -70% |
-| **وقت التوثيق** | 30 دقيقة | 5 دقائق | -83% |
-| **الاختبارات** | 2 ساعة | 30 دقيقة | -75% |
+| المقياس          | قبل AI       | بعد AI       | التحسين |
+| ---------------- | ------------ | ------------ | ------- |
+| **سرعة الكتابة** | 100 سطر/ساعة | 250 سطر/ساعة | +150%   |
+| **الأخطاء**      | 5-10/ملف     | 1-2/ملف      | -70%    |
+| **وقت التوثيق**  | 30 دقيقة     | 5 دقائق      | -83%    |
+| **الاختبارات**   | 2 ساعة       | 30 دقيقة     | -75%    |
 
 ---
 
@@ -474,16 +474,19 @@ jobs:
 ### مشاكل شائعة
 
 **Copilot لا يعمل:**
+
 1. تحقق من تسجيل الدخول
 2. أعد تشغيل VS Code
 3. تحقق من الاشتراك
 
 **الاقتراحات غير دقيقة:**
+
 1. حسّن التعليقات
 2. أضف المزيد من السياق
 3. استخدم Copilot Chat
 
 **بطء في الاستجابة:**
+
 1. تحقق من الاتصال بالإنترنت
 2. أغلق البرامج الثقيلة
 3. أعد تشغيل الإضافة

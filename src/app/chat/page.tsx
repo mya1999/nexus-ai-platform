@@ -42,7 +42,8 @@ export default function ChatPage() {
   const { chats, currentChatId, createChat, setCurrentChat, addMessage } = useChatStore();
 
   // Get current chat or create one if none exists
-  const currentChat = chats.find(c => c.id === currentChatId) ||
+  const currentChat =
+    chats.find(c => c.id === currentChatId) ||
     (() => {
       const newId = createChat();
       setCurrentChat(newId);
@@ -108,21 +109,21 @@ export default function ChatPage() {
   };
 
   return (
-    <div className="h-screen flex bg-gradient-to-br from-surface-0 via-slate-900 to-surface-0 text-foreground relative overflow-hidden">
+    <div className="from-surface-0 to-surface-0 relative flex h-screen overflow-hidden bg-gradient-to-br via-slate-900 text-foreground">
       {/* Animated Background */}
       <motion.div
-        className="fixed inset-0 opacity-20 pointer-events-none"
+        className="pointer-events-none fixed inset-0 opacity-20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.2 }}
         transition={{ duration: 1 }}
       >
-        <div className="absolute inset-0 grid-bg-64" />
+        <div className="grid-bg-64 absolute inset-0" />
       </motion.div>
 
       {/* Gradient Orbs with animation */}
-      <div className="fixed inset-0 pointer-events-none">
+      <div className="pointer-events-none fixed inset-0">
         <motion.div
-          className="absolute -top-40 -right-40 w-96 h-96 rounded-full blur-3xl"
+          className="absolute -right-40 -top-40 h-96 w-96 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.2, 0.3, 0.2],
@@ -133,11 +134,11 @@ export default function ChatPage() {
             ease: 'easeInOut',
           }}
         >
-          <div className="w-full h-full bg-brand-primary/20 rounded-full" />
+          <div className="bg-brand-primary/20 h-full w-full rounded-full" />
         </motion.div>
 
         <motion.div
-          className="absolute -bottom-40 -left-40 w-96 h-96 rounded-full blur-3xl"
+          className="absolute -bottom-40 -left-40 h-96 w-96 rounded-full blur-3xl"
           animate={{
             scale: [1.2, 1, 1.2],
             opacity: [0.3, 0.2, 0.3],
@@ -148,7 +149,7 @@ export default function ChatPage() {
             ease: 'easeInOut',
           }}
         >
-          <div className="w-full h-full bg-brand-accent/20 rounded-full" />
+          <div className="bg-brand-accent/20 h-full w-full rounded-full" />
         </motion.div>
       </div>
 
@@ -159,12 +160,12 @@ export default function ChatPage() {
             {/* Backdrop */}
             <motion.button
               type="button"
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-modalBackdrop md:hidden interactive-overlay"
+              className="interactive-overlay fixed inset-0 z-modalBackdrop bg-black/50 backdrop-blur-sm md:hidden"
               onClick={() => setIsSidebarOpen(false)}
               aria-label="إغلاق القائمة الجانبية"
               title="إغلاق القائمة الجانبية"
               tabIndex={0}
-              onKeyDown={(e) => {
+              onKeyDown={e => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
                   setIsSidebarOpen(false);
@@ -175,7 +176,7 @@ export default function ChatPage() {
 
             {/* Sidebar Content */}
             <motion.div
-              className="fixed left-0 top-0 h-full w-80 bg-surface-1 border-r border-white/10 z-modal md:static md:translate-x-0"
+              className="bg-surface-1 fixed left-0 top-0 z-modal h-full w-80 border-r border-white/10 md:static md:translate-x-0"
               {...motionVariants.slideInFromLeft}
             >
               <ChatSidebar onClose={() => setIsSidebarOpen(false)} />
@@ -185,7 +186,7 @@ export default function ChatPage() {
       </AnimatePresence>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col relative z-10">
+      <div className="relative z-10 flex flex-1 flex-col">
         <ConversationToolbar
           isSidebarOpen={isSidebarOpen}
           onToggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)}
@@ -197,14 +198,14 @@ export default function ChatPage() {
         />
 
         {/* Chat Area */}
-        <div className="flex-1 flex flex-col overflow-hidden relative">
-          <div className="flex-1 flex flex-col justify-end">
+        <div className="relative flex flex-1 flex-col overflow-hidden">
+          <div className="flex flex-1 flex-col justify-end">
             {/* Messages only */}
             {currentChat?.messages && currentChat.messages.length > 0 ? (
               <MessageList messages={currentChat.messages} isLoading={isLoading} />
             ) : (
               /* Optical center placeholder: 54% from top for visual balance */
-              <div className="absolute inset-0 pointer-events-none">
+              <div className="pointer-events-none absolute inset-0">
                 <div className="absolute left-1/2 top-[54%] -translate-x-1/2 -translate-y-1/2 select-none">
                   <motion.div
                     className="text-center"
@@ -213,11 +214,13 @@ export default function ChatPage() {
                     transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
                   >
                     {/* Icon: 64px (8 units) with golden ratio proportions */}
-                    <div className="mx-auto mb-8 w-16 h-16 rounded-2xl bg-gradient-to-br from-brand-primary to-brand-accent shadow-2xl shadow-brand-primary/20" />
+                    <div className="from-brand-primary to-brand-accent shadow-brand-primary/20 mx-auto mb-8 h-16 w-16 rounded-2xl bg-gradient-to-br shadow-2xl" />
                     {/* Title: precise tracking for optical balance */}
-                    <h1 className="text-4xl font-bold tracking-[-0.02em] whitespace-nowrap">
+                    <h1 className="whitespace-nowrap text-4xl font-bold tracking-[-0.02em]">
                       <span className="text-white">ZORO</span>
-                      <span className="bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">AI</span>
+                      <span className="from-brand-primary to-brand-accent bg-gradient-to-r bg-clip-text text-transparent">
+                        AI
+                      </span>
                     </h1>
                   </motion.div>
                 </div>
@@ -231,22 +234,24 @@ export default function ChatPage() {
               animate={{ y: 0, opacity: 1 }}
               transition={{ type: 'spring', stiffness: 300, damping: 30, delay: 0.2 }}
             >
-              <InputArea
-                onSend={handleSendMessage}
-                isLoading={isLoading}
-                disabled={!currentChat}
-              />
+              <InputArea onSend={handleSendMessage} isLoading={isLoading} disabled={!currentChat} />
             </motion.div>
             {/* Compact model selector beside input - geometric positioning */}
-            <div className="absolute bottom-[4.5rem] right-4 md:right-6 z-20">
-              <div className="rounded-xl border border-white/10 bg-black/60 backdrop-blur-md px-3 py-2 shadow-lg shadow-brand-primary/10">
+            <div className="absolute bottom-[4.5rem] right-4 z-20 md:right-6">
+              <div className="shadow-brand-primary/10 rounded-xl border border-white/10 bg-black/60 px-3 py-2 shadow-lg backdrop-blur-md">
                 <fieldset className="min-w-[200px]">
                   <legend className="sr-only">اختيار النموذج</legend>
-                  <ModelSelector selectedModelId={selectedModelId} onSelectModel={setSelectedModelId} />
+                  <ModelSelector
+                    selectedModelId={selectedModelId}
+                    onSelectModel={setSelectedModelId}
+                  />
                 </fieldset>
               </div>
             </div>
-            <SystemStatusBar modelId={selectedModelId} messagesCount={currentChat?.messages.length || 0} />
+            <SystemStatusBar
+              modelId={selectedModelId}
+              messagesCount={currentChat?.messages.length || 0}
+            />
           </div>
         </div>
       </div>

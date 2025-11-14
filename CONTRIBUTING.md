@@ -5,21 +5,25 @@
 ## 🚀 كيفية المساهمة
 
 ### 1. Fork المشروع
+
 ```bash
 # انسخ المستودع إلى حسابك
 ```
 
 ### 2. أنشئ فرع للميزة
+
 ```bash
 git checkout -b feature/amazing-feature
 ```
 
 ### 3. التزم بالتغييرات
+
 ```bash
 git commit -m 'feat: add amazing feature'
 ```
 
 ### 4. ادفع إلى الفرع
+
 ```bash
 git push origin feature/amazing-feature
 ```
@@ -37,6 +41,7 @@ git push origin feature/amazing-feature
 ## 💬 رسائل Commit
 
 استخدم النمط المعياري:
+
 - `feat:` ميزة جديدة
 - `fix:` إصلاح عطل
 - `docs:` تحديث التوثيق

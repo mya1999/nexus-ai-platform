@@ -72,7 +72,8 @@ export const translations: Record<Language, Translation> = {
     hero: {
       title: 'Enterprise AI',
       subtitle: 'Unified Intelligence',
-      description: 'Experience the future of AI with our comprehensive platform integrating the world\'s most advanced models.',
+      description:
+        "Experience the future of AI with our comprehensive platform integrating the world's most advanced models.",
       cta: {
         primary: 'Get Started',
         secondary: 'Learn More',

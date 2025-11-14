@@ -14,7 +14,7 @@ interface State {
 
 export class ErrorBoundary extends Component<Props, State> {
   public state: State = {
-    hasError: false
+    hasError: false,
   };
 
   public static getDerivedStateFromError(error: Error): State {
@@ -27,21 +27,23 @@ export class ErrorBoundary extends Component<Props, State> {
 
   public render() {
     if (this.state.hasError) {
-      return this.props.fallback || (
-        <div className="min-h-screen flex items-center justify-center bg-black text-white p-4">
-          <div className="max-w-md text-center">
-            <h2 className="text-2xl font-bold mb-4">عذراً، حدث خطأ غير متوقع</h2>
-            <p className="text-gray-400 mb-6">
-              نحن نعمل على إصلاح المشكلة. يرجى تحديث الصفحة أو المحاولة مرة أخرى لاحقاً.
-            </p>
-            <button
-              onClick={() => window.location.reload()}
-              className="px-6 py-3 bg-white text-black rounded-xl font-bold hover:scale-105 transition-transform"
-            >
-              تحديث الصفحة
-            </button>
+      return (
+        this.props.fallback || (
+          <div className="flex min-h-screen items-center justify-center bg-black p-4 text-white">
+            <div className="max-w-md text-center">
+              <h2 className="mb-4 text-2xl font-bold">عذراً، حدث خطأ غير متوقع</h2>
+              <p className="mb-6 text-gray-400">
+                نحن نعمل على إصلاح المشكلة. يرجى تحديث الصفحة أو المحاولة مرة أخرى لاحقاً.
+              </p>
+              <button
+                onClick={() => window.location.reload()}
+                className="rounded-xl bg-white px-6 py-3 font-bold text-black transition-transform hover:scale-105"
+              >
+                تحديث الصفحة
+              </button>
+            </div>
           </div>
-        </div>
+        )
       );
     }
 

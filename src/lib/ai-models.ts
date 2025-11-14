@@ -102,16 +102,11 @@ export function getModelsByProvider(provider: string): AIModel[] {
   return AI_MODELS.filter(model => model.provider === provider);
 }
 
-export function estimateCost(
-  modelId: string,
-  inputTokens: number,
-  outputTokens: number
-): number {
+export function estimateCost(modelId: string, inputTokens: number, outputTokens: number): number {
   const model = getModelById(modelId);
   if (!model) return 0;
 
   return (
-    (inputTokens / 1000000) * model.pricing.input +
-    (outputTokens / 1000000) * model.pricing.output
+    (inputTokens / 1000000) * model.pricing.input + (outputTokens / 1000000) * model.pricing.output
   );
 }

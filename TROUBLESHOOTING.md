@@ -5,6 +5,7 @@
 ### 1️⃣ CI Workflow فشل
 
 #### المشكلة: `npm run lint` فشل
+
 ```bash
 # الحل:
 npm run lint -- --fix
@@ -14,6 +15,7 @@ git push
 ```
 
 #### المشكلة: `npm run typecheck` فشل
+
 ```bash
 # الحل: أصلح أخطاء TypeScript
 # راجع الأخطاء في VS Code (Problems panel)
@@ -21,6 +23,7 @@ git push
 ```
 
 #### المشكلة: `npm run build` فشل
+
 ```bash
 # تحقق من:
 1. جميع imports صحيحة
@@ -45,6 +48,7 @@ git push
 ```
 
 #### التحقق:
+
 ```
 Settings → Secrets → Actions
 يجب أن يكون:
@@ -58,6 +62,7 @@ Settings → Secrets → Actions
 ### 3️⃣ Dependabot لا يُدمج تلقائيًا
 
 #### الحل:
+
 ```
 1. Settings → General → Pull Requests
    ✅ Allow auto-merge
@@ -72,12 +77,14 @@ Settings → Secrets → Actions
 ### 4️⃣ Branch Protection يمنع الدمج
 
 #### إذا كنت المالك الوحيد:
+
 ```
 Settings → Branches → main → Edit
 ✅ لا تفعّل "Include administrators"
 ```
 
 #### إذا كان لديك فريق:
+
 ```
 احتفظ بـ:
 ✅ Require PR
@@ -90,6 +97,7 @@ Settings → Branches → main → Edit
 ### 5️⃣ الأدوات (Tools) كثيرة جدًا
 
 #### الحل السريع:
+
 ```
 1. Ctrl+Shift+P
 2. Configure Tools
@@ -106,9 +114,11 @@ Settings → Branches → main → Edit
 ### 6️⃣ إعلانات Tabnine مزعجة
 
 #### تم الحل تلقائيًا في:
+
 `.vscode/settings.json`
 
 إذا استمرت:
+
 ```
 Settings → Tabnine → Disable notifications
 ```
@@ -118,6 +128,7 @@ Settings → Tabnine → Disable notifications
 ### 7️⃣ أخطاء إملائية كثيرة
 
 #### الحل:
+
 ```json
 // في .vscode/settings.json
 "cSpell.enabled": true
@@ -125,6 +136,7 @@ Settings → Tabnine → Disable notifications
 ```
 
 #### إضافة كلمات مخصصة:
+
 ```
 اضغط بالزر الأيمن على الكلمة
 → Add to Workspace Dictionary
@@ -135,6 +147,7 @@ Settings → Tabnine → Disable notifications
 ### 8️⃣ .next/ و node_modules/ ظاهرة في Git
 
 #### الحل:
+
 ```bash
 # تحقق من .gitignore
 # يجب أن يحتوي على:
@@ -153,6 +166,7 @@ git push
 ### 9️⃣ VS Code بطيء جدًا
 
 #### الحلول:
+
 ```
 1. قلل عدد الأدوات (Tools) إلى 3-5
 2. عطّل الامتدادات غير المستخدمة
@@ -163,6 +177,7 @@ git push
 ```
 
 #### في `.vscode/settings.json`:
+
 ```json
 "files.watcherExclude": {
   "**/node_modules/**": true,
@@ -186,6 +201,7 @@ git push
 ```
 
 #### للتحقق:
+
 ```
 افتح PR → تحقق من المراجعين المطلوبين
 ```
@@ -195,6 +211,7 @@ git push
 ## 🆘 عند فشل كل شيء
 
 ### Reset للإعدادات:
+
 ```bash
 # احذف:
 rm -rf node_modules
@@ -209,6 +226,7 @@ npm run build
 ```
 
 ### استعادة الملفات الافتراضية:
+
 ```bash
 # من Git:
 git checkout main -- .vscode/

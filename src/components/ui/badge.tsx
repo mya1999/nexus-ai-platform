@@ -35,13 +35,7 @@ export default function Badge({
 
   return (
     <span
-      className={`
-        inline-flex items-center gap-1.5 rounded-full border font-medium
-        transition-all duration-300
-        ${variants[variant]} ${sizes[size]}
-        ${pulse ? 'animate-pulse' : ''}
-        ${className}
-      `}
+      className={`inline-flex items-center gap-1.5 rounded-full border font-medium transition-all duration-300 ${variants[variant]} ${sizes[size]} ${pulse ? 'animate-pulse' : ''} ${className} `}
       {...props}
     >
       {icon && <span>{icon}</span>}

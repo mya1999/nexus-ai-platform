@@ -6,14 +6,9 @@ export default function robots(): MetadataRoute.Robots {
     rules: {
       userAgent: '*',
       allow: '/',
-      disallow: [
-        '/api/',
-        '/admin/',
-        '/*.json',
-        '/*.xml'
-      ]
+      disallow: ['/api/', '/admin/', '/*.json', '/*.xml'],
     },
-    sitemap: 'https://your-domain.com/sitemap.xml'
+    sitemap: 'https://your-domain.com/sitemap.xml',
   };
 }
 
@@ -31,7 +26,7 @@ export async function generateSitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
       changeFrequency: 'always',
       priority: 0.9,
-    }
+    },
   ];
 }
 
@@ -49,13 +44,13 @@ export const manifest: MetadataRoute.Manifest = {
       src: '/icons/icon-192.png',
       sizes: '192x192',
       type: 'image/png',
-  purpose: 'maskable'
+      purpose: 'maskable',
     },
     {
       src: '/icons/icon-512.png',
       sizes: '512x512',
       type: 'image/png',
-  purpose: 'maskable'
-    }
-  ]
+      purpose: 'maskable',
+    },
+  ],
 };

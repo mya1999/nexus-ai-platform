@@ -6,11 +6,7 @@ export const Analytics = () => {
   return (
     <>
       {/* Plausible Analytics - يحترم الخصوصية */}
-      <script
-        defer
-        data-domain="nexusai.dev"
-        src="https://plausible.io/js/script.js"
-      />
+      <script defer data-domain="nexusai.dev" src="https://plausible.io/js/script.js" />
 
       {/* إعدادات تحسين الأداء */}
       <script
@@ -42,7 +38,7 @@ export const Analytics = () => {
                 }
               }).observe({entryTypes: ['layout-shift']});
             }
-          `
+          `,
         }}
       />
     </>

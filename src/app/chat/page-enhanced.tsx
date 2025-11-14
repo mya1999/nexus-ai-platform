@@ -29,7 +29,8 @@ export default function ChatPageEnhanced() {
   const { chats, currentChatId, createChat, setCurrentChat, addMessage } = useChatStore();
 
   // Get current chat or create one if none exists
-  const currentChat = chats.find(c => c.id === currentChatId) ||
+  const currentChat =
+    chats.find(c => c.id === currentChatId) ||
     (() => {
       const newId = createChat();
       setCurrentChat(newId);
@@ -95,21 +96,21 @@ export default function ChatPageEnhanced() {
   };
 
   return (
-    <div className="h-screen flex bg-gradient-to-br from-surface-0 via-slate-900 to-surface-0 text-foreground relative overflow-hidden">
+    <div className="from-surface-0 to-surface-0 relative flex h-screen overflow-hidden bg-gradient-to-br via-slate-900 text-foreground">
       {/* Animated Background */}
       <motion.div
-        className="fixed inset-0 opacity-20 pointer-events-none"
+        className="pointer-events-none fixed inset-0 opacity-20"
         initial={{ opacity: 0 }}
         animate={{ opacity: 0.2 }}
         transition={{ duration: 1 }}
       >
-        <div className="absolute inset-0 grid-bg-64" />
+        <div className="grid-bg-64 absolute inset-0" />
       </motion.div>
 
       {/* Gradient Orbs with animation */}
-      <div className="fixed inset-0 pointer-events-none">
+      <div className="pointer-events-none fixed inset-0">
         <motion.div
-          className="absolute -top-40 -right-40 w-96 h-96 bg-brand-primary/20 rounded-full blur-3xl"
+          className="bg-brand-primary/20 absolute -right-40 -top-40 h-96 w-96 rounded-full blur-3xl"
           animate={{
             scale: [1, 1.2, 1],
             opacity: [0.2, 0.3, 0.2],
@@ -121,7 +122,7 @@ export default function ChatPageEnhanced() {
           }}
         />
         <motion.div
-          className="absolute -bottom-40 -left-40 w-96 h-96 bg-brand-accent/20 rounded-full blur-3xl"
+          className="bg-brand-accent/20 absolute -bottom-40 -left-40 h-96 w-96 rounded-full blur-3xl"
           animate={{
             scale: [1.2, 1, 1.2],
             opacity: [0.3, 0.2, 0.3],
@@ -140,12 +141,12 @@ export default function ChatPageEnhanced() {
           <>
             {/* Backdrop */}
             <motion.button
-              className="fixed inset-0 bg-black/50 backdrop-blur-sm z-modalBackdrop md:hidden interactive-overlay"
+              className="interactive-overlay fixed inset-0 z-modalBackdrop bg-black/50 backdrop-blur-sm md:hidden"
               onClick={() => setIsSidebarOpen(false)}
               aria-label="إغلاق القائمة الجانبية"
               title="إغلاق القائمة الجانبية"
               tabIndex={0}
-              onKeyDown={(e) => {
+              onKeyDown={e => {
                 if (e.key === 'Enter' || e.key === ' ') {
                   e.preventDefault();
                   setIsSidebarOpen(false);
@@ -156,7 +157,7 @@ export default function ChatPageEnhanced() {
 
             {/* Sidebar Content */}
             <motion.div
-              className="fixed left-0 top-0 h-full w-80 bg-surface-1 border-r border-white/10 z-modal md:static md:translate-x-0"
+              className="bg-surface-1 fixed left-0 top-0 z-modal h-full w-80 border-r border-white/10 md:static md:translate-x-0"
               {...motionVariants.slideInFromLeft}
             >
               <ChatSidebar onClose={() => setIsSidebarOpen(false)} />
@@ -166,15 +167,15 @@ export default function ChatPageEnhanced() {
       </AnimatePresence>
 
       {/* Main Content */}
-      <div className="flex-1 flex flex-col relative z-10">
+      <div className="relative z-10 flex flex-1 flex-col">
         {/* Enhanced Header */}
         <motion.header
-          className="flex-shrink-0 border-b border-white/10 bg-surface-1/50 backdrop-blur-xl"
+          className="bg-surface-1/50 flex-shrink-0 border-b border-white/10 backdrop-blur-xl"
           initial={{ y: -100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30 }}
         >
-          <div className="container mx-auto px-4 py-3 flex items-center justify-between gap-4">
+          <div className="container mx-auto flex items-center justify-between gap-4 px-4 py-3">
             <div className="flex items-center gap-3">
               <ButtonAdvanced
                 variant="ghost"
@@ -183,18 +184,18 @@ export default function ChatPageEnhanced() {
                 className="md:hidden"
                 aria-label={isSidebarOpen ? 'إغلاق القائمة' : 'فتح القائمة'}
               >
-                {isSidebarOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+                {isSidebarOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
               </ButtonAdvanced>
 
-              <Link href="/" className="flex items-center gap-2 group">
+              <Link href="/" className="group flex items-center gap-2">
                 <motion.div
-                  className="w-10 h-10 bg-gradient-to-br from-brand-primary to-brand-accent rounded-xl flex items-center justify-center"
+                  className="from-brand-primary to-brand-accent flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br"
                   whileHover={{ scale: 1.05, rotate: 5 }}
                   whileTap={{ scale: 0.95 }}
                 >
-                  <Sparkles className="w-5 h-5 text-white" />
+                  <Sparkles className="h-5 w-5 text-white" />
                 </motion.div>
-                <span className="text-lg font-bold hidden sm:block">
+                <span className="hidden text-lg font-bold sm:block">
                   <span className="text-white">NEXUS</span>
                   <span className="text-brand-primary">AI</span>
                 </span>
@@ -202,27 +203,20 @@ export default function ChatPageEnhanced() {
             </div>
 
             <div className="flex items-center gap-2">
-              <ModelSelector
-                selectedModelId={selectedModelId}
-                onSelectModel={setSelectedModelId}
-              />
+              <ModelSelector selectedModelId={selectedModelId} onSelectModel={setSelectedModelId} />
 
               <ButtonAdvanced
                 variant="primary"
                 size="md"
-                leftIcon={<Plus className="w-4 h-4" />}
+                leftIcon={<Plus className="h-4 w-4" />}
                 onClick={handleNewChat}
                 className="hidden sm:flex"
               >
                 محادثة جديدة
               </ButtonAdvanced>
 
-              <ButtonAdvanced
-                variant="ghost"
-                size="icon"
-                aria-label="الإعدادات"
-              >
-                <Settings className="w-5 h-5" />
+              <ButtonAdvanced variant="ghost" size="icon" aria-label="الإعدادات">
+                <Settings className="h-5 w-5" />
               </ButtonAdvanced>
             </div>
           </div>
@@ -231,28 +225,22 @@ export default function ChatPageEnhanced() {
         {/* Chat Area */}
         <div className="flex-1 overflow-hidden">
           {currentChat && currentChat.messages.length > 0 ? (
-            <motion.div
-              className="h-full"
-              {...motionVariants.fadeIn}
-            >
-              <MessageList
-                messages={currentChat.messages}
-                isLoading={isLoading}
-              />
+            <motion.div className="h-full" {...motionVariants.fadeIn}>
+              <MessageList messages={currentChat.messages} isLoading={isLoading} />
             </motion.div>
           ) : (
             <motion.div
-              className="h-full flex items-center justify-center p-6"
+              className="flex h-full items-center justify-center p-6"
               {...motionVariants.fadeInUp}
             >
               <CardAdvanced
                 elevation="xl"
                 surface={2}
                 glassmorphism
-                className="max-w-2xl w-full p-8 text-center"
+                className="w-full max-w-2xl p-8 text-center"
               >
                 <motion.div
-                  className="w-20 h-20 mx-auto mb-6 bg-gradient-to-br from-brand-primary to-brand-accent rounded-3xl flex items-center justify-center"
+                  className="from-brand-primary to-brand-accent mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-3xl bg-gradient-to-br"
                   animate={{
                     rotate: [0, 360],
                   }}
@@ -262,51 +250,31 @@ export default function ChatPageEnhanced() {
                     ease: 'linear',
                   }}
                 >
-                  <Sparkles className="w-10 h-10 text-white" />
+                  <Sparkles className="h-10 w-10 text-white" />
                 </motion.div>
 
-                <h2 className="text-3xl font-bold mb-4 bg-gradient-to-r from-brand-primary to-brand-accent bg-clip-text text-transparent">
+                <h2 className="from-brand-primary to-brand-accent mb-4 bg-gradient-to-r bg-clip-text text-3xl font-bold text-transparent">
                   مرحباً بك في NexusAI
                 </h2>
 
-                <p className="text-muted-foreground mb-8">
+                <p className="mb-8 text-muted-foreground">
                   ابدأ محادثة جديدة مع أقوى نماذج الذكاء الاصطناعي
                 </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                  <CardAdvanced
-                    elevation="sm"
-                    hoverable
-                    pressable
-                    className="p-4 cursor-pointer"
-                  >
+                <div className="grid grid-cols-1 gap-3 md:grid-cols-2">
+                  <CardAdvanced elevation="sm" hoverable pressable className="cursor-pointer p-4">
                     <p className="text-sm font-medium">💡 اطرح سؤالاً</p>
                   </CardAdvanced>
 
-                  <CardAdvanced
-                    elevation="sm"
-                    hoverable
-                    pressable
-                    className="p-4 cursor-pointer"
-                  >
+                  <CardAdvanced elevation="sm" hoverable pressable className="cursor-pointer p-4">
                     <p className="text-sm font-medium">✍️ اكتب محتوى</p>
                   </CardAdvanced>
 
-                  <CardAdvanced
-                    elevation="sm"
-                    hoverable
-                    pressable
-                    className="p-4 cursor-pointer"
-                  >
+                  <CardAdvanced elevation="sm" hoverable pressable className="cursor-pointer p-4">
                     <p className="text-sm font-medium">🔍 ابحث عن معلومة</p>
                   </CardAdvanced>
 
-                  <CardAdvanced
-                    elevation="sm"
-                    hoverable
-                    pressable
-                    className="p-4 cursor-pointer"
-                  >
+                  <CardAdvanced elevation="sm" hoverable pressable className="cursor-pointer p-4">
                     <p className="text-sm font-medium">🎨 صمم فكرة</p>
                   </CardAdvanced>
                 </div>
@@ -317,27 +285,20 @@ export default function ChatPageEnhanced() {
 
         {/* Loading State */}
         {isLoading && (
-          <motion.div
-            className="px-6 py-2"
-            {...motionVariants.fadeIn}
-          >
+          <motion.div className="px-6 py-2" {...motionVariants.fadeIn}>
             <SkeletonChatMessage />
           </motion.div>
         )}
 
         {/* Input Area */}
         <motion.div
-          className="flex-shrink-0 border-t border-white/10 bg-surface-1/50 backdrop-blur-xl p-4"
+          className="bg-surface-1/50 flex-shrink-0 border-t border-white/10 p-4 backdrop-blur-xl"
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ type: 'spring', stiffness: 300, damping: 30, delay: 0.1 }}
         >
           <div className="container mx-auto max-w-4xl">
-            <InputArea
-              onSend={handleSendMessage}
-              isLoading={isLoading}
-              disabled={isLoading}
-            />
+            <InputArea onSend={handleSendMessage} isLoading={isLoading} disabled={isLoading} />
           </div>
         </motion.div>
       </div>

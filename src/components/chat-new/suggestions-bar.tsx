@@ -1,4 +1,4 @@
-"use client";
+'use client';
 import { ButtonAdvanced } from '@/components/ui/button-advanced';
 import { motion } from 'framer-motion';
 
@@ -18,13 +18,13 @@ export function SuggestionsBar({ visible, onPick }: SuggestionsBarProps) {
   if (!visible) return null;
   return (
     <motion.div
-      className="container mx-auto px-4 mt-4"
+      className="container mx-auto mt-4 px-4"
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.2 }}
     >
-      <div className="flex flex-wrap gap-2 justify-center">
-        {suggestions.map((s) => (
+      <div className="flex flex-wrap justify-center gap-2">
+        {suggestions.map(s => (
           <ButtonAdvanced key={s} variant="outline" size="sm" onClick={() => onPick(s)}>
             {s}
           </ButtonAdvanced>

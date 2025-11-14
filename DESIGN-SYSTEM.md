@@ -9,22 +9,26 @@ This guide provides comprehensive documentation on the new design system impleme
 ## 🌈 Color Palette System
 
 ### Primary Colors
+
 - **Indigo** (`#6366f1`): Primary actions, focus states, key interactive elements
 - **Purple** (`#a855f7`): Secondary accents, hover states
 - **Pink** (`#ec4899`): Tertiary accents, highlights
 
 ### Secondary Colors
+
 - **Cyan** (`#06b6d4`): Information, helpful hints
 - **Amber** (`#fbbf24`): Warnings, alerts
 - **Red** (`#ef4444`): Errors, destructive actions
 
 ### Neutral Palette
+
 - **White** (`#ffffff`): Primary text on dark backgrounds
 - **Slate-100** (`#f1f5f9`): Light mode background
 - **Slate-900** (`#0f172a`): Dark mode background
 - **Slate-950** (`#030712`): Ultra-dark backgrounds
 
 ### Inclusive Gradients
+
 ```css
 /* All Demographics */
 .vibrant-gradient {
@@ -45,6 +49,7 @@ This guide provides comprehensive documentation on the new design system impleme
 ## 📱 Responsive Design Specifications
 
 ### Breakpoints
+
 ```
 Mobile:    < 640px   (sm)
 Tablet:    640-1024px (md)
@@ -52,6 +57,7 @@ Desktop:   > 1024px  (lg)
 ```
 
 ### Font Sizes (Responsive)
+
 ```
 Hero:     5xl (mobile) → 8xl (tablet) → 9xl (desktop)
 Subtitle: xl  (mobile) → 2xl (tablet) → 3xl (desktop)
@@ -59,6 +65,7 @@ Body:     base (consistent across devices)
 ```
 
 ### Component Sizing (8px Grid)
+
 ```
 Spacing Unit:        0.5rem (8px)
 Toolbar Height:      5rem (80px)
@@ -74,48 +81,51 @@ Model Selector:      4rem (64px)
 ### Buttons
 
 #### Primary Button
+
 ```tsx
-<button className="btn-primary">
-  Action Text
-</button>
+<button className="btn-primary">Action Text</button>
 ```
+
 **Styles**: Gradient background, glow effect, hover scale, active feedback
 
 #### Secondary Button
+
 ```tsx
-<button className="btn-secondary">
-  Alternative Action
-</button>
+<button className="btn-secondary">Alternative Action</button>
 ```
+
 **Styles**: Border-based, subtle hover, minimal footprint
 
 ### Cards
 
 #### Premium Card
+
 ```tsx
-<div className="card-premium">
-  Card Content
-</div>
+<div className="card-premium">Card Content</div>
 ```
+
 **Styles**: Rounded borders, backdrop blur, hover effects, shadow transitions
 
 ### Badges
 
 #### AI Badge
+
 ```tsx
-<span className="badge-ai">
-  AI Feature
-</span>
+<span className="badge-ai">AI Feature</span>
 ```
+
 **Styles**: Subtle gradient, border-based, perfect for labeling
 
 ### Input Fields
 
 #### Enhanced Input
+
 ```tsx
 <input className="input-enhanced" placeholder="Enter text..." />
 ```
-**Styles**: 
+
+**Styles**:
+
 - Dark background with transparency
 - Clear focus states
 - Smooth transitions
@@ -126,6 +136,7 @@ Model Selector:      4rem (64px)
 ## ✨ Animation System
 
 ### Entrance Animations
+
 ```css
 .animate-slide-in-top   /* From top with fade */
 .animate-slide-in-bottom /* From bottom with fade */
@@ -134,6 +145,7 @@ Model Selector:      4rem (64px)
 ```
 
 ### Continuous Animations
+
 ```css
 .animate-gradient-x    /* Animated gradient shift */
 .animate-pulse-glow    /* Pulsing glow effect */
@@ -141,6 +153,7 @@ Model Selector:      4rem (64px)
 ```
 
 ### Duration Specifications
+
 - **Fast**: 200ms (hover effects)
 - **Normal**: 300ms (general transitions)
 - **Slow**: 600ms (entrance animations)
@@ -151,6 +164,7 @@ Model Selector:      4rem (64px)
 ## 🔄 Transition Effects
 
 ### Easing Functions
+
 ```css
 cubic-bezier(0.16, 1, 0.3, 1)  /* Smooth entrance */
 ease-in-out                       /* Linear transitions */
@@ -158,6 +172,7 @@ cubic-bezier(0.4, 0, 0.2, 1)    /* Smooth exit */
 ```
 
 ### Transform Properties
+
 ```css
 transform: scale(1.05)           /* Hover scale */
 transform: translateY(-8px)      /* Lift effect */
@@ -169,11 +184,13 @@ transform: translateX(100%)      /* Slide effects */
 ## ♿ Accessibility Features
 
 ### Color Contrast
+
 - **WCAG AA**: 4.5:1 minimum for text
 - **WCAG AAA**: 7:1 for enhanced contrast
 - Tested with accessibility tools
 
 ### Focus States
+
 ```css
 .focus-visible {
   outline: 2px solid #6366f1;
@@ -182,6 +199,7 @@ transform: translateX(100%)      /* Slide effects */
 ```
 
 ### Motion Preferences
+
 ```css
 @media (prefers-reduced-motion: reduce) {
   * {
@@ -193,6 +211,7 @@ transform: translateX(100%)      /* Slide effects */
 ```
 
 ### High Contrast Mode
+
 ```css
 @media (prefers-contrast: more) {
   .glass-effect {
@@ -207,12 +226,14 @@ transform: translateX(100%)      /* Slide effects */
 ## 🎭 Typography System
 
 ### Font Stack
+
 ```css
 English: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif
 Arabic:  'Cairo', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif
 ```
 
 ### Font Weights
+
 ```
 Light:      300
 Regular:    400
@@ -222,6 +243,7 @@ Black:      900
 ```
 
 ### Text Sizes
+
 ```
 xs:  12px (0.75rem)
 sm:  14px (0.875rem)
@@ -236,6 +258,7 @@ xl:  20px (1.25rem)
 ## 🌙 Dark Mode Implementation
 
 ### Color Scheme
+
 ```tsx
 /* CSS Variables */
 --background: 240 10% 3.9%    /* Dark background */
@@ -245,6 +268,7 @@ xl:  20px (1.25rem)
 ```
 
 ### Dark Mode Class
+
 ```tsx
 <html lang="en" className="dark">
   {/* Content */}
@@ -256,6 +280,7 @@ xl:  20px (1.25rem)
 ## 📊 Layout System
 
 ### Main Layout Grid
+
 ```
 ┌─────────────────────────────────────┐
 │      Header (Toolbar)               │  80px
@@ -269,6 +294,7 @@ xl:  20px (1.25rem)
 ```
 
 ### Sidebar Toggle
+
 - Mobile: Overlay on main content
 - Tablet+: Side-by-side layout
 
@@ -277,19 +303,17 @@ xl:  20px (1.25rem)
 ## 🔍 Debug Tools
 
 ### Grid Overlay
+
 ```tsx
 /* Add to body class in layout.tsx */
-<body className="debug-grid">
-  {/* Shows 64px grid + 8px baseline */}
-</body>
+<body className="debug-grid">{/* Shows 64px grid + 8px baseline */}</body>
 ```
 
 ### Center Crosshair
+
 ```tsx
 /* Add to body class in layout.tsx */
-<body className="debug-center">
-  {/* Shows optical center at 54% from top */}
-</body>
+<body className="debug-center">{/* Shows optical center at 54% from top */}</body>
 ```
 
 ---
@@ -297,6 +321,7 @@ xl:  20px (1.25rem)
 ## 🎨 Custom CSS Utilities
 
 ### Utility Classes
+
 ```css
 /* Borders */
 .neural-border          /* Left accent border */
@@ -325,12 +350,14 @@ xl:  20px (1.25rem)
 ## 🚀 Performance Considerations
 
 ### Optimization Techniques
+
 1. **CSS Minification**: Automatic with Next.js
 2. **GPU Acceleration**: 3D transforms for smooth animations
 3. **Lazy Loading**: Images loaded on demand
 4. **Critical CSS**: Essential styles loaded first
 
 ### Animation Performance
+
 - Use `transform` and `opacity` for best performance
 - Avoid animating `width`, `height`, `position`
 - GPU layers created with `will-change`
@@ -340,13 +367,13 @@ xl:  20px (1.25rem)
 ## 📚 Usage Examples
 
 ### Creating a Custom Button
+
 ```tsx
-<button className="btn-primary btn-hover-effect focus-visible">
-  Click Me
-</button>
+<button className="btn-primary btn-hover-effect focus-visible">Click Me</button>
 ```
 
 ### Creating a Card Component
+
 ```tsx
 <div className="card-premium p-6 hover:shadow-lg">
   <h3 className="font-subtitle mb-4">Title</h3>
@@ -355,18 +382,15 @@ xl:  20px (1.25rem)
 ```
 
 ### Creating an Input Field
+
 ```tsx
-<input 
-  className="input-enhanced" 
-  placeholder="Type something..."
-/>
+<input className="input-enhanced" placeholder="Type something..." />
 ```
 
 ### Creating a Badge
+
 ```tsx
-<span className="badge-ai">
-  Advanced AI
-</span>
+<span className="badge-ai">Advanced AI</span>
 ```
 
 ---
@@ -386,6 +410,7 @@ xl:  20px (1.25rem)
 ## 📞 Support
 
 For questions about the design system:
+
 1. Check the CSS file comments
 2. Review component examples
 3. Test with debug tools
@@ -395,4 +420,3 @@ For questions about the design system:
 
 **Last Updated**: November 2025
 **Version**: 1.0.0
-

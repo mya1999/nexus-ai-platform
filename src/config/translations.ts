@@ -6,18 +6,19 @@ export const translations = {
     hero: {
       title: 'The Future of AI',
       subtitle: 'All in One Place',
-      description: 'Experience the power of multiple AI models unified in a single, elegant platform.',
+      description:
+        'Experience the power of multiple AI models unified in a single, elegant platform.',
       badge: 'Powered by Advanced AI',
       cta: {
         primary: 'Start Chatting',
-        secondary: 'Learn More'
-      }
+        secondary: 'Learn More',
+      },
     },
     stats: {
       models: { title: '10+', subtitle: 'AI Models' },
       conversations: { title: '1M+', subtitle: 'Conversations' },
       uptime: { title: '99.9%', subtitle: 'Uptime' },
-      support: { title: '24/7', subtitle: 'Support' }
+      support: { title: '24/7', subtitle: 'Support' },
     },
     features: {
       aiModels: { title: 'Advanced AI Models', description: 'Access GPT-4, Claude, and Gemini.' },
@@ -25,11 +26,11 @@ export const translations = {
       security: { title: 'Enterprise Security', description: 'Bank-grade encryption.' },
       multiModal: { title: 'Multi-modal Support', description: 'Text, code, and images.' },
       availability: { title: '24/7 Availability', description: 'Always accessible.' },
-      api: { title: 'API Integration', description: 'Seamless integration.' }
+      api: { title: 'API Integration', description: 'Seamless integration.' },
     },
     footer: {
-      copyright: 'All rights reserved.'
-    }
+      copyright: 'All rights reserved.',
+    },
   },
   ar: {
     hero: {
@@ -39,14 +40,14 @@ export const translations = {
       badge: 'مدعوم بذكاء اصطناعي متقدم',
       cta: {
         primary: 'ابدأ المحادثة',
-        secondary: 'اعرف المزيد'
-      }
+        secondary: 'اعرف المزيد',
+      },
     },
     stats: {
       models: { title: '10+', subtitle: 'نموذج ذكاء' },
       conversations: { title: '1م+', subtitle: 'محادثة' },
       uptime: { title: '99.9%', subtitle: 'وقت التشغيل' },
-      support: { title: '24/7', subtitle: 'دعم فني' }
+      support: { title: '24/7', subtitle: 'دعم فني' },
     },
     features: {
       aiModels: { title: 'نماذج ذكاء متقدمة', description: 'الوصول إلى GPT-4 و Claude و Gemini.' },
@@ -54,10 +55,10 @@ export const translations = {
       security: { title: 'أمان المؤسسات', description: 'تشفير بمستوى بنكي.' },
       multiModal: { title: 'دعم متعدد الوسائط', description: 'نصوص وأكواد وصور.' },
       availability: { title: 'متاح 24/7', description: 'دائماً في خدمتك.' },
-      api: { title: 'تكامل API', description: 'تكامل سلس.' }
+      api: { title: 'تكامل API', description: 'تكامل سلس.' },
     },
     footer: {
-      copyright: 'جميع الحقوق محفوظة.'
-    }
-  }
+      copyright: 'جميع الحقوق محفوظة.',
+    },
+  },
 } as const;

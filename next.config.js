@@ -11,7 +11,7 @@ const nextConfig = {
       '@radix-ui/react-avatar',
       '@radix-ui/react-dialog',
       '@radix-ui/react-dropdown-menu',
-      'lucide-react'
+      'lucide-react',
     ],
     serverActions: {
       bodySizeLimit: '10mb',

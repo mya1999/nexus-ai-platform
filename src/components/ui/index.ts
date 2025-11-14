@@ -9,4 +9,3 @@ export type { ButtonProps } from './button';
 export type { CardProps } from './card';
 export type { InputProps } from './input';
 export type { ModalProps } from './modal';
-

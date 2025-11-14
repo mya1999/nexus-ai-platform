@@ -1,4 +1,4 @@
-"use client";
+'use client';
 
 import { ButtonAdvanced } from '@/components/ui/button-advanced';
 import Modal from '@/components/ui/modal';
@@ -12,13 +12,15 @@ interface SettingsModalProps {
 
 type TabId = 'general' | 'appearance' | 'chat' | 'models';
 
-function TabButton({ label, active, onClick }: Readonly<{ id: TabId; label: string; active: boolean; onClick: () => void }>) {
+function TabButton({
+  label,
+  active,
+  onClick,
+}: Readonly<{ id: TabId; label: string; active: boolean; onClick: () => void }>) {
   return (
     <button
       onClick={onClick}
-      className={`px-4 py-2 rounded-xl text-sm font-medium transition-all duration-200 relative
-        ${active ? 'bg-gradient-to-r from-brand-primary to-brand-accent text-white shadow-glow-purple' : 'bg-white/5 hover:bg-white/10 text-gray-300'}
-      `}
+      className={`relative rounded-xl px-4 py-2 text-sm font-medium transition-all duration-200 ${active ? 'from-brand-primary to-brand-accent bg-gradient-to-r text-white shadow-glow-purple' : 'bg-white/5 text-gray-300 hover:bg-white/10'} `}
       aria-current={active ? 'true' : undefined}
     >
       {label}
@@ -35,26 +37,46 @@ export function SettingsModal({ open, onClose }: Readonly<SettingsModalProps>) {
       <div className="space-y-6">
         {/* Tabs */}
         <div className="flex flex-wrap gap-2">
-          <TabButton id="general" label="عام" active={activeTab === 'general'} onClick={() => setActiveTab('general')} />
-          <TabButton id="appearance" label="المظهر" active={activeTab === 'appearance'} onClick={() => setActiveTab('appearance')} />
-          <TabButton id="chat" label="المحادثة" active={activeTab === 'chat'} onClick={() => setActiveTab('chat')} />
-          <TabButton id="models" label="النماذج" active={activeTab === 'models'} onClick={() => setActiveTab('models')} />
+          <TabButton
+            id="general"
+            label="عام"
+            active={activeTab === 'general'}
+            onClick={() => setActiveTab('general')}
+          />
+          <TabButton
+            id="appearance"
+            label="المظهر"
+            active={activeTab === 'appearance'}
+            onClick={() => setActiveTab('appearance')}
+          />
+          <TabButton
+            id="chat"
+            label="المحادثة"
+            active={activeTab === 'chat'}
+            onClick={() => setActiveTab('chat')}
+          />
+          <TabButton
+            id="models"
+            label="النماذج"
+            active={activeTab === 'models'}
+            onClick={() => setActiveTab('models')}
+          />
         </div>
 
         {/* Content */}
-        <div className="min-h-[260px] border border-white/10 rounded-2xl p-6 bg-white/5 backdrop-blur-xl">
+        <div className="min-h-[260px] rounded-2xl border border-white/10 bg-white/5 p-6 backdrop-blur-xl">
           {activeTab === 'general' && (
             <div className="space-y-4 text-sm leading-relaxed">
-              <h3 className="text-lg font-semibold text-white mb-2">الإعدادات العامة</h3>
+              <h3 className="mb-2 text-lg font-semibold text-white">الإعدادات العامة</h3>
               <p className="text-gray-300">هنا ستكون إعدادات اللغة، السلوك، والحفظ التلقائي.</p>
-              <div className="grid sm:grid-cols-2 gap-4 mt-4">
-                <div className="p-4 rounded-xl bg-black/30 border border-white/10">
-                  <p className="text-xs text-gray-400 mb-1">وضع الحفظ</p>
-                  <p className="text-white font-medium">تلقائي</p>
+              <div className="mt-4 grid gap-4 sm:grid-cols-2">
+                <div className="rounded-xl border border-white/10 bg-black/30 p-4">
+                  <p className="mb-1 text-xs text-gray-400">وضع الحفظ</p>
+                  <p className="font-medium text-white">تلقائي</p>
                 </div>
-                <div className="p-4 rounded-xl bg-black/30 border border-white/10">
-                  <p className="text-xs text-gray-400 mb-1">الوضع الحالي</p>
-                  <p className="text-white font-medium">تجريبي</p>
+                <div className="rounded-xl border border-white/10 bg-black/30 p-4">
+                  <p className="mb-1 text-xs text-gray-400">الوضع الحالي</p>
+                  <p className="font-medium text-white">تجريبي</p>
                 </div>
               </div>
             </div>
@@ -62,14 +84,18 @@ export function SettingsModal({ open, onClose }: Readonly<SettingsModalProps>) {
 
           {activeTab === 'appearance' && (
             <div className="space-y-6">
-              <h3 className="text-lg font-semibold text-white mb-2">المظهر و التخصيص العصبي</h3>
-              <p className="text-gray-300 text-sm">تحكم في الحركة، حجم النص، و كثافة الواجهة لتقليل الحمل المعرفي وتحسين التركيز.</p>
+              <h3 className="mb-2 text-lg font-semibold text-white">المظهر و التخصيص العصبي</h3>
+              <p className="text-sm text-gray-300">
+                تحكم في الحركة، حجم النص، و كثافة الواجهة لتقليل الحمل المعرفي وتحسين التركيز.
+              </p>
 
               {/* Reduce Motion */}
-              <div className="flex items-start justify-between gap-4 p-4 rounded-xl bg-black/30 border border-white/10">
+              <div className="flex items-start justify-between gap-4 rounded-xl border border-white/10 bg-black/30 p-4">
                 <div>
-                  <p className="text-sm font-medium text-white mb-1">تقليل الحركة</p>
-                  <p className="text-xs text-gray-400">تعطيل أو تخفيف الحركات والانتقالات الطويلة.</p>
+                  <p className="mb-1 text-sm font-medium text-white">تقليل الحركة</p>
+                  <p className="text-xs text-gray-400">
+                    تعطيل أو تخفيف الحركات والانتقالات الطويلة.
+                  </p>
                 </div>
                 <ButtonAdvanced
                   variant={uiPrefs.reduceMotion ? 'primary' : 'ghost'}
@@ -83,8 +109,8 @@ export function SettingsModal({ open, onClose }: Readonly<SettingsModalProps>) {
               </div>
 
               {/* Font Scale */}
-              <div className="space-y-3 p-4 rounded-xl bg-black/30 border border-white/10">
-                <p className="text-sm font-medium text-white mb-1">حجم الخط</p>
+              <div className="space-y-3 rounded-xl border border-white/10 bg-black/30 p-4">
+                <p className="mb-1 text-sm font-medium text-white">حجم الخط</p>
                 <p className="text-xs text-gray-400">التحكم في مقياس الخط العام (0.85 - 1.50).</p>
                 <div className="flex items-center gap-4">
                   <input
@@ -93,24 +119,31 @@ export function SettingsModal({ open, onClose }: Readonly<SettingsModalProps>) {
                     max={1.5}
                     step={0.01}
                     value={uiPrefs.fontScale}
-                    onChange={(e) => setFontScale(Number.parseFloat(e.target.value))}
+                    onChange={e => setFontScale(Number.parseFloat(e.target.value))}
                     aria-label="تغيير حجم الخط"
-                    className="flex-1 accent-brand-primary"
+                    className="accent-brand-primary flex-1"
                   />
-                  <span className="text-xs text-gray-300 w-12 text-end tabular-nums">{uiPrefs.fontScale.toFixed(2)}</span>
+                  <span className="w-12 text-end text-xs tabular-nums text-gray-300">
+                    {uiPrefs.fontScale.toFixed(2)}
+                  </span>
                 </div>
               </div>
 
               {/* Density */}
-              <div className="space-y-3 p-4 rounded-xl bg-black/30 border border-white/10">
-                <p className="text-sm font-medium text-white mb-1">الكثافة</p>
-                <p className="text-xs text-gray-400">اختيار تباعد الرسائل والعناصر لإدارة مجال الانتباه.</p>
+              <div className="space-y-3 rounded-xl border border-white/10 bg-black/30 p-4">
+                <p className="mb-1 text-sm font-medium text-white">الكثافة</p>
+                <p className="text-xs text-gray-400">
+                  اختيار تباعد الرسائل والعناصر لإدارة مجال الانتباه.
+                </p>
                 <fieldset className="flex gap-2" aria-label="اختيار الكثافة">
                   <legend className="sr-only">الكثافة</legend>
-                  {(['comfortable','compact'] as const).map(d => {
+                  {(['comfortable', 'compact'] as const).map(d => {
                     const checked = uiPrefs.density === d;
                     return (
-                      <label key={d} className={`cursor-pointer px-3 py-2 rounded-md text-xs font-medium transition-all border ${checked ? 'bg-gradient-to-r from-brand-primary to-brand-accent text-white border-brand-primary/50' : 'bg-white/5 hover:bg-white/10 text-gray-300 border-white/10'}`}>
+                      <label
+                        key={d}
+                        className={`cursor-pointer rounded-md border px-3 py-2 text-xs font-medium transition-all ${checked ? 'from-brand-primary to-brand-accent border-brand-primary/50 bg-gradient-to-r text-white' : 'border-white/10 bg-white/5 text-gray-300 hover:bg-white/10'}`}
+                      >
                         <input
                           type="radio"
                           name="density"
@@ -130,11 +163,16 @@ export function SettingsModal({ open, onClose }: Readonly<SettingsModalProps>) {
 
           {activeTab === 'chat' && (
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-white mb-2">المحادثة</h3>
-              <p className="text-gray-300 text-sm">إعدادات النبرة، سرعة الاستجابة، وتنسيق الرسائل.</p>
-              <div className="grid sm:grid-cols-3 gap-4">
-                {['سريع','متوازن','دقيق'].map(mode => (
-                  <button key={mode} className="p-3 rounded-xl bg-white/5 hover:bg-white/10 text-white text-sm border border-white/10 transition-all">
+              <h3 className="mb-2 text-lg font-semibold text-white">المحادثة</h3>
+              <p className="text-sm text-gray-300">
+                إعدادات النبرة، سرعة الاستجابة، وتنسيق الرسائل.
+              </p>
+              <div className="grid gap-4 sm:grid-cols-3">
+                {['سريع', 'متوازن', 'دقيق'].map(mode => (
+                  <button
+                    key={mode}
+                    className="rounded-xl border border-white/10 bg-white/5 p-3 text-sm text-white transition-all hover:bg-white/10"
+                  >
                     {mode}
                   </button>
                 ))}
@@ -144,13 +182,20 @@ export function SettingsModal({ open, onClose }: Readonly<SettingsModalProps>) {
 
           {activeTab === 'models' && (
             <div className="space-y-4">
-              <h3 className="text-lg font-semibold text-white mb-2">النماذج</h3>
-              <p className="text-gray-300 text-sm">سيتم إضافة إدارة النماذج، المفاتيح، وتخصيص الأوزان لاحقاً.</p>
-              <div className="grid sm:grid-cols-2 gap-4">
-                {['GPT-4 Turbo','Claude 3','Gemini','Llama 3'].map(m => (
-                  <div key={m} className="p-4 rounded-xl bg-black/30 border border-white/10 flex items-center justify-between">
-                    <span className="text-white text-sm">{m}</span>
-                    <span className="px-2 py-1 text-[10px] rounded bg-white/10 text-gray-300">مفعل</span>
+              <h3 className="mb-2 text-lg font-semibold text-white">النماذج</h3>
+              <p className="text-sm text-gray-300">
+                سيتم إضافة إدارة النماذج، المفاتيح، وتخصيص الأوزان لاحقاً.
+              </p>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {['GPT-4 Turbo', 'Claude 3', 'Gemini', 'Llama 3'].map(m => (
+                  <div
+                    key={m}
+                    className="flex items-center justify-between rounded-xl border border-white/10 bg-black/30 p-4"
+                  >
+                    <span className="text-sm text-white">{m}</span>
+                    <span className="rounded bg-white/10 px-2 py-1 text-[10px] text-gray-300">
+                      مفعل
+                    </span>
                   </div>
                 ))}
               </div>
@@ -160,8 +205,12 @@ export function SettingsModal({ open, onClose }: Readonly<SettingsModalProps>) {
 
         {/* Footer */}
         <div className="flex items-center justify-end gap-3 pt-2">
-          <ButtonAdvanced variant="ghost" size="sm" onClick={onClose}>إغلاق</ButtonAdvanced>
-          <ButtonAdvanced variant="primary" size="sm">حفظ التغييرات</ButtonAdvanced>
+          <ButtonAdvanced variant="ghost" size="sm" onClick={onClose}>
+            إغلاق
+          </ButtonAdvanced>
+          <ButtonAdvanced variant="primary" size="sm">
+            حفظ التغييرات
+          </ButtonAdvanced>
         </div>
       </div>
     </Modal>
