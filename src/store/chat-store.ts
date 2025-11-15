@@ -1,0 +1,188 @@
+import { create } from 'zustand';
+import { persist } from 'zustand/middleware';
+
+export interface Message {
+  id: string;
+  role: 'user' | 'assistant';
+  content: string;
+  timestamp: Date;
+}
+
+export interface Chat {
+  id: string;
+  title: string;
+  messages: Message[];
+  modelId: string;
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+interface ChatStore {
+  chats: Chat[];
+  currentChatId: string | null;
+  isDarkMode: boolean;
+  uiPrefs: {
+    reduceMotion: boolean;
+    fontScale: number; // 1 = base
+    density: 'compact' | 'comfortable';
+  };
+
+  createChat: () => string;
+  deleteChat: (id: string) => void;
+  setCurrentChat: (id: string) => void;
+  addMessage: (chatId: string, message: Omit<Message, 'id' | 'timestamp'>) => void;
+  updateChatTitle: (chatId: string, title: string) => void;
+  setModelForChat: (chatId: string, modelId: string) => void;
+  toggleDarkMode: () => void;
+  clearAllChats: () => void;
+  setReduceMotion: (value: boolean) => void;
+  setFontScale: (value: number) => void;
+  setDensity: (value: 'compact' | 'comfortable') => void;
+}
+
+export const useChatStore = create<ChatStore>()(
+  persist(
+    (set, _get) => ({
+      chats: [],
+      currentChatId: null,
+      isDarkMode: false,
+      uiPrefs: {
+        reduceMotion: false,
+        fontScale: 1,
+        density: 'comfortable',
+      },
+
+      createChat: () => {
+        const newChat: Chat = {
+          id: 'chat-' + Date.now() + '-' + Math.random().toString(36).slice(2, 11),
+          title: 'New Conversation',
+          messages: [],
+          modelId: 'gpt-4-turbo',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        };
+
+        set(state => ({
+          chats: [newChat, ...state.chats],
+          currentChatId: newChat.id,
+        }));
+
+        return newChat.id;
+      },
+
+      deleteChat: (id: string) => {
+        set(state => {
+          const newChats = state.chats.filter(chat => chat.id !== id);
+          return {
+            chats: newChats,
+            currentChatId:
+              state.currentChatId === id ? newChats[0]?.id || null : state.currentChatId,
+          };
+        });
+      },
+
+      setCurrentChat: (id: string) => {
+        set({ currentChatId: id });
+      },
+
+      addMessage: (chatId: string, message: Omit<Message, 'id' | 'timestamp'>) => {
+        set(state => {
+          const chatIndex = state.chats.findIndex(c => c.id === chatId);
+          if (chatIndex === -1) return state;
+
+          const newChats = [...state.chats];
+          const chat = newChats[chatIndex];
+
+          const newMessage: Message = {
+            ...message,
+            id: 'msg-' + Date.now() + '-' + Math.random().toString(36).slice(2, 11),
+            timestamp: new Date(),
+          };
+
+          if (chat.messages.length === 0 && message.role === 'user') {
+            const title = message.content.slice(0, 50) + (message.content.length > 50 ? '...' : '');
+            chat.title = title;
+          }
+
+          chat.messages.push(newMessage);
+          chat.updatedAt = new Date();
+
+          return { chats: newChats };
+        });
+      },
+
+      updateChatTitle: (chatId: string, title: string) => {
+        set(state => {
+          const chatIndex = state.chats.findIndex(c => c.id === chatId);
+          if (chatIndex === -1) return state;
+
+          const newChats = [...state.chats];
+          newChats[chatIndex].title = title;
+          newChats[chatIndex].updatedAt = new Date();
+
+          return { chats: newChats };
+        });
+      },
+
+      setModelForChat: (chatId: string, modelId: string) => {
+        set(state => {
+          const chatIndex = state.chats.findIndex(c => c.id === chatId);
+          if (chatIndex === -1) return state;
+
+          const newChats = [...state.chats];
+          newChats[chatIndex].modelId = modelId;
+          newChats[chatIndex].updatedAt = new Date();
+
+          return { chats: newChats };
+        });
+      },
+
+      toggleDarkMode: () => {
+        set(state => ({ isDarkMode: !state.isDarkMode }));
+      },
+
+      setReduceMotion: (value: boolean) => {
+        set(state => ({ uiPrefs: { ...state.uiPrefs, reduceMotion: value } }));
+      },
+      setFontScale: (value: number) => {
+        // clamp between 0.85 and 1.5 for safety
+        const clamped = Math.min(1.5, Math.max(0.85, value));
+        set(state => ({ uiPrefs: { ...state.uiPrefs, fontScale: clamped } }));
+      },
+      setDensity: (value: 'compact' | 'comfortable') => {
+        set(state => ({ uiPrefs: { ...state.uiPrefs, density: value } }));
+      },
+
+      clearAllChats: () => {
+        set({ chats: [], currentChatId: null });
+      },
+    }),
+    {
+      name: 'nexus-chat-storage',
+      storage: {
+        getItem: async (name: string) => {
+          try {
+            const item = localStorage.getItem(name);
+            return item ? JSON.parse(item) : null;
+          } catch {
+            return null;
+          }
+        },
+        setItem: async (name: string, value: unknown) => {
+          try {
+            localStorage.setItem(name, JSON.stringify(value));
+          } catch {
+            // Silently fail if localStorage is not available
+          }
+        },
+        removeItem: async (name: string) => {
+          try {
+            localStorage.removeItem(name);
+          } catch {
+            // Silently fail
+          }
+        },
+      },
+    }
+  )
+);

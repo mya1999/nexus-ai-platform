@@ -1,0 +1,222 @@
+# 🚀 دليل البدء بعد إعادة التشغيل
+
+## ⚡ الخطوات السريعة (3 دقائق)
+
+### 📍 الخطوة 1: افتح المشروع في VS Code
+
+```powershell
+# في PowerShell، انتقل للمجلد
+cd C:\Users\Mohammed\OneDrive\Desktop\nexus-ai-platform
+
+# افتح VS Code
+code .
+```
+
+---
+
+### 📍 الخطوة 2: اختر طريقة البدء
+
+#### ⚡ الطريقة السريعة (موصى بها):
+
+```powershell
+# في Terminal داخل VS Code
+./quick-start.ps1
+```
+
+**ماذا يفعل؟**
+
+- ✅ يتحقق من الاعتماديات
+- ✅ يثبتها إن لم تكن موجودة
+- ✅ ينشئ .env.local
+- ✅ يبدأ الخادم تلقائياً
+
+---
+
+#### 🔧 الطريقة الكاملة (للمرة الأولى):
+
+```powershell
+# 1. إعداد شامل
+./scripts/auto-setup.ps1
+
+# 2. بدء التطوير
+npm run dev
+```
+
+**ماذا يفعل auto-setup؟**
+
+- ✅ تثبيت الحزم
+- ✅ فحص VS Code والإضافات
+- ✅ إعداد Git
+- ✅ التحقق من الأدوات
+- ✅ الفحوصات الأولية
+
+---
+
+### 📍 الخطوة 3: إضافة مفاتيح API (مهم!)
+
+افتح ملف `.env.local` وأضف مفاتيحك:
+
+```env
+# OpenAI (احصل عليه من: https://platform.openai.com/api-keys)
+OPENAI_API_KEY=sk-...
+
+# Anthropic - اختياري
+ANTHROPIC_API_KEY=sk-ant-...
+
+# Google AI - اختياري
+GOOGLE_AI_API_KEY=...
+```
+
+> 💡 **ملاحظة**: بدون مفاتيح API، لن تعمل ميزات الدردشة مع الذكاء الاصطناعي
+
+---
+
+### 📍 الخطوة 4: افتح المتصفح
+
+بعد بدء الخادم، افتح:
+
+```
+http://localhost:3000
+```
+
+**يجب أن ترى:**
+
+- ✅ الصفحة الرئيسية لـ NexusAI
+- ✅ واجهة الدردشة
+- ✅ اختيار النماذج
+
+---
+
+## 🛠️ الأوامر المفيدة
+
+### التطوير اليومي
+
+```powershell
+# بدء التطوير
+npm run dev
+
+# فحص الأخطاء
+npm run typecheck
+
+# فحص الكود
+npm run lint
+
+# إصلاح تلقائي
+npm run fix
+
+# فحص شامل
+npm run validate
+```
+
+---
+
+### أدوات الصيانة
+
+```powershell
+# تشخيص النظام الكامل
+./scripts/system-diagnostics.ps1
+
+# تحديث ذكي وآمن
+./scripts/smart-update.ps1
+
+# إعادة الإعداد الكامل
+./scripts/auto-setup.ps1
+```
+
+---
+
+## ⚠️ حل المشاكل الشائعة
+
+### المشكلة: Port 3000 محجوز
+
+```powershell
+# الحل: استخدم منفذ مختلف
+npm run dev -- -p 3001
+```
+
+---
+
+### المشكلة: خطأ في تثبيت الحزم
+
+```powershell
+# الحل: تنظيف وإعادة التثبيت
+npm run clean:install
+```
+
+---
+
+### المشكلة: أخطاء TypeScript
+
+```powershell
+# الحل: فحص وإصلاح
+npm run typecheck
+npm run lint:fix
+```
+
+---
+
+### المشكلة: لا تظهر اقتراحات Copilot
+
+**الحل:**
+
+1. اضغط `Ctrl+Shift+P`
+2. اكتب "GitHub Copilot: Sign In"
+3. سجّل الدخول بحسابك
+
+---
+
+## 📚 الملفات المهمة
+
+| الملف                       | الوصف                    |
+| --------------------------- | ------------------------ |
+| `docs/QUICK-START.md`       | دليل شامل للبدء          |
+| `docs/PROJECT-STRUCTURE.md` | هيكل المشروع             |
+| `docs/AI-INTEGRATION.md`    | دليل الذكاء الاصطناعي    |
+| `UPGRADE-SUMMARY.md`        | ملخص التحسينات           |
+| `.env.local`                | مفاتيح API (أضف مفاتيحك) |
+
+---
+
+## ✅ قائمة التحقق السريعة
+
+بعد إعادة التشغيل، تأكد من:
+
+- [ ] فتحت VS Code في مجلد المشروع
+- [ ] شغّلت `./quick-start.ps1` أو `npm run dev`
+- [ ] أضفت مفاتيح API في `.env.local`
+- [ ] فتحت `http://localhost:3000`
+- [ ] الموقع يعمل بشكل صحيح
+- [ ] GitHub Copilot مفعّل (اختياري)
+
+---
+
+## 🎯 الخلاصة
+
+**الأمر الوحيد الذي تحتاجه:**
+
+```powershell
+./quick-start.ps1
+```
+
+**ثم افتح:** `http://localhost:3000`
+
+**وأضف مفاتيح API في:** `.env.local`
+
+---
+
+## 💡 نصيحة احترافية
+
+استخدم Tasks في VS Code:
+
+- اضغط `Ctrl+Shift+B`
+- اختر "🚀 Start Development Server"
+
+---
+
+**🎉 جاهز للانطلاق! 🎉**
+
+> للمساعدة التفصيلية: راجع `docs/QUICK-START.md`
+
+---
+
+**آخر تحديث**: 11 نوفمبر 2025

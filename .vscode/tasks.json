@@ -1,0 +1,76 @@
+{
+  "version": "2.0.0",
+  "tasks": [
+    {
+      "label": "🚀 Start Development Server",
+      "type": "shell",
+      "command": "npm run dev",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      },
+      "runOptions": {
+        "runOn": "default"
+      },
+      "group": {
+        "kind": "build",
+        "isDefault": true
+      }
+    },
+    {
+      "label": "✅ Validate & Check",
+      "type": "shell",
+      "command": "npm run validate",
+      "problemMatcher": ["$eslint-compact", "$tsc"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "shared"
+      },
+      "group": "test"
+    },
+    {
+      "label": "🔧 Auto Fix & Format",
+      "type": "shell",
+      "command": "npm run fix",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "silent",
+        "panel": "shared"
+      }
+    },
+    {
+      "label": "🏗️ Build Production",
+      "type": "shell",
+      "command": "npm run prod:build",
+      "problemMatcher": ["$tsc"],
+      "presentation": {
+        "reveal": "always",
+        "panel": "dedicated"
+      },
+      "group": "build"
+    },
+    {
+      "label": "🧹 Clean & Reinstall",
+      "type": "shell",
+      "command": "npm run clean:install",
+      "problemMatcher": [],
+      "presentation": {
+        "reveal": "always",
+        "panel": "new"
+      }
+    },
+    {
+      "label": "🔍 Type Check",
+      "type": "shell",
+      "command": "npm run typecheck",
+      "problemMatcher": ["$tsc-watch"],
+      "isBackground": true,
+      "presentation": {
+        "reveal": "never",
+        "panel": "shared"
+      },
+      "group": "test"
+    }
+  ]
+}
