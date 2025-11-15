@@ -164,18 +164,18 @@ git push origin copilot/vscode1761865374544
 
    **خطأ: "Build exceeded maximum duration"**
 
+   الحل موجود بالفعل في `vercel.json` المقترح أعلاه. خاصية `functions` تسمح بزيادة الذاكرة ومدة التنفيذ.
+
    ```json
-   // vercel.json
+   // في vercel.json
    {
-     "builds": [
-       {
-         "src": "package.json",
-         "use": "@vercel/next",
-         "config": { "maxLambdaSize": "50mb" }
+     "functions": {
+       "api/**/*.ts": {
+         "memory": 3008,
+         "maxDuration": 60
        }
-     ]
+     }
    }
-   ```
 
    **خطأ: "Module parse failed"**
    - تحقق من أن Node.js Version = 20.x في Vercel
