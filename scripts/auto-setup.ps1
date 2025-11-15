@@ -1,16 +1,20 @@
 #!/usr/bin/env pwsh
 <#
 .SYNOPSIS
-    نظام التفعيل التلقائي لأدوات التطوير في NexusAI Platform
-.DESCRIPTION
-    يفعّل ويهيئ جميع الأدوات والإضافات المطلوبة تلقائياً
-    مع التحقق من التوافق والإعدادات المثلى
+سكربت الإعداد التلقائي الشامل لمشروع Nexus AI Platform
+مع التحقق من التوافق والإعدادات المثلى
 .NOTES
-    Version: 2.0.0
-    Author: NexusAI Development Team
+Version: 2.1.0
+Author: NexusAI Development Team
 #>
 
 $ErrorActionPreference = "Stop"
+
+# دالة للتحقق من وجود الأوامر المطلوبة
+function Test-CommandExists {
+    param($command)
+    return [bool](Get-Command $command -ErrorAction SilentlyContinue)
+}
 
 # ====================================
 # 🎨 وظائف العرض
@@ -398,6 +402,13 @@ function Show-SetupSummary {
 # ====================================
 function Start-AutoSetup {
     Write-Header
+
+    # التحقق من المتطلبات الأساسية
+    if (-not (Test-CommandExists "npm")) {
+        Write-Error "❌ خطأ: لم يتم العثور على npm. يرجى تثبيت Node.js (الإصدار 18 أو أحدث) و npm."
+        exit 1
+    }
+    Write-Host "✅ تم التحقق من وجود npm." -ForegroundColor Green
 
     Write-Host "`n⚙️  بدء التفعيل التلقائي...`n" -ForegroundColor Yellow
     Start-Sleep -Seconds 1

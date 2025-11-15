@@ -5,17 +5,17 @@
 
 'use client';
 
-import { motion, AnimatePresence } from 'framer-motion';
+import { AnimatePresence, motion } from 'framer-motion';
 // icons not needed after removing welcome panel
 import { ConversationToolbar } from '@/components/chat-new/conversation-toolbar';
 import { SystemStatusBar } from '@/components/chat-new/system-status-bar';
 import { SettingsModal } from '@/components/settings/settings-modal';
 // Link is handled inside ConversationToolbar
-import { useState, useEffect } from 'react';
 import ChatSidebar from '@/components/chat/chat-sidebar';
 import InputArea from '@/components/chat/input-area';
 import MessageList from '@/components/chat/message-list';
 import ModelSelector from '@/components/chat/model-selector';
+import { useEffect, useState } from 'react';
 // removed advanced button/card from welcome panel
 
 import { ToastContainer, useToastAdvanced } from '@/components/ui/toast-advanced';
@@ -41,19 +41,12 @@ export default function ChatPage() {
   const { toasts, removeToast, success, error: showError } = useToastAdvanced();
   const { chats, currentChatId, createChat, setCurrentChat, addMessage } = useChatStore();
 
-<<<<<<< HEAD
-  // Get current chat or create one if none exists
-  const currentChat =
-    chats.find(c => c.id === currentChatId) ||
-    (() => {
-=======
   // Get current chat
   const currentChat = chats.find(c => c.id === currentChatId);
 
   // Create a chat if none exists (use effect to avoid side effects during render)
   useEffect(() => {
     if (!currentChat && chats.length === 0) {
->>>>>>> origin/copilot/vscode1761865374544
       const newId = createChat();
       setCurrentChat(newId);
     }

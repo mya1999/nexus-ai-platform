@@ -288,6 +288,13 @@ function Test-ProjectIntegrity {
             return $false
         }
 
+        # فحص Lint
+        Write-Host "   ⏳ فحص تنسيق الكود (Lint)..." -ForegroundColor Yellow
+        npm run lint 2>&1 | Out-Null
+        if ($LASTEXITCODE -ne 0) {
+            Write-Warning "توجد أخطاء في تنسيق الكود (Lint). قم بتشغيل 'npm run lint -- --fix' لإصلاحها."
+        }
+
         # فحص TypeScript
         Write-Host "   ⏳ فحص TypeScript..." -ForegroundColor Yellow
         npm run typecheck 2>&1 | Out-Null
