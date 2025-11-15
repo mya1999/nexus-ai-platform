@@ -22,16 +22,16 @@ function Write-Header {
 ║                                                            ║
 ║      🔄 NexusAI Smart Update Manager 🔄                   ║
 ║                                                            ║
-║         نظام إدارة التحديثات الذكي والآمن                ║
+║         نظام إدارة التحديثات
+function Write-Step {
+    param([string]$Message)
+    Write-Host "`n▶ $Message" -ForegroundColor Yellow
+}الذكي والآمن                ║
 ║                                                            ║
 ╚════════════════════════════════════════════════════════════╝
 "@ -ForegroundColor Cyan
 }
 
-function Write-Step {
-    param([string]$Message)
-    Write-Host "`n▶ $Message" -ForegroundColor Yellow
-}
 
 function Write-Success {
     param([string]$Message)
@@ -290,9 +290,10 @@ function Test-ProjectIntegrity {
 
         # فحص Lint
         Write-Host "   ⏳ فحص تنسيق الكود (Lint)..." -ForegroundColor Yellow
-        npm run lint 2>&1 | Out-Null
+        $lintOutput = npm run lint 2>&1
         if ($LASTEXITCODE -ne 0) {
             Write-Warning "توجد أخطاء في تنسيق الكود (Lint). قم بتشغيل 'npm run lint -- --fix' لإصلاحها."
+            Write-Host $lintOutput -ForegroundColor Red
         }
 
         # فحص TypeScript
