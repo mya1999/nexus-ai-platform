@@ -11,7 +11,7 @@ import { ConversationToolbar } from '@/components/chat-new/conversation-toolbar'
 import { SystemStatusBar } from '@/components/chat-new/system-status-bar';
 import { SettingsModal } from '@/components/settings/settings-modal';
 // Link is handled inside ConversationToolbar
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import ChatSidebar from '@/components/chat/chat-sidebar';
 import InputArea from '@/components/chat/input-area';
 import MessageList from '@/components/chat/message-list';
@@ -41,14 +41,23 @@ export default function ChatPage() {
   const { toasts, removeToast, success, error: showError } = useToastAdvanced();
   const { chats, currentChatId, createChat, setCurrentChat, addMessage } = useChatStore();
 
+<<<<<<< HEAD
   // Get current chat or create one if none exists
   const currentChat =
     chats.find(c => c.id === currentChatId) ||
     (() => {
+=======
+  // Get current chat
+  const currentChat = chats.find(c => c.id === currentChatId);
+
+  // Create a chat if none exists (use effect to avoid side effects during render)
+  useEffect(() => {
+    if (!currentChat && chats.length === 0) {
+>>>>>>> origin/copilot/vscode1761865374544
       const newId = createChat();
       setCurrentChat(newId);
-      return chats.find(c => c.id === newId);
-    })();
+    }
+  }, [currentChat, chats.length, createChat, setCurrentChat]);
 
   const handleSendMessage = async (content: string) => {
     if (!currentChat || isLoading) return;
