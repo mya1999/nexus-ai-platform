@@ -74,7 +74,7 @@ const CardAdvanced = React.forwardRef<HTMLDivElement, CardProps>(
         ref={ref}
         className={cn(
           // Base styles
-          'overflow-hidden rounded-2xl transition-all duration-normal',
+          'duration-normal overflow-hidden rounded-2xl transition-all',
 
           // Surface level
           !glassmorphism && cardVariants.surface[surface],

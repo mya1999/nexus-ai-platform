@@ -20,7 +20,7 @@ function TabButton({
   return (
     <button
       onClick={onClick}
-      className={`relative rounded-xl px-4 py-2 text-sm font-medium transition-all duration-200 ${active ? 'from-brand-primary to-brand-accent bg-gradient-to-r text-white shadow-glow-purple' : 'bg-white/5 text-gray-300 hover:bg-white/10'} `}
+      className={`relative rounded-xl px-4 py-2 text-sm font-medium transition-all duration-200 ${active ? 'from-brand-primary to-brand-accent shadow-glow-purple bg-gradient-to-r text-white' : 'bg-white/5 text-gray-300 hover:bg-white/10'} `}
       aria-current={active ? 'true' : undefined}
     >
       {label}

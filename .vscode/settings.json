@@ -252,31 +252,32 @@
   // ═══════════════════════════════════════════════════════════
   // 🚫 تعطيل Extensions غير الضرورية
   // ═══════════════════════════════════════════════════════════
-  
+
   // تعطيل Azure Resources
   "azureResourceGroups.enableTelemetry": false,
-  
+
   // تعطيل GitKraken
   "gitkraken.enabled": false,
-  
+
   // تعطيل Jupyter (إبقاء Built-In فقط)
   "jupyter.widgetScriptSources": [],
   "jupyter.enableExtendedPythonKernelCompletions": false,
-  
+
   // تعطيل Marp
   "markdown.marp.html": "off",
-  
+
   // تعطيل Prisma (إبقاء الأساسي فقط)
   "prisma.showPrismaDataPlatformNotification": false,
-  
+
   // تعطيل SonarQube
   "sonarlint.connectedMode.connections.sonarqube": [],
   "sonarlint.disableTelemetry": true,
-  
+
   // تعطيل Web Search
   "workbench.cloudChanges.autoStore": "off",
-  
+
   // تعطيل GitHub Copilot Extensions غير الضرورية
   "github.copilot.chat.useProjectTemplates": false,
-  "github.copilot.renameSuggestions.triggerAutomatically": false
+  "github.copilot.renameSuggestions.triggerAutomatically": false,
+  "editor.codeActions.triggerOnFocusChange": true
 }

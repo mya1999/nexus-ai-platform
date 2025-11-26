@@ -202,7 +202,7 @@ spring: cubic-bezier(0.68, -0.55, 0.265, 1.55) /* Bounce */
 ### Typography
 
 ```tsx
-<h1 className="text-8xl font-black leading-tighter tracking-tightest">Hero Title</h1>
+<h1 className="leading-tighter tracking-tightest text-8xl font-black">Hero Title</h1>
 ```
 
 ### Spacing
@@ -220,7 +220,7 @@ spring: cubic-bezier(0.68, -0.55, 0.265, 1.55) /* Bounce */
 ### Animation
 
 ```tsx
-<div className="transition-all duration-normal ease-silk hover:scale-105">Smooth interaction</div>
+<div className="duration-normal ease-silk transition-all hover:scale-105">Smooth interaction</div>
 ```
 
 ---

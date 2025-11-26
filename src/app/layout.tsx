@@ -30,15 +30,15 @@ export const viewport: Viewport = {
 
 // Enhanced SEO metadata
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://nexusai.dev'),
+  metadataBase: new URL(process.env.NEXT_PUBLIC_BASE_URL || 'https://zoro-ai.dev'),
 
   title: {
-    default: 'NexusAI - Advanced AI Platform | GPT-4, Claude, Gemini',
-    template: '%s | NexusAI',
+    default: 'ZORO-AI - Advanced AI Platform | GPT-4, Claude, Gemini',
+    template: '%s | ZORO-AI',
   },
 
   description:
-    'Experience the future of AI with NexusAI. Unified platform combining GPT-4, Claude, Gemini and more. Fast, secure, and powerful AI conversations.',
+    'Experience the future of AI with ZORO-AI. Advanced AI conversation platform combining GPT-4, Claude, Gemini and more. Fast, secure, and powerful AI conversations.',
 
   keywords: [
     'artificial intelligence',
@@ -57,9 +57,9 @@ export const metadata: Metadata = {
     'multi-model AI',
   ],
 
-  authors: [{ name: 'NexusAI Team', url: 'https://nexusai.dev' }],
-  creator: 'NexusAI',
-  publisher: 'NexusAI',
+  authors: [{ name: 'ZORO-AI Team', url: 'https://zoro-ai.dev' }],
+  creator: 'ZORO-AI',
+  publisher: 'ZORO-AI',
 
   robots: {
     index: true,
@@ -77,11 +77,11 @@ export const metadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     alternateLocale: ['ar_SA'],
-    url: 'https://nexusai.dev',
-    siteName: 'NexusAI',
-    title: 'NexusAI - Advanced AI Platform',
+    url: 'https://zoro-ai.dev',
+    siteName: 'ZORO-AI',
+    title: 'ZORO-AI - Advanced AI Platform',
     description:
-      'Experience the future of AI. Unified platform combining GPT-4, Claude, Gemini and more.',
+      'Experience the future of AI. Advanced AI conversation platform combining GPT-4, Claude, Gemini and more.',
     images: [
       {
         url: '/og-image.png',
@@ -94,11 +94,11 @@ export const metadata: Metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    title: 'NexusAI - Advanced AI Platform',
+    title: 'ZORO-AI - Advanced AI Platform',
     description:
-      'Experience the future of AI. Unified platform combining GPT-4, Claude, Gemini and more.',
+      'Experience the future of AI. Advanced AI conversation platform combining GPT-4, Claude, Gemini and more.',
     images: ['/twitter-image.png'],
-    creator: '@nexusai',
+    creator: '@zoroai',
   },
 
   manifest: '/manifest.json',
@@ -113,10 +113,10 @@ export const metadata: Metadata = {
   },
 
   alternates: {
-    canonical: 'https://nexusai.dev',
+    canonical: 'https://zoro-ai.dev',
     languages: {
-      'en-US': 'https://nexusai.dev/en',
-      'ar-SA': 'https://nexusai.dev/ar',
+      'en-US': 'https://zoro-ai.dev/en',
+      'ar-SA': 'https://zoro-ai.dev/ar',
     },
   },
 
@@ -151,9 +151,9 @@ export default function RootLayout({
             __html: JSON.stringify({
               '@context': 'https://schema.org',
               '@type': 'WebApplication',
-              name: 'NexusAI',
-              description: 'Advanced AI platform combining GPT-4, Claude, Gemini and more',
-              url: 'https://nexusai.dev',
+              name: 'ZORO-AI',
+              description: 'Advanced AI conversation platform combining GPT-4, Claude, Gemini and more',
+              url: 'https://zoro-ai.dev',
               applicationCategory: 'BusinessApplication',
               offers: {
                 '@type': 'Offer',

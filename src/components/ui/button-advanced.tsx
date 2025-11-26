@@ -77,7 +77,7 @@ const ButtonAdvanced = React.forwardRef<HTMLButtonElement, ButtonProps>(
         className={cn(
           // Base styles
           'inline-flex items-center justify-center gap-2',
-          'font-medium transition-all duration-normal',
+          'duration-normal font-medium transition-all',
           'focus-visible:ring-brand-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2',
           'disabled:pointer-events-none disabled:opacity-50',
 
