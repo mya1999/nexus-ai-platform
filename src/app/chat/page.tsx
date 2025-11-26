@@ -1,9 +1,29 @@
+/**
+ * ╔═══════════════════════════════════════════════════════════════╗
+ * ║  ZORO-AI Chat Interface - ChatGPT-like Design               ║
+ * ║  Advanced AI Conversation with Beautiful UI/UX                ║
+ * ╚═══════════════════════════════════════════════════════════════╝
+ */
+
 'use client';
 
+import BrandLogo from '@/components/brand-logo';
+import LanguageToggle from '@/components/language-toggle';
+import { useLanguage } from '@/hooks';
 import { AnimatePresence, motion } from 'framer-motion';
-import { ChevronDown, Plus, Send, Settings, Sparkles, Zap } from 'lucide-react';
+import {
+  ChevronDown,
+  Loader2,
+  MessageSquare,
+  Plus,
+  Send,
+  Settings,
+  Sparkles,
+  Trash2,
+} from 'lucide-react';
 import { useEffect, useRef, useState } from 'react';
 
+// Message interface for type safety
 interface Message {
   id: string;
   role: 'user' | 'assistant';
@@ -11,13 +31,15 @@ interface Message {
   timestamp: Date;
 }
 
+// AI Models configuration
 const AI_MODELS = [
-  { id: 'gpt-4-turbo', name: 'GPT-4 Turbo', color: '#00d9ff' },
-  { id: 'claude-3-sonnet', name: 'Claude 3 Sonnet', color: '#8a2be2' },
-  { id: 'gemini-pro', name: 'Gemini Pro', color: '#ff6b6b' },
+  { id: 'gpt-4-turbo', name: 'GPT-4 Turbo', color: '#00d9ff', icon: '🤖' },
+  { id: 'claude-3-sonnet', name: 'Claude 3 Sonnet', color: '#8a2be2', icon: '🧠' },
+  { id: 'gemini-pro', name: 'Gemini Pro', color: '#ff6b6b', icon: '✨' },
 ];
 
 export default function ChatPage() {
+  const { language } = useLanguage();
   const [messages, setMessages] = useState<Message[]>([]);
   const [input, setInput] = useState('');
   const [isLoading, setIsLoading] = useState(false);
@@ -25,7 +47,47 @@ export default function ChatPage() {
   const [showModelSelector, setShowModelSelector] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
+  // Translations for bilingual support
+  const t = {
+    en: {
+      header: {
+        newChat: 'New Chat',
+        settings: 'Settings',
+      },
+      empty: {
+        title: 'ZORO-AI',
+        subtitle: 'Start a new conversation with AI',
+        placeholder: 'Type your message here...',
+      },
+      actions: {
+        send: 'Send',
+        clear: 'Clear Chat',
+      },
+      error: 'Sorry, an error occurred. Please try again.',
+    },
+    ar: {
+      header: {
+        newChat: 'محادثة جديدة',
+        settings: 'الإعدادات',
+      },
+      empty: {
+        title: 'ZORO-AI',
+        subtitle: 'ابدأ محادثة جديدة مع الذكاء الاصطناعي',
+        placeholder: 'اكتب رسالتك هنا...',
+      },
+      actions: {
+        send: 'إرسال',
+        clear: 'مسح المحادثة',
+      },
+      error: 'عذراً، حدث خطأ. يرجى المحاولة مرة أخرى.',
+    },
+  };
+
+  const translations = t[language];
+
+  // Auto-scroll to bottom when new messages arrive
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -34,13 +96,22 @@ export default function ChatPage() {
     scrollToBottom();
   }, [messages]);
 
+  // Auto-resize textarea
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.style.height = 'auto';
+      inputRef.current.style.height = `${Math.min(inputRef.current.scrollHeight, 200)}px`;
+    }
+  }, [input]);
+
+  // Handle sending messages
   const handleSend = async () => {
     if (!input.trim() || isLoading) return;
 
     const userMessage: Message = {
       id: Date.now().toString(),
       role: 'user',
-      content: input,
+      content: input.trim(),
       timestamp: new Date(),
     };
 
@@ -61,37 +132,61 @@ export default function ChatPage() {
         }),
       });
 
+      if (!response.ok) {
+        throw new Error('Failed to get response');
+      }
+
       const data = await response.json();
 
       const assistantMessage: Message = {
         id: (Date.now() + 1).toString(),
         role: 'assistant',
-        content: data.message || 'عذراً، حدث خطأ.',
+        content: data.message || translations.error,
         timestamp: new Date(),
       };
 
       setMessages(prev => [...prev, assistantMessage]);
     } catch (error) {
       console.error('Error:', error);
+      const errorMessage: Message = {
+        id: (Date.now() + 1).toString(),
+        role: 'assistant',
+        content: translations.error,
+        timestamp: new Date(),
+      };
+      setMessages(prev => [...prev, errorMessage]);
     } finally {
       setIsLoading(false);
+      inputRef.current?.focus();
     }
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  // Handle keyboard shortcuts
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
     if (e.key === 'Enter' && !e.shiftKey) {
       e.preventDefault();
       handleSend();
     }
   };
 
+  // Handle new chat
   const handleNewChat = () => {
     setMessages([]);
+    setInput('');
     inputRef.current?.focus();
+  };
+
+  // Handle clear chat
+  const handleClearChat = () => {
+    if (confirm(language === 'ar' ? 'هل أنت متأكد من مسح المحادثة؟' : 'Are you sure you want to clear the chat?')) {
+      setMessages([]);
+      setInput('');
+    }
   };
 
   return (
     <div
+      ref={containerRef}
       className="relative flex h-screen w-full flex-col overflow-hidden"
       style={{
         background: `
@@ -164,7 +259,7 @@ export default function ChatPage() {
         />
       </div>
 
-      {/* 📐 Header */}
+      {/* 📐 Header - Premium Design */}
       <motion.header
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
@@ -177,11 +272,11 @@ export default function ChatPage() {
           boxShadow: '0 4px 30px oklch(0% 0 0 / 0.3)',
         }}
       >
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
-          {/* Logo */}
+        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6">
+          {/* Logo Section */}
           <div className="flex items-center gap-3">
             <div
-              className="flex h-10 w-10 items-center justify-center rounded-lg"
+              className="flex h-10 w-10 items-center justify-center rounded-lg transition-all duration-300 hover:scale-110"
               style={{
                 background: `linear-gradient(135deg, ${selectedModel.color} 0%, #00d9ff 100%)`,
                 boxShadow: `0 0 20px ${selectedModel.color}40`,
@@ -189,80 +284,82 @@ export default function ChatPage() {
             >
               <Sparkles className="h-5 w-5 text-white" />
             </div>
-            <span
-              className="text-xl font-black tracking-tight"
-              style={{
-                background: `linear-gradient(135deg, ${selectedModel.color}, #00d9ff)`,
-                WebkitBackgroundClip: 'text',
-                WebkitTextFillColor: 'transparent',
-              }}
-            >
-              NEXUS-AI
-            </span>
+            <BrandLogo size="sm" />
           </div>
 
-          {/* Actions */}
-          <div className="flex items-center gap-3">
+          {/* Actions Section */}
+          <div className="flex items-center gap-2 sm:gap-3">
             {/* Model Selector */}
             <div className="relative">
               <button
                 onClick={() => setShowModelSelector(!showModelSelector)}
-                className="flex items-center gap-2 rounded-lg px-4 py-2 transition-all duration-300"
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-all duration-300 hover:scale-105 sm:px-4"
                 style={{
                   background: 'oklch(15% 0.08 285 / 0.6)',
                   border: `1px solid ${selectedModel.color}40`,
                   boxShadow: `0 0 20px ${selectedModel.color}20`,
                 }}
               >
-                <Zap className="h-4 w-4" style={{ color: selectedModel.color }} />
-                <span className="text-sm font-semibold text-white">{selectedModel.name}</span>
+                <span className="text-base">{selectedModel.icon}</span>
+                <span className="hidden font-semibold text-white sm:inline">{selectedModel.name}</span>
                 <ChevronDown className="h-4 w-4 text-gray-400" />
               </button>
 
               <AnimatePresence>
                 {showModelSelector && (
-                  <motion.div
-                    initial={{ opacity: 0, y: -10 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -10 }}
-                    className="absolute right-0 top-full mt-2 w-48 overflow-hidden rounded-lg"
-                    style={{
-                      background: 'oklch(12% 0.06 285 / 0.95)',
-                      backdropFilter: 'blur(20px)',
-                      border: '1px solid oklch(65% 0.28 285 / 0.2)',
-                      boxShadow: '0 8px 40px oklch(0% 0 0 / 0.5)',
-                    }}
-                  >
-                    {AI_MODELS.map(model => (
-                      <button
-                        key={model.id}
-                        onClick={() => {
-                          setSelectedModel(model);
-                          setShowModelSelector(false);
-                        }}
-                        className="flex w-full items-center gap-3 px-4 py-3 transition-all duration-200"
-                        style={{
-                          background:
-                            selectedModel.id === model.id ? `${model.color}15` : 'transparent',
-                          borderLeft:
-                            selectedModel.id === model.id
-                              ? `3px solid ${model.color}`
-                              : '3px solid transparent',
-                        }}
-                      >
-                        <div className="h-2 w-2 rounded-full" style={{ background: model.color }} />
-                        <span className="text-sm font-medium text-white">{model.name}</span>
-                      </button>
-                    ))}
-                  </motion.div>
+                  <>
+                    <div
+                      className="fixed inset-0 z-10"
+                      onClick={() => setShowModelSelector(false)}
+                    />
+                    <motion.div
+                      initial={{ opacity: 0, y: -10 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      exit={{ opacity: 0, y: -10 }}
+                      className="absolute right-0 top-full z-20 mt-2 w-56 overflow-hidden rounded-lg"
+                      style={{
+                        background: 'oklch(12% 0.06 285 / 0.95)',
+                        backdropFilter: 'blur(20px)',
+                        border: '1px solid oklch(65% 0.28 285 / 0.2)',
+                        boxShadow: '0 8px 40px oklch(0% 0 0 / 0.5)',
+                      }}
+                    >
+                      {AI_MODELS.map(model => (
+                        <button
+                          key={model.id}
+                          onClick={() => {
+                            setSelectedModel(model);
+                            setShowModelSelector(false);
+                          }}
+                          className="flex w-full items-center gap-3 px-4 py-3 text-left transition-all duration-200 hover:bg-white/5"
+                          style={{
+                            background:
+                              selectedModel.id === model.id ? `${model.color}15` : 'transparent',
+                            borderLeft:
+                              selectedModel.id === model.id
+                                ? `3px solid ${model.color}`
+                                : '3px solid transparent',
+                          }}
+                        >
+                          <span className="text-xl">{model.icon}</span>
+                          <span className="text-sm font-medium text-white">{model.name}</span>
+                        </button>
+                      ))}
+                    </motion.div>
+                  </>
                 )}
               </AnimatePresence>
+            </div>
+
+            {/* Language Toggle */}
+            <div className="hidden sm:block">
+              <LanguageToggle />
             </div>
 
             {/* New Chat */}
             <button
               onClick={handleNewChat}
-              className="flex items-center gap-2 rounded-lg px-4 py-2 transition-all duration-300 hover:scale-105"
+              className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-all duration-300 hover:scale-105 sm:px-4"
               style={{
                 background: 'oklch(15% 0.08 285 / 0.6)',
                 border: '1px solid oklch(65% 0.28 285 / 0.2)',
@@ -270,17 +367,34 @@ export default function ChatPage() {
               }}
             >
               <Plus className="h-4 w-4 text-white" />
-              <span className="text-sm font-semibold text-white">Chat جديد</span>
+              <span className="hidden font-semibold text-white sm:inline">
+                {translations.header.newChat}
+              </span>
             </button>
+
+            {/* Clear Chat */}
+            {messages.length > 0 && (
+              <button
+                onClick={handleClearChat}
+                className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-all duration-300 hover:scale-105"
+                style={{
+                  background: 'oklch(15% 0.08 285 / 0.6)',
+                  border: '1px solid oklch(65% 0.28 285 / 0.2)',
+                }}
+                title={translations.actions.clear}
+              >
+                <Trash2 className="h-4 w-4 text-white" />
+              </button>
+            )}
 
             {/* Settings */}
             <button
-              className="flex items-center gap-2 rounded-lg px-4 py-2 transition-all duration-300 hover:scale-105"
+              className="flex items-center gap-2 rounded-lg px-3 py-2 text-sm transition-all duration-300 hover:scale-105"
               style={{
                 background: 'oklch(15% 0.08 285 / 0.6)',
                 border: '1px solid oklch(65% 0.28 285 / 0.2)',
-                boxShadow: '0 0 20px oklch(0% 0 0 / 0.2)',
               }}
+              title={translations.header.settings}
             >
               <Settings className="h-4 w-4 text-white" />
             </button>
@@ -290,64 +404,65 @@ export default function ChatPage() {
 
       {/* 📝 Chat Area */}
       <div className="relative flex flex-1 flex-col overflow-hidden">
-        <div className="flex-1 overflow-y-auto p-6">
+        <div className="flex-1 overflow-y-auto p-4 sm:p-6">
           {messages.length === 0 ? (
             <div className="flex h-full flex-col items-center justify-center text-center">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.5 }}
-                className="mb-8"
+                className="mb-8 space-y-4"
               >
                 <div
-                  className="mx-auto mb-6 h-24 w-24 rounded-2xl"
+                  className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-2xl"
                   style={{
                     background: `linear-gradient(135deg, ${selectedModel.color} 0%, #00d9ff 100%)`,
                     boxShadow: `0 0 40px ${selectedModel.color}40`,
                   }}
-                />
+                >
+                  <MessageSquare className="h-12 w-12 text-white" />
+                </div>
                 <h1 className="text-4xl font-bold tracking-tight">
-                  <span className="text-white">NEXUS</span>
-                  <span
-                    className="from-brand-primary to-brand-accent bg-gradient-to-r bg-clip-text text-transparent"
-                    style={{
-                      background: `linear-gradient(135deg, ${selectedModel.color}, #00d9ff)`,
-                    }}
-                  >
-                    AI
-                  </span>
+                  <span className="text-white">{translations.empty.title}</span>
                 </h1>
-                <p className="mt-2 text-gray-400">ابدأ محادثة جديدة مع الذكاء الاصطناعي</p>
+                <p className="mt-2 text-gray-400">{translations.empty.subtitle}</p>
               </motion.div>
             </div>
           ) : (
-            <div className="space-y-6">
-              {messages.map(message => (
-                <motion.div
-                  key={message.id}
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.3 }}
-                  className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
-                >
-                  <div
-                    className={`max-w-3xl rounded-2xl px-6 py-4 ${
-                      message.role === 'user'
-                        ? 'bg-brand-primary/20 text-white'
-                        : 'bg-surface-1/50 text-white'
-                    }`}
-                    style={{
-                      backdropFilter: 'blur(10px)',
-                      border:
-                        message.role === 'user'
-                          ? `1px solid ${selectedModel.color}40`
-                          : '1px solid oklch(65% 0.28 285 / 0.2)',
-                    }}
+            <div className="mx-auto max-w-4xl space-y-6">
+              <AnimatePresence>
+                {messages.map((message, index) => (
+                  <motion.div
+                    key={message.id}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.3, delay: index * 0.05 }}
+                    className={`flex ${message.role === 'user' ? 'justify-end' : 'justify-start'}`}
                   >
-                    <p className="whitespace-pre-wrap">{message.content}</p>
-                  </div>
-                </motion.div>
-              ))}
+                    <div
+                      className={`max-w-[85%] rounded-2xl px-4 py-3 sm:max-w-3xl sm:px-6 sm:py-4 ${
+                        message.role === 'user'
+                          ? 'bg-gradient-to-r from-purple-600/30 to-pink-600/30 text-white'
+                          : 'bg-white/5 text-white'
+                      }`}
+                      style={{
+                        backdropFilter: 'blur(10px)',
+                        border:
+                          message.role === 'user'
+                            ? `1px solid ${selectedModel.color}40`
+                            : '1px solid oklch(65% 0.28 285 / 0.2)',
+                      }}
+                    >
+                      <p className="whitespace-pre-wrap text-sm leading-relaxed sm:text-base">
+                        {message.content}
+                      </p>
+                    </div>
+                  </motion.div>
+                ))}
+              </AnimatePresence>
+
+              {/* Loading Indicator */}
               {isLoading && (
                 <motion.div
                   initial={{ opacity: 0 }}
@@ -355,22 +470,17 @@ export default function ChatPage() {
                   className="flex justify-start"
                 >
                   <div
-                    className="bg-surface-1/50 rounded-2xl px-6 py-4 text-white"
+                    className="rounded-2xl bg-white/5 px-6 py-4"
                     style={{
                       backdropFilter: 'blur(10px)',
                       border: '1px solid oklch(65% 0.28 285 / 0.2)',
                     }}
                   >
-                    <div className="flex space-x-2">
-                      <div className="h-2 w-2 animate-bounce rounded-full bg-white"></div>
-                      <div
-                        className="h-2 w-2 animate-bounce rounded-full bg-white"
-                        style={{ animationDelay: '0.2s' }}
-                      ></div>
-                      <div
-                        className="h-2 w-2 animate-bounce rounded-full bg-white"
-                        style={{ animationDelay: '0.4s' }}
-                      ></div>
+                    <div className="flex items-center gap-2">
+                      <Loader2 className="h-5 w-5 animate-spin text-white" />
+                      <span className="text-sm text-gray-400">
+                        {language === 'ar' ? 'جاري التفكير...' : 'Thinking...'}
+                      </span>
                     </div>
                   </div>
                 </motion.div>
@@ -380,7 +490,7 @@ export default function ChatPage() {
           )}
         </div>
 
-        {/* 📥 Input Area */}
+        {/* 📥 Input Area - ChatGPT-like */}
         <motion.div
           initial={{ y: 100, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
@@ -392,23 +502,24 @@ export default function ChatPage() {
             borderColor: 'oklch(65% 0.28 285 / 0.15)',
           }}
         >
-          <div className="mx-auto max-w-7xl px-6 py-4">
-            <div className="flex items-end gap-4">
+          <div className="mx-auto max-w-4xl px-4 py-4 sm:px-6">
+            <div className="flex items-end gap-3">
               <div className="flex-1">
                 <textarea
                   ref={inputRef}
                   value={input}
                   onChange={e => setInput(e.target.value)}
                   onKeyDown={handleKeyDown}
-                  placeholder="اكتب رسالتك هنا..."
-                  className="bg-surface-1/50 focus:ring-brand-primary/50 w-full resize-none rounded-xl px-4 py-3 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2"
-                  rows={1}
+                  placeholder={translations.empty.placeholder}
+                  className="w-full resize-none rounded-xl px-4 py-3 text-white placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500/50"
                   style={{
                     minHeight: '48px',
                     maxHeight: '200px',
+                    background: 'oklch(15% 0.08 285 / 0.6)',
                     border: '1px solid oklch(65% 0.28 285 / 0.2)',
                     backdropFilter: 'blur(10px)',
                   }}
+                  rows={1}
                 />
               </div>
               <motion.button
@@ -416,14 +527,24 @@ export default function ChatPage() {
                 whileTap={{ scale: 0.95 }}
                 onClick={handleSend}
                 disabled={!input.trim() || isLoading}
-                className="bg-brand-primary flex h-12 w-12 items-center justify-center rounded-xl text-white transition-all duration-300 disabled:opacity-50"
+                className="flex h-12 w-12 items-center justify-center rounded-xl text-white transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
                 style={{
+                  background: `linear-gradient(135deg, ${selectedModel.color} 0%, #00d9ff 100%)`,
                   boxShadow: `0 0 20px ${selectedModel.color}40`,
                 }}
               >
-                <Send className="h-5 w-5" />
+                {isLoading ? (
+                  <Loader2 className="h-5 w-5 animate-spin" />
+                ) : (
+                  <Send className="h-5 w-5" />
+                )}
               </motion.button>
             </div>
+            <p className="mt-2 text-center text-xs text-gray-500">
+              {language === 'ar'
+                ? 'اضغط Enter للإرسال، Shift+Enter للسطر الجديد'
+                : 'Press Enter to send, Shift+Enter for new line'}
+            </p>
           </div>
         </motion.div>
       </div>
