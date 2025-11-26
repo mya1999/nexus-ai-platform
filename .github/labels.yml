@@ -11,7 +11,7 @@
   color: 0075ca
   description: 📚 تحسينات التوثيق
 - name: performance
-  color: "00ff00"
+  color: '00ff00'
   description: ⚡ تحسينات الأداء
 - name: security
   color: ee0701

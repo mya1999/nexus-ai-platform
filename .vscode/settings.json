@@ -1,26 +1,216 @@
 {
+  // ═══════════════════════════════════════════════════════════
+  // 🎯 COPILOT TOOLS - MINIMAL CONFIGURATION (15 Essential Only)
+  // ═══════════════════════════════════════════════════════════
+  "github.copilot.chat.codeGeneration.useInstructionFiles": true,
+  "github.copilot.chat.localeOverride": "en",
+
+  // 🚫 تعطيل جميع الأدوات ما عدا الأساسية (15 فقط)
+  "github.copilot.chat.toolChoice": "auto",
+  "github.copilot.chat.toolsWhitelist": [
+    // 📝 File Operations (Essential - 15 tools)
+    "create_file",
+    "read_file",
+    "replace_string_in_file",
+    "multi_replace_string_in_file",
+    "edit_notebook_file",
+    "list_dir",
+    "file_search",
+    "grep_search",
+    "semantic_search",
+    "get_errors",
+    "list_code_usages",
+    "get_changed_files",
+    "get_search_view_results",
+    "create_directory",
+    "get_vscode_api",
+
+    // 🔧 Development Tools (Essential - 20 tools)
+    "run_in_terminal",
+    "get_terminal_output",
+    "terminal_last_command",
+    "terminal_selection",
+    "create_and_run_task",
+    "run_task",
+    "get_task_output",
+    "runTests",
+    "test_failure",
+    "run_notebook_cell",
+    "copilot_getNotebookSummary",
+    "configure_notebook",
+    "activate_python_environment_tools",
+    "configure_python_environment",
+    "activate_debug_session_management_tools",
+    "manage_todo_list",
+    "runSubagent",
+    "open_simple_browser",
+    "export_marp",
+    "run_vscode_command",
+
+    // 🐙 GitHub Integration (Essential - 25 tools)
+    "activate_pull_request_management_tools",
+    "activate_github_search_tools",
+    "activate_pull_request_review_management",
+    "activate_issue_management_tools",
+    "activate_pull_request_operations",
+    "activate_file_management_tools",
+    "activate_repository_metadata_tools",
+    "activate_team_and_user_management",
+    "activate_code_and_repository_search",
+    "mcp_github_assign_copilot_to_issue",
+    "mcp_github_create_or_update_file",
+    "mcp_github_fork_repository",
+    "mcp_github_get_label",
+    "mcp_github_list_commits",
+    "mcp_github_github_list_issues",
+    "mcp_github_list_issues",
+    "mcp_github_github_remove_sub_issue",
+    "activate_issue_management_tools_2",
+    "activate_sub_issue_management_tools",
+    "activate_pull_request_management_tools_2",
+    "activate_repository_creation_tools",
+    "activate_file_management_tools_2",
+    "activate_release_management_tools",
+    "activate_team_and_user_management_tools",
+    "activate_repository_inspection_tools",
+
+    // 🤖 AI & Agent Tools (Essential - 15 tools)
+    "activate_ai_agent_development_best_practices",
+    "aitk-convert_declarative_agent_to_code",
+    "aitk-evaluation_planner",
+    "aitk-get_agent_code_gen_best_practices",
+    "aitk-get_evaluation_code_gen_best_practices",
+    "aitk-evaluation_agent_runner_best_practices",
+    "activate_observation_management_tools",
+    "activate_entity_management_tools",
+    "activate_node_access_tools",
+    "github-pull-request_copilot-coding-agent",
+    "activate_issue_management_tools_3",
+    "activate_pull_request_creation_tools",
+    "activate_pull_request_review_tools",
+    "github-pull-request_activePullRequest",
+    "github-pull-request_openPullRequest",
+
+    // 🐍 Python Development (Essential - 12 tools)
+    "activate_python_code_validation_and_execution_tools",
+    "activate_python_import_analysis_tools",
+    "activate_python_environment_management_tools",
+    "activate_workspace_structure_and_file_management_tools",
+    "mcp_pylance_mcp_s_pylanceSyntaxErrors",
+    "mcp_pylance_mcp_s_pylanceFileSyntaxErrors",
+    "activate_notebook_package_management",
+    "notebook_install_packages",
+    "notebook_list_packages",
+    "get_python_environment_details",
+    "get_python_executable_details",
+    "configure_python_environment",
+
+    // 🐳 Docker & Containers (Essential - 12 tools)
+    "activate_container_management_tools",
+    "activate_image_management_tools",
+    "activate_container_inspection_tools",
+    "activate_listing_tools",
+    "mcp_copilot_conta_inspect_container",
+    "mcp_copilot_conta_tag_image",
+    "docker_run_container",
+    "docker_stop_container",
+    "docker_remove_container",
+    "docker_list_containers",
+    "docker_pull_image",
+    "docker_inspect_container",
+
+    // 🔍 Code Quality & Analysis (Essential - 10 tools)
+    "activate_sonarqube_analysis_tools",
+    "sonarqube_analyze_file",
+    "sonarqube_list_potential_security_issues",
+    "sonarqube_exclude_from_analysis",
+    "get_errors",
+    "test_failure",
+    "runTests",
+    "get_vscode_api",
+    "list_code_usages",
+    "semantic_search",
+
+    // 🗄️ Database & Backend (Essential - 8 tools)
+    "activate_prisma_migration_tools",
+    "activate_prisma_postgres_management_tools",
+    "prisma_migrate_dev",
+    "prisma_migrate_reset",
+    "prisma_platform_login",
+    "prisma_postgres_create_database",
+    "azureResources_getAzureActivityLog",
+    "vscode-websearchforcopilot_webSearch",
+
+    // 📦 Project Setup (Essential - 6 tools)
+    "create_new_workspace",
+    "create_new_jupyter_notebook",
+    "get_project_setup_info",
+    "install_extension",
+    "vscode_searchExtensions_internal",
+    "fetch_webpage",
+
+    // 🔄 Git & Version Control (Essential - 5 tools)
+    "get_changed_files",
+    "github_repo",
+    "activate_code_and_repository_search_tools",
+    "activate_github_search_tools",
+    "github-pull-request_doSearch"
+  ],
+
+  // ═══════════════════════════════════════════════════════════
+  // ⚙️ Core Editor Settings
+  // ═══════════════════════════════════════════════════════════
   "editor.formatOnSave": true,
   "editor.defaultFormatter": "esbenp.prettier-vscode",
   "editor.codeActionsOnSave": {
     "source.fixAll.eslint": "explicit",
     "source.organizeImports": "explicit"
   },
-  "files.associations": {
-    "*.yml": "yaml",
-    "*.yaml": "yaml"
-  },
-  "yaml.schemas": {
-    "https://json.schemastore.org/github-workflow.json": ".github/workflows/*.yml"
-  },
-  "typescript.tsdk": "node_modules/typescript/lib",
-  "typescript.enablePromptUseWorkspaceTsdk": true,
   "editor.tabSize": 2,
   "editor.insertSpaces": true,
   "files.eol": "\n",
   "files.trimTrailingWhitespace": true,
   "files.insertFinalNewline": true,
-  "[markdown]": {
-    "files.trimTrailingWhitespace": false
+
+  // ═══════════════════════════════════════════════════════════
+  // 🤖 GitHub Copilot Settings
+  // ═══════════════════════════════════════════════════════════
+  "github.copilot.enable": {
+    "*": true,
+    "yaml": true,
+    "markdown": true
+  },
+  "github.copilot.editor.enableAutoCompletions": true,
+  "editor.inlineSuggest.enabled": true,
+
+  // ═══════════════════════════════════════════════════════════
+  // 🎯 TypeScript & JavaScript
+  // ═══════════════════════════════════════════════════════════
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "typescript.suggest.autoImports": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "typescript.tsserver.maxTsServerMemory": 3072,
+
+  // ═══════════════════════════════════════════════════════════
+  // 🎨 Tailwind CSS
+  // ═══════════════════════════════════════════════════════════
+  "tailwindCSS.experimental.classRegex": [
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cn\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"]
+  ],
+  "tailwindCSS.emmetCompletions": true,
+
+  // ═══════════════════════════════════════════════════════════
+  // 🚀 Performance Optimization
+  // ═══════════════════════════════════════════════════════════
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/.next/**": true,
+    "**/dist/**": true
   },
   "search.exclude": {
     "**/node_modules": true,
@@ -29,56 +219,65 @@
     "**/out": true,
     "**/.vercel": true
   },
-  "files.exclude": {
-    "**/.git": true,
-    "**/.DS_Store": true
+
+  // ═══════════════════════════════════════════════════════════
+  // 🔧 Terminal Configuration
+  // ═══════════════════════════════════════════════════════════
+  "terminal.integrated.defaultProfile.windows": "PowerShell",
+  "terminal.integrated.profiles.windows": {
+    "PowerShell": {
+      "path": "C:/Program Files/PowerShell/7/pwsh.exe",
+      "args": ["-NoLogo"],
+      "icon": "terminal-powershell"
+    }
   },
 
-  // تعطيل الامتدادات غير الضرورية
-  "python.analysis.disabled": true,
-  "jupyter.enabled": false,
-  "dart.enabled": false,
-  "sonarqube.enabled": false,
-
-  // إخفاء إعلانات Tabnine والامتدادات الأخرى
-  "tabnine.disable_auto_update_message": true,
-  "tabnine.disable_file_regex": [],
+  // ═══════════════════════════════════════════════════════════
+  // 🎨 UI & Experience
+  // ═══════════════════════════════════════════════════════════
   "workbench.startupEditor": "none",
+  "editor.minimap.enabled": true,
+  "editor.smoothScrolling": true,
+  "breadcrumbs.enabled": true,
+  "problems.decorations.enabled": true,
+  "problems.showCurrentInStatus": true,
+
+  // ═══════════════════════════════════════════════════════════
+  // 🔒 Security & Privacy
+  // ═══════════════════════════════════════════════════════════
+  "telemetry.telemetryLevel": "off",
   "extensions.autoUpdate": false,
   "extensions.autoCheckUpdates": false,
 
-  // التدقيق الإملائي - تجاهل الكلمات العربية والتقنية
-  "cSpell.enabled": true,
-  "cSpell.language": "en,ar",
-  "cSpell.words": [
-    "nexus",
-    "vercel",
-    "dependabot",
-    "codeql",
-    "pylance",
-    "tabnine",
-    "gitignore",
-    "prettierrc",
-    "tsconfig",
-    "eslintrc",
-    "autofix",
-    "autobuild"
-  ],
-  "cSpell.enabledFileTypes": {
-    "markdown": true,
-    "typescript": true,
-    "javascript": true,
-    "yaml": true
-  },
+  // ═══════════════════════════════════════════════════════════
+  // 🚫 تعطيل Extensions غير الضرورية
+  // ═══════════════════════════════════════════════════════════
 
-  // تحسين الأداء
-  "extensions.ignoreRecommendations": false,
-  "files.watcherExclude": {
-    "**/.git/objects/**": true,
-    "**/.git/subtree-cache/**": true,
-    "**/node_modules/**": true,
-    "**/.next/**": true,
-    "**/dist/**": true
-  }
+  // تعطيل Azure Resources
+  "azureResourceGroups.enableTelemetry": false,
+
+  // تعطيل GitKraken
+  "gitkraken.enabled": false,
+
+  // تعطيل Jupyter (إبقاء Built-In فقط)
+  "jupyter.widgetScriptSources": [],
+  "jupyter.enableExtendedPythonKernelCompletions": false,
+
+  // تعطيل Marp
+  "markdown.marp.html": "off",
+
+  // تعطيل Prisma (إبقاء الأساسي فقط)
+  "prisma.showPrismaDataPlatformNotification": false,
+
+  // تعطيل SonarQube
+  "sonarlint.connectedMode.connections.sonarqube": [],
+  "sonarlint.disableTelemetry": true,
+
+  // تعطيل Web Search
+  "workbench.cloudChanges.autoStore": "off",
+
+  // تعطيل GitHub Copilot Extensions غير الضرورية
+  "github.copilot.chat.useProjectTemplates": false,
+  "github.copilot.renameSuggestions.triggerAutomatically": false,
+  "editor.codeActions.triggerOnFocusChange": true
 }
-

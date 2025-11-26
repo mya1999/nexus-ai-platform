@@ -1,0 +1,35 @@
+'use client';
+import { ButtonAdvanced } from '@/components/ui/button-advanced';
+import { motion } from 'framer-motion';
+
+interface SuggestionsBarProps {
+  visible: boolean;
+  onPick: (text: string) => void;
+}
+
+const suggestions = [
+  'ما هي أفضل طريقة لبدء مشروع ذكاء اصطناعي؟',
+  'اشرح هذا الكود خطوة بخطوة',
+  'صغ ملخصاً من 5 نقاط للنص التالي',
+  'اقترح أسماء مميزة لمنتج AI جديد',
+];
+
+export function SuggestionsBar({ visible, onPick }: SuggestionsBarProps) {
+  if (!visible) return null;
+  return (
+    <motion.div
+      className="container mx-auto mt-4 px-4"
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.2 }}
+    >
+      <div className="flex flex-wrap justify-center gap-2">
+        {suggestions.map(s => (
+          <ButtonAdvanced key={s} variant="outline" size="sm" onClick={() => onPick(s)}>
+            {s}
+          </ButtonAdvanced>
+        ))}
+      </div>
+    </motion.div>
+  );
+}

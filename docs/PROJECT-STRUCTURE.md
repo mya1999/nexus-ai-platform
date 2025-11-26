@@ -1,0 +1,318 @@
+# 📁 هيكل المشروع - NexusAI Platform
+
+> دليل شامل لبنية المشروع وتنظيم الملفات
+
+## 📐 البنية العامة
+
+```
+nexus-ai-platform/
+├── 📂 src/                    # الكود المصدري
+│   ├── 📂 app/               # Next.js App Router
+│   ├── 📂 components/        # المكونات القابلة لإعادة الاستخدام
+│   ├── 📂 lib/               # الوظائف المساعدة
+│   ├── 📂 hooks/             # React Hooks المخصصة
+│   ├── 📂 store/             # إدارة الحالة (Zustand)
+│   ├── 📂 types/             # تعريفات TypeScript
+│   ├── 📂 config/            # ملفات الإعدادات
+│   ├── 📂 styles/            # الأنماط العامة
+│   └── 📂 translations/      # ملفات الترجمة
+│
+├── 📂 public/                # الملفات الثابتة
+│   ├── manifest.json         # PWA Manifest
+│   ├── robots.txt            # تعليمات محركات البحث
+│   └── sitemap.xml           # خريطة الموقع
+│
+├── 📂 scripts/               # سكربتات الأتمتة
+│   ├── system-diagnostics.ps1   # تشخيص النظام
+│   ├── smart-update.ps1          # إدارة التحديثات
+│   └── auto-setup.ps1            # الإعداد التلقائي
+│
+├── 📂 .vscode/               # إعدادات VS Code
+│   ├── settings.json         # الإعدادات العامة
+│   ├── extensions.json       # الإضافات الموصى بها
+│   └── launch.json           # إعدادات التصحيح
+│
+├── 📂 .github/               # إعدادات GitHub
+│   └── workflows/            # GitHub Actions
+│
+├── 📂 docs/                  # الوثائق
+│   ├── API.md               # وثائق API
+│   ├── ARCHITECTURE.md      # معمارية المشروع
+│   └── DEPLOYMENT.md        # دليل النشر
+│
+└── 📄 ملفات الإعدادات
+    ├── package.json          # اعتماديات Node.js
+    ├── tsconfig.json         # إعدادات TypeScript
+    ├── next.config.js        # إعدادات Next.js
+    ├── tailwind.config.ts    # إعدادات Tailwind CSS
+    └── .env.local            # متغيرات البيئة
+```
+
+---
+
+## 📂 الشرح التفصيلي
+
+### 1️⃣ `src/app/` - تطبيق Next.js
+
+**المسؤولية**: جميع صفحات ومسارات التطبيق
+
+```
+app/
+├── page.tsx              # الصفحة الرئيسية
+├── layout.tsx            # التخطيط الرئيسي
+├── loading.tsx           # شاشة التحميل
+├── error.tsx             # معالجة الأخطاء
+├── globals.css           # الأنماط العامة
+│
+├── api/                  # API Routes
+│   └── chat-stream/
+│       └── route.ts      # معالج بث المحادثة
+│
+├── chat/                 # صفحات المحادثة
+│   └── page.tsx
+│
+└── seo-config.ts         # إعدادات SEO
+```
+
+**أفضل الممارسات:**
+
+- كل مسار في مجلد منفصل
+- استخدام Server Components افتراضياً
+- Client Components فقط عند الحاجة (`'use client'`)
+
+---
+
+### 2️⃣ `src/components/` - المكونات
+
+**المسؤولية**: مكونات UI قابلة لإعادة الاستخدام
+
+```
+components/
+├── ui/                   # مكونات UI الأساسية
+│   ├── button.tsx
+│   ├── input.tsx
+│   ├── card.tsx
+│   ├── modal.tsx
+│   └── index.ts          # Barrel export
+│
+├── chat/                 # مكونات المحادثة
+│   ├── chat-interface.tsx
+│   ├── message-bubble.tsx
+│   ├── input-area.tsx
+│   └── model-selector.tsx
+│
+├── settings/             # مكونات الإعدادات
+│   └── settings-modal.tsx
+│
+└── providers/            # Context Providers
+    └── theme-provider.tsx
+```
+
+**معايير التنظيم:**
+
+- مكون واحد لكل ملف
+- تسمية واضحة ووصفية
+- تصدير مركزي عبر `index.ts`
+
+---
+
+### 3️⃣ `src/lib/` - المكتبات والوظائف المساعدة
+
+**المسؤولية**: وظائف قابلة لإعادة الاستخدام
+
+```
+lib/
+├── utils.ts              # وظائف عامة
+├── ai-models.ts          # تكامل نماذج AI
+├── rate-limiter.ts       # تحديد المعدل
+└── image-utils.ts        # معالجة الصور
+```
+
+**المبادئ:**
+
+- وظائف نقية (Pure Functions) قدر الإمكان
+- توثيق شامل لكل وظيفة
+- اختبارات شاملة
+
+---
+
+### 4️⃣ `src/hooks/` - React Hooks المخصصة
+
+**المسؤولية**: منطق قابل لإعادة الاستخدام
+
+```
+hooks/
+├── index.ts              # تصدير مركزي
+├── use-language.ts       # إدارة اللغة
+├── use-theme.ts          # إدارة السمات
+└── use-chat.ts           # منطق المحادثة
+```
+
+---
+
+### 5️⃣ `src/store/` - إدارة الحالة العامة
+
+**المسؤولية**: الحالة المشتركة باستخدام Zustand
+
+```
+store/
+├── chat-store.ts         # حالة المحادثة
+├── user-store.ts         # حالة المستخدم
+└── settings-store.ts     # الإعدادات
+```
+
+---
+
+### 6️⃣ `src/types/` - تعريفات TypeScript
+
+**المسؤولية**: الأنواع والواجهات المشتركة
+
+```
+types/
+├── index.ts              # الأنواع الرئيسية
+├── api.types.ts          # أنواع API
+└── chat.types.ts         # أنواع المحادثة
+```
+
+---
+
+### 7️⃣ `scripts/` - سكربتات الأتمتة
+
+**المسؤولية**: أتمتة المهام التكرارية
+
+```
+scripts/
+├── system-diagnostics.ps1    # فحص النظام الشامل
+├── smart-update.ps1          # إدارة التحديثات الذكية
+├── auto-setup.ps1            # الإعداد التلقائي
+└── backup.ps1                # نسخ احتياطي
+```
+
+**الاستخدام:**
+
+```powershell
+# تشخيص النظام
+./scripts/system-diagnostics.ps1
+
+# تحديث ذكي
+./scripts/smart-update.ps1
+
+# إعداد تلقائي
+./scripts/auto-setup.ps1
+```
+
+---
+
+## 🎯 معايير التنظيم
+
+### 📝 تسمية الملفات
+
+- **المكونات**: `PascalCase` → `ChatInterface.tsx`
+- **الوظائف**: `camelCase` → `aiModels.ts`
+- **الأنماط**: `kebab-case` → `chat-styles.css`
+- **الثوابت**: `UPPER_SNAKE_CASE` → `API_KEYS.ts`
+
+### 📦 تنظيم الاستيرادات
+
+```typescript
+// 1. مكتبات خارجية
+import React from 'react';
+import { useRouter } from 'next/navigation';
+
+// 2. مكونات داخلية
+import { Button } from '@/components/ui';
+import { ChatInterface } from '@/components/chat';
+
+// 3. Hooks ووظائف
+import { useLanguage } from '@/hooks';
+import { cn } from '@/lib/utils';
+
+// 4. أنواع
+import type { Message } from '@/types';
+
+// 5. أنماط
+import './styles.css';
+```
+
+### 🔧 هيكل المكونات
+
+```typescript
+// 1. الاستيرادات
+import React from 'react'
+
+// 2. التعريفات
+interface Props {
+  title: string
+}
+
+// 3. المكون
+export function Component({ title }: Props) {
+  // Hooks
+  const [state, setState] = useState()
+
+  // Effects
+  useEffect(() => {}, [])
+
+  // Handlers
+  const handleClick = () => {}
+
+  // Render
+  return <div>{title}</div>
+}
+```
+
+---
+
+## 🚀 أوامر سريعة
+
+### التطوير
+
+```bash
+npm run dev              # بدء خادم التطوير
+npm run build            # بناء للإنتاج
+npm run start            # تشغيل النسخة المبنية
+```
+
+### الجودة
+
+```bash
+npm run lint             # فحص الكود
+npm run lint:fix         # إصلاح تلقائي
+npm run typecheck        # فحص الأنواع
+npm run format           # تنسيق الكود
+```
+
+### الشامل
+
+```bash
+npm run validate         # فحص شامل
+npm run fix              # إصلاح وتنسيق
+npm run prod:build       # بناء إنتاج كامل
+```
+
+---
+
+## 📚 موارد إضافية
+
+- [Next.js Docs](https://nextjs.org/docs)
+- [TypeScript Handbook](https://www.typescriptlang.org/docs/)
+- [Tailwind CSS](https://tailwindcss.com/docs)
+- [React Best Practices](https://react.dev/)
+
+---
+
+## ✅ قائمة المراجعة
+
+- [ ] تنظيم المكونات حسب المسؤولية
+- [ ] فصل المنطق عن العرض
+- [ ] توثيق الوظائف المعقدة
+- [ ] كتابة أنواع TypeScript صارمة
+- [ ] اختبار المكونات الحرجة
+- [ ] تحسين الأداء (lazy loading)
+- [ ] إضافة معالجة الأخطاء
+- [ ] مراجعة الأمان
+
+---
+
+**آخر تحديث**: نوفمبر 2025  
+**الإصدار**: 2.0.0

@@ -39,6 +39,7 @@ git push -u origin main
 ```
 
 **مثال:**
+
 ```bash
 # إذا كان اسمك MohammedDev
 git remote add origin https://github.com/MohammedDev/nexus-ai-platform.git
@@ -53,12 +54,14 @@ git push -u origin main
 عند تنفيذ `git push` لأول مرة، سيطلب منك:
 
 **الطريقة 1: HTTPS (الأسهل)**
+
 ```
 Username: اسم-حسابك
 Password: Personal Access Token (ليس كلمة المرور!)
 ```
 
 **للحصول على Personal Access Token:**
+
 1. GitHub.com → Settings → Developer settings
 2. Personal access tokens → Tokens (classic)
 3. Generate new token
@@ -66,6 +69,7 @@ Password: Personal Access Token (ليس كلمة المرور!)
 5. انسخ التوكن واحفظه (لن يظهر مرة أخرى!)
 
 **الطريقة 2: SSH (الأفضل للمدى الطويل)**
+
 ```bash
 # توليد مفتاح SSH
 ssh-keygen -t ed25519 -C "بريدك@example.com"
@@ -78,6 +82,7 @@ cat ~/.ssh/id_ed25519.pub
 ```
 
 ثم استخدم:
+
 ```bash
 git remote set-url origin git@github.com:YOUR_USERNAME/nexus-ai-platform.git
 git push -u origin main
@@ -88,6 +93,7 @@ git push -u origin main
 ## 🔄 الأوامر اليومية (بعد الرفع الأول):
 
 ### حفظ التغييرات:
+
 ```bash
 # 1. إضافة التغييرات
 git add .
@@ -100,11 +106,13 @@ git push
 ```
 
 ### سحب التحديثات:
+
 ```bash
 git pull
 ```
 
 ### التحقق من الحالة:
+
 ```bash
 git status
 ```
@@ -126,12 +134,14 @@ git status
 ## 🎯 بعد الرفع على GitHub:
 
 ### سيتم تفعيل تلقائياً:
+
 - ✅ GitHub Actions (CI/CD)
 - ✅ Dependabot (تحديثات تلقائية)
 - ✅ CodeQL Security (فحص أمني)
 - ✅ قوالب Issues و PRs
 
 ### يجب تفعيلها يدوياً:
+
 - ⚙️ Branch Protection (حماية main)
 - ⚙️ Vercel Deployment (معاينات)
 - ⚙️ GitHub Pages (إن أردت)
@@ -141,18 +151,21 @@ git status
 ## 🆘 حل المشاكل الشائعة:
 
 ### مشكلة 1: "remote origin already exists"
+
 ```bash
 git remote remove origin
 # ثم أعد الخطوة 2
 ```
 
 ### مشكلة 2: "Authentication failed"
+
 ```bash
 # استخدم Personal Access Token بدلاً من كلمة المرور
 # أو استخدم SSH
 ```
 
 ### مشكلة 3: "rejected - non-fast-forward"
+
 ```bash
 git pull --rebase origin main
 git push
@@ -163,6 +176,7 @@ git push
 ## ✨ نصائح للنجاح:
 
 1. **احفظ بانتظام:**
+
    ```bash
    git add . && git commit -m "update" && git push
    ```
@@ -184,12 +198,14 @@ git push
 ## 🔒 الأمان:
 
 ### ❌ لا ترفع أبداً:
+
 - كلمات مرور
 - API keys
 - ملفات `.env` (موجودة في .gitignore)
 - بيانات شخصية
 
 ### ✅ تأكد من .gitignore يحتوي:
+
 ```
 node_modules/
 .env
@@ -225,6 +241,7 @@ git branch -a
 **الآن ملفاتك محفوظة محلياً!** ✅
 
 **بمجرد رفعها على GitHub:**
+
 - 🔒 محمية من فقدان البيانات
 - ☁️ متاحة من أي جهاز
 - 🔄 مزامنة تلقائية
