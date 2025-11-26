@@ -1,0 +1,6 @@
+# Robots.txt for NexusAI Platform
+User-agent: *
+Allow: /
+Disallow: /api/
+
+Sitemap: https://nexusai.dev/sitemap.xml
