@@ -16,7 +16,7 @@ const anthropic = new Anthropic({
   apiKey: process.env.ANTHROPIC_API_KEY || 'dummy-key',
 });
 
-const genAI = new GoogleGenerativeAI(process.env.GOOGLE_AI_API_KEY || 'dummy-key');
+const genAI = new GoogleGenerativeAI(process.env.GOOGLE_API_KEY || process.env.GOOGLE_AI_API_KEY || 'dummy-key');
 
 export async function POST(req: NextRequest) {
   // Apply rate limiting
@@ -55,7 +55,8 @@ export async function POST(req: NextRequest) {
           content: msg.content,
         })),
       });
-      responseText = response.content[0]?.text || 'No response';
+      const textBlock = response.content[0];
+      responseText = textBlock && 'text' in textBlock ? textBlock.text : 'No response';
     } else if (model.provider === 'Google') {
       const genModel = genAI.getGenerativeModel({ model: model.model });
       const lastMessage = messages[messages.length - 1];
