@@ -28,7 +28,7 @@ const Skeleton = React.forwardRef<HTMLDivElement, SkeletonProps>(
           // Animation styles
           animation === 'pulse' && 'animate-pulse',
           animation === 'wave' &&
-            'relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:animate-shimmer before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent',
+            'before:animate-shimmer relative overflow-hidden before:absolute before:inset-0 before:-translate-x-full before:bg-gradient-to-r before:from-transparent before:via-white/10 before:to-transparent',
 
           className
         )}

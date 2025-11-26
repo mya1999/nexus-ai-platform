@@ -57,7 +57,7 @@ npm run typecheck
 
 ```tsx
 // حركات فيزيائية طبيعية
-<button className="transition-all duration-normal ease-spring">Click me</button>
+<button className="duration-normal ease-spring transition-all">Click me</button>
 ```
 
 ---

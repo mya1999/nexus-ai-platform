@@ -87,7 +87,7 @@ export const ToastContainer: React.FC<{ toasts: Toast[]; onClose: (id: string) =
   onClose,
 }) => {
   return (
-    <div className="pointer-events-none fixed bottom-4 right-4 z-notification">
+    <div className="z-notification pointer-events-none fixed bottom-4 right-4">
       <div className="pointer-events-auto flex flex-col gap-2">
         <AnimatePresence mode="popLayout">
           {toasts.map(toast => (

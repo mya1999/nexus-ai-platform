@@ -40,7 +40,7 @@ export function ConversationToolbar({
             title="العودة للصفحة الرئيسية"
           >
             <motion.div
-              className="from-brand-primary to-brand-accent flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br shadow-glow-purple"
+              className="from-brand-primary to-brand-accent shadow-glow-purple flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br"
               whileHover={{ scale: 1.05, rotate: 5 }}
               whileTap={{ scale: 0.95 }}
             >

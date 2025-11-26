@@ -135,7 +135,7 @@ export default function ModelSelector({ selectedModelId, onSelectModel }: ModelS
             createPortal(
               <div
                 style={menuStyle}
-                className={`duration-200 animate-in fade-in ${openUpward ? 'slide-in-from-bottom-2' : 'slide-in-from-top-2'}`}
+                className={`animate-in fade-in duration-200 ${openUpward ? 'slide-in-from-bottom-2' : 'slide-in-from-top-2'}`}
               >
                 <Card
                   variant="glass"

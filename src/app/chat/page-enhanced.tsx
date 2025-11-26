@@ -141,7 +141,7 @@ export default function ChatPageEnhanced() {
           <>
             {/* Backdrop */}
             <motion.button
-              className="interactive-overlay fixed inset-0 z-modalBackdrop bg-black/50 backdrop-blur-sm md:hidden"
+              className="interactive-overlay z-modalBackdrop fixed inset-0 bg-black/50 backdrop-blur-sm md:hidden"
               onClick={() => setIsSidebarOpen(false)}
               aria-label="إغلاق القائمة الجانبية"
               title="إغلاق القائمة الجانبية"
@@ -157,7 +157,7 @@ export default function ChatPageEnhanced() {
 
             {/* Sidebar Content */}
             <motion.div
-              className="bg-surface-1 fixed left-0 top-0 z-modal h-full w-80 border-r border-white/10 md:static md:translate-x-0"
+              className="bg-surface-1 z-modal fixed left-0 top-0 h-full w-80 border-r border-white/10 md:static md:translate-x-0"
               {...motionVariants.slideInFromLeft}
             >
               <ChatSidebar onClose={() => setIsSidebarOpen(false)} />

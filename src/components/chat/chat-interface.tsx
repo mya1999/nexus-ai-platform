@@ -190,7 +190,7 @@ function EmptyState() {
 
 function LoadingIndicator() {
   return (
-    <div className="flex gap-4 duration-500 animate-in fade-in slide-in-from-bottom-4">
+    <div className="animate-in fade-in slide-in-from-bottom-4 flex gap-4 duration-500">
       <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-gradient-to-br from-blue-500 to-purple-600 shadow-lg">
         <Sparkles className="h-6 w-6 animate-pulse text-white" />
       </div>

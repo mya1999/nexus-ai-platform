@@ -5,7 +5,7 @@ Write-Host "`n🎯 تعطيل Extensions غير الضرورية...`n" -Foregrou
 # قائمة Extensions المطلوب تعطيلها
 $extensionsToDisable = @(
     "ms-vscode.azure-repos",
-    "gitkraken.gitkraken-authentication", 
+    "gitkraken.gitkraken-authentication",
     "ms-toolsai.jupyter",
     "marp-team.marp-vscode",
     "Prisma.prisma",
