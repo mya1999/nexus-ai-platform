@@ -123,7 +123,7 @@ jobs:
 
       - name: Upload build artifact (.next)
         if: success() && hashFiles('**/package.json') != ''
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v6
         with:
           name: next-build
           path: |
